@@ -36,7 +36,7 @@ All commands that require root will have (Root_Required) in descriptionn.
   
 Links works when you clicking the links with your mobile device, please visit [android.nr1.nu](https://www.android.nr1.nu) to get clickable links.
  
-![](https://nr1.nu/archive/previews/google_chrome_rec.gif)
+[](https://nr1.nu/archive/previews/google_chrome_rec.gif)
 
 * [Click to Erase Lock Settings (dont press unless you frp unlocking)](intent://com.google.android.gms/#Intent;scheme=promote_smartlock_scheme;en)
 * [Click to Open My Files](intent://com.sec.android.app.myfiles/#Intent;scheme=android-app;end)
