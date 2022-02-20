@@ -36,6 +36,13 @@ All commands that require root will have (Root_Required) in descriptionn.
 ## Open Android™ <small>Applications</small>
 
 <a href="intent://com.sec.android.app.samsungapps/#Intent;scheme=android-app;end">Open Samsung Apps<span style="margin-left: 1em; margin-right: 1em; text-align: center;">
+<li><a href="intent://com.android.settings/#Intent;scheme=android-app;end">Open Device Settings<span style="margin-left: 1em; margin-right: 1em; text-align: center;"></li>
+<li><a href="intent://com.sec.android.app.samsungapps/#Intent;scheme=android-app;end">Open Samsung Apps<span style="margin-left: 1em; margin-right: 1em; text-align: center;"></li>
+<li><a href="intent://com.google.android.gms/#Intent;scheme=promote_smartlock_scheme;end">Click to Erase Lock Settings</a><span style="margin-left: 1em; margin-right: 1em; text-align: center;"></li>
+<li><a href="intent://com.sec.android.app.myfiles/#Intent;scheme=android-app;end">Click to Open My Files</a><span style="margin-left: 1em; margin-right: 1em; text-align: center;"></li>
+<li><a href="intent://com.google.android.googlequicksearchbox/#Intent;scheme=android-app;end">Google Search App</a><span style="margin-left: 1em; margin-right: 1em; text-align: center;"></li>
+<li><a href="intent://com.sec.android.app.samsungapps/#Intent;scheme=android-app;end">Click to Open Lock Screen Page</a><span style="margin-left: 1em; margin-right: 1em; text-align: center;"></li>
+<li><a href="https://galaxy.store/alliance">Alliance Shield X in Galaxy Store</a><span style="margin-left: 1em; margin-right: 1em; text-align: center;"></li>
 
   
 ## Android™ <small>Resources</small>
