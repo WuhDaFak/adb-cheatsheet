@@ -32,7 +32,7 @@ All commands that require root will have (Root_Required) in descriptionn.
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.1.apk">Google Account Manager Android 8.1</a></li>
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v9.apk">Google Account Manager Android 9</a></li>
 
-  ## Open Android™ <small>Applications</small>
+## Open Android™ <small>Applications</small>
   
 Links works when you clicking the links with your mobile device, please visit [android.nr1.nu](https://www.android.nr1.nu) to get clickable links.
 
