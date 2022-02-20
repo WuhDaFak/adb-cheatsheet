@@ -35,7 +35,9 @@ All commands that require root will have (Root_Required) in descriptionn.
 
 ## Open Android™ <small>Applications</small>
 
+<a href="intent://com.sec.android.app.samsungapps/#Intent;scheme=android-app;end">Open Samsung Apps<span style="margin-left: 1em; margin-right: 1em; text-align: center;">
 
+  
 ## Android™ <small>Resources</small>
 
 #### Android <small>Sounds</small>
