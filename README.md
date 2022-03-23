@@ -15,12 +15,11 @@ All commands that require root will have (Root_Required) in descriptionn.
 ## Websites linked to this Repository
 
 * [Android™ Debug Bridge - Main](https://android.nr1.nu)
-* [Android™ Debug Bridge - Nr1](https://www.nr1.nu/wikis/adb-cheatsheet/)
 * [Android™ Debug Bridge - Wiki](https://github.com/wuseman/adb-cheatsheet/wiki/Android%E2%84%A2-Debug-Bridge-(adb))
 
 ## Download Android™ <small>Google Account Manager</small>
 
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v10.apk">Google Account Manager Android 10</a></li>
+
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.0.3.apk">Google Account Manager Android 4.0.3</a></li>
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.4.4.apk">Google Account Manager Android 4.4.4</a></li>
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v5.0.1.apk">Google Account Manager Android 5.0.1</a></li>
@@ -31,6 +30,7 @@ All commands that require root will have (Root_Required) in descriptionn.
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.0.apk">Google Account Manager Android 8.0</a></li>
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.1.apk">Google Account Manager Android 8.1</a></li>
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v9.apk">Google Account Manager Android 9</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v10.apk">Google Account Manager Android 10</a></li>
 
 ## Open Android™ <small>Applications</small>
   
@@ -74,8 +74,8 @@ Links works when you clicking the links with your mobile device, please visit [a
  
 #### Source Files
 
-* [Download SDK Platform-Tools for Linux](https://dl.google.com/android/repository/pplatform-tools_r32.0.0-linux.zip)
-* [Download SDK Platform-Tools for MacOSX](https://dl.google.com/android/repository/pplatform-tools_r32.0.0-darwin.zip)     
+* [Download SDK Platform-Tools for Linux](https://dl.google.com/android/repository/platform-tools_r32.0.0-linux.zip)
+* [Download SDK Platform-Tools for MacOSX](https://dl.google.com/android/repository/platform-tools_r32.0.0-darwin.zip)     
 * [Download SDK Platform-Tools for Windows](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)
   
 #### MacOSX
