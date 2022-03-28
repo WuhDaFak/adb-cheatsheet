@@ -253,7 +253,8 @@ Exec Out Syntax
 
 Recommended since it is starts immediately, very little delay, and doesn't freak out like vlc.
 
-![Screenshot](https://wuseman.nr1.nu/archive/github/android/adb_mirror.gif)
+![Screenshot](previews/adb_mirror.gif)
+
     adb exec-out screenrecord --output-format=h264 - | ffplay -framerate 60 -probesize 32 -sync video  -
 
 ffplay works, but it seems to take a few seconds to decide to start, and ends up lagging well behind the entire time.
