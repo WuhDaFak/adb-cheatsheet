@@ -20,17 +20,17 @@ All commands that require root will have (Root_Required) in descriptionn.
 ## Download Android™ <small>Google Account Manager</small>
 
 
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.0.3.apk">Google Account Manager Android 4.0.3</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.4.4.apk">Google Account Manager Android 4.4.4</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v5.0.1.apk">Google Account Manager Android 5.0.1</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v6.0.apk">Google Account Manager Android 6.0</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.0.apk">Google Account Manager Android 7.0</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.1.2.apk">Google Account Manager Android 7.1.2</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.1.25.apk">Google Account Manager Android 7.1.25</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.0.apk">Google Account Manager Android 8.0</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.1.apk">Google Account Manager Android 8.1</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v9.apk">Google Account Manager Android 9</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v10.apk">Google Account Manager Android 10</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.0.3.apk">Google Account Manager Android 4.0.3</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.4.4.apk">Google Account Manager Android 4.4.4</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v5.0.1.apk">Google Account Manager Android 5.0.1</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v6.0.apk">Google Account Manager Android 6.0</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.0.apk">Google Account Manager Android 7.0</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.1.2.apk">Google Account Manager Android 7.1.2</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.1.25.apk">Google Account Manager Android 7.1.25</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.0.apk">Google Account Manager Android 8.0</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.1.apk">Google Account Manager Android 8.1</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v9.apk">Google Account Manager Android 9</a></li>
+<li><a href="https://www.wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v10.apk">Google Account Manager Android 10</a></li>
 
 ## Open Android™ <small>Applications</small>
   
@@ -44,24 +44,6 @@ Links works when you clicking the links with your mobile device, please visit [a
 * [Samsung Apps](intent://com.sec.android.app.samsungapps/#Intent;scheme=android-app;end)
 * [Alliance Shield X (Galaxy Store)](https://galaxy.store/alliance)
   
-## Android™ <small>Resources</small>
-
-#### Android <small>Sounds</small>
-
-* [Android™ and iPhone Archive](https://www.nr1.nu/archive/notifications_and_ringtones/)
-
-#### Android™ Stock Apk <small>Files</small>
-
-* [Android™ - Stock APKS's](https://www.nr1.nu/archive/distfiles/android/stock_apks)
-
-#### Android™ FRP Bypass <small>Files</small>
-
-* [Android™ - APK's FRP Bypassing](https://www.nr1.nu/archive/archive/distfiles/android/frp.bypass-apks/)
-
-#### Android™ Root <small>Files</small>
-
-* [Android™ - Root Files](https://www.nr1.nu/archive/distfiles/android/root.files/)
-
 #### Android™ <small>Source Code</small>
 
 * [Android™ Source Code](https://cs.android.com/android/platform/superproject/)
@@ -274,7 +256,8 @@ Exec Out Syntax
 
 Recommended since it is starts immediately, very little delay, and doesn't freak out like vlc.
 
-    adb shell screenrecord --bit-rate=16m --Example Output-format=h264 --size 800x600 - | ffplay -framerate 60 -framedrop -bufsize 16M -
+![Screenshot](https://wuseman.nr1.nu/archive/github/android/adb_mirror.gif)
+    adb exec-out screenrecord --output-format=h264 - | ffplay -framerate 60 -probesize 32 -sync video  -
 
 ffplay works, but it seems to take a few seconds to decide to start, and ends up lagging well behind the entire time.
 
