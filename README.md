@@ -227,7 +227,7 @@ adb pull = tansfer a file: device > pc
 
 #### Pull installed apk files 
 
-![Screenshot](https://wuseman.nr1.nu/archive/android/videos/android-wpull-system-apks.gif)
+![Screenshot](previews/android-wpull-system-apks.gif)
 
 * [All Install Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-all-apks.sh)
 * [Factory Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-system-apks.sh)
