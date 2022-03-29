@@ -1254,6 +1254,13 @@ Print IMEI - Slot 2
 
     settings put global policy_control null*
 
+##### It is also possible to specify this behavior for a specific application. 
+##### Examples to modify the behavior when Enterprise Browser is in the foreground: 
+
+    settings put global policy_control immersive.full=com.honeywell.enterprisebrowser
+    settings put global policy_control immersive.navigation=com.honeywell.enterprisebrowser
+    settings put global policy_control immersive.status=com.honeywell.enterprisebrowser
+
 ## ADB <small>content</small>
 
 #### Trick device that setup already has been done (FRP Bypassing)
