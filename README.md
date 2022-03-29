@@ -253,8 +253,6 @@ Exec Out Syntax
 
 Recommended since it is starts immediately, very little delay, and doesn't freak out like vlc.
 
-![Screenshot](previews/adb_mirror.gif)
-
     adb exec-out screenrecord --output-format=h264 - | ffplay -framerate 60 -probesize 32 -sync video  -
 
 ffplay works, but it seems to take a few seconds to decide to start, and ends up lagging well behind the entire time.
@@ -1239,7 +1237,13 @@ Print IMEI - Slot 2
 #### List how many times we booted device:
 
     settings list global|grep "boot_count="|cut -d= -f2|head -n 1|xargs echo "Booted:"|sed 's/$/ times/g'
-    
+
+
+#### Hide Notification bar
+
+    settings put global policy_control immersive.status=*
+
+
 ## ADB <small>content</small>
 
 #### Trick device that setup already has been done (FRP Bypassing)
