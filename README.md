@@ -1247,6 +1247,9 @@ Print IMEI - Slot 2
 
     settings put global policy_control immersive.navigation=*
 
+#### Hide both status and navigation bars
+
+    settings put global policy_control immersive.full=*
 
 ## ADB <small>content</small>
 
