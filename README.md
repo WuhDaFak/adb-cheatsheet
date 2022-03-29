@@ -990,6 +990,27 @@ Dumpstate info: id=0 pid=26940 dry_run=0 args=dumpstate -v extra_options=
      
 ## ADB <small>am</small>
 
+#### How to use Demo Mode
+#### First you enable the Demo Mode:
+
+     settings put global sysui_demo_allowed 1 
+
+#### Display time 12:00
+
+     am broadcast -a com.android.systemui.demo -e command clock -e hhmm 1200
+
+#### Display full mobile data without type
+
+     am broadcast -a com.android.systemui.demo -e command network -e mobile show -e level 4 -e datatype false
+
+#### Hide notifications
+
+     am broadcast -a com.android.systemui.demo -e command notifications -e visible false
+
+#### Show full battery but not in charging state
+ 
+     am broadcast -a com.android.systemui.demo -e command battery -e plugged false -e level 100
+
 #### Add a value to default shared preferences.
 
     adb shell 'am broadcast -a org.example.app.sp.PUT --es key key_name --es value "hello world!"'
