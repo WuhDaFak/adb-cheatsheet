@@ -336,6 +336,10 @@ Sniff your device network and SMS traffic via Wireshark on your PC
 
     cmd statusbar get-status-icons
 
+#### Print Preferences for Status Bar
+
+    cmd statusbar prefs list-prefs
+
 #### Expand Status Bar
 
     cmd statusbar expand-notifications
@@ -1448,6 +1452,11 @@ Example Usage
 ```sh
 getprop | grep "model\|version.sdk\|manufacturer\|hardware\|platform\|revision\|serialno\|product.name\|brand"
 ```
+
+#### Print CPU abi
+
+    getprop ro.product.cpu.abi
+
 
 #### Get info if OEM Unlock is Allowed
 
