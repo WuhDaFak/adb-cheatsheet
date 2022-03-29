@@ -1485,6 +1485,22 @@ getprop sys.oem_unlock_allowed
 
 ## ADB <small>/sys</small>
 
+#### Set Screen Brightness 
+
+#### Set Brightness Off
+
+- 0 is the same as 1
+
+    echo 1 > /sys/class/backlight/panel/brightness        
+
+#### Set to maximum
+
+    echo 48600 > /sys/class/backlight/panel/brightness 
+
+#### Set to max normal
+
+    echo 255 > /sys/class/backlight/panel/brightness 
+
 #### Try vibrator
  
     echo 200 > /sys/class/timed_Example Output/vibrator/enable
