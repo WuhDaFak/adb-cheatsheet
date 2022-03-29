@@ -331,7 +331,23 @@ Sniff your device network and SMS traffic via Wireshark on your PC
     date MMDDYYYY.XX;am broadcast -a android.intent.action.TIME_SET
 
 ## ADB <small>cmd</small>
-  
+
+#### Expand Status Bar
+
+    cmd statusbar expand-notifications
+
+#### Collapse Status Bar
+
+    cmd statusbar collapse
+
+#### Expand Full Settings
+
+    cmd statusbar expand-settings
+
+#### Status Bar Help
+
+    cmd statusbar help
+
 #### Print auth user
   
     cmd user list   
@@ -1223,7 +1239,21 @@ Establishes a fake Bluetooth connection to Dialer and must be called first to en
 
 ## ADB <small>service</small>
 
-IMEI Related
+### StatusBar
+
+#### Expand Status Bar
+
+    service call statusbar 1
+
+#### Expand Status Bar <full>
+
+    service call statusbar 2
+
+#### Collapse Status Bar
+
+    service call statusbar 2
+
+### IMEI Related
 
 ### Slot 1
 
