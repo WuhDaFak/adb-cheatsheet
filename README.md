@@ -1011,6 +1011,12 @@ Dumpstate info: id=0 pid=26940 dry_run=0 args=dumpstate -v extra_options=
  
      am broadcast -a com.android.systemui.demo -e command battery -e plugged false -e level 100
 
+#### Exit Demo Mode
+
+     am broadcast -a com.android.systemui.demo -e command exit
+
+***
+
 #### Add a value to default shared preferences.
 
     adb shell 'am broadcast -a org.example.app.sp.PUT --es key key_name --es value "hello world!"'
