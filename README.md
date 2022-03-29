@@ -332,6 +332,10 @@ Sniff your device network and SMS traffic via Wireshark on your PC
 
 ## ADB <small>cmd</small>
 
+#### Print Status Bar Icons
+
+    cmd statusbar get-status-icons
+
 #### Expand Status Bar
 
     cmd statusbar expand-notifications
