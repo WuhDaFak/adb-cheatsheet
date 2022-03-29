@@ -1239,9 +1239,13 @@ Print IMEI - Slot 2
     settings list global|grep "boot_count="|cut -d= -f2|head -n 1|xargs echo "Booted:"|sed 's/$/ times/g'
 
 
-#### Hide Notification bar
+#### Hide Status bar
 
     settings put global policy_control immersive.status=*
+
+#### Hide Navigation bar
+
+    settings put global policy_control immersive.navigation=*
 
 
 ## ADB <small>content</small>
