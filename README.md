@@ -376,6 +376,14 @@ Sniff your device network and SMS traffic via Wireshark on your PC
   
     cmd uimode car no
   
+#### Scan for nearby ssid:s, give it 7 seconds for scan and fetch some wifi data
+
+![Screenshot](preview/wifi_result.png)
+
+    cmd -w wifi start-scan
+    sleep 7
+    cmd -w wifi list-scan-results  
+
 #### Sets whether we are in the middle of an emergency call.
     
 Equivalent to receiving the TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED broadcast.
