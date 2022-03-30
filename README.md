@@ -386,7 +386,7 @@ Sniff your device network and SMS traffic via Wireshark on your PC
 
 #### Sets whether we are in the middle of an emergency call.
     
-Equivalent to receiving the TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED broadcast.
+Equivalent to receiving the `TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED` broadcast.
 
     cmd -w wifi set-emergency-call-state enabled|disabled
 
