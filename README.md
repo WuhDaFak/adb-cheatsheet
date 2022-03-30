@@ -229,9 +229,9 @@ adb pull = tansfer a file: device > pc
 
 ![Screenshot](previews/android-wpull-system-apks.gif)
 
-* [All Install Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-all-apks.sh)
-* [Factory Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-system-apks.sh)
-* [Pull Third Party Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-third-party-apks.sh)
+* [Script for pull all installed Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-all-apks.sh)
+* [Script for pull all installed system Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-system-apks.sh)
+* [Script for pull all Apks installed by you](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-third-party-apks.sh)
 
 #### Pull all files inside a folder to a path (Transfer all files in a folder FROM device > pc)
 
