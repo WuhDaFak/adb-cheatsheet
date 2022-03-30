@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="120px" src="https://www.giggles4kids.co.uk/wp-content/uploads/2017/03/Android-Icon.png" />
+  <img width="120px" src="https://i.imgur.com/P7NZ5sT.png" />
   <h2 align="center"># Android™ Debug Bridge (adb)</h2>
   <h3 align="center">Your journey to master <i>Android™ Shell</i> begins here</h3>
 </p>
@@ -11,6 +11,10 @@ Feel free to contribute to this repo if there is something that i forgot and is 
 I decided to not add 'adb shell <coommands>' wich means all commands is executed when we are connected to device but of course if you want to, just add 'adb shell' infront of all commands and it will work aswell without being connected to the device shell
 
 All commands that require root will have (Root_Required) in descriptionn. 
+
+## FRP Bypass and hack any Android 12 device, see my wiki:
+
+	 
 
 ## Websites linked to this Repository
 
@@ -229,9 +233,9 @@ adb pull = tansfer a file: device > pc
 
 ![Screenshot](previews/android-wpull-system-apks.gif)
 
-* [All Install Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-all-apks.sh)
-* [Factory Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-system-apks.sh)
-* [Pull Third Party Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-third-party-apks.sh)
+* [Script for pull all installed Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-all-apks.sh)
+* [Script for pull all installed system Apks](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-system-apks.sh)
+* [Script for pull all Apks installed by you](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/scripts/wpull-third-party-apks.sh)
 
 #### Pull all files inside a folder to a path (Transfer all files in a folder FROM device > pc)
 
@@ -378,15 +382,15 @@ Sniff your device network and SMS traffic via Wireshark on your PC
   
 #### Scan for nearby ssid:s, give it 7 seconds for scan and fetch some wifi data
 
-![Screenshot](previews/wifi_result.png)
+![Screenshot](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/previews/wifi_result.png)
 
     cmd -w wifi start-scan
     sleep 7
     cmd -w wifi list-scan-results  
-
+  
 #### Sets whether we are in the middle of an emergency call.
     
-Equivalent to receiving the TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED broadcast.
+Equivalent to receiving the `TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED` broadcast.
 
     cmd -w wifi set-emergency-call-state enabled|disabled
 
@@ -500,7 +504,7 @@ Sets whether network requests from the app is approved or not.
 
 #### Gets setting of CMD_IP_REACHABILITY_LOST events triggering disconnects.
 
-Equivalent to receiving the "TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED" broadcast,
+Equivalent to receiving the `TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED` broadcast,
 sets whether we are in the middle of an emergency call.
 
     cmd -w wifi set-emergency-call-state enabled|disabled
@@ -1667,13 +1671,18 @@ Find out happens when we remove below file
 rm /data/misc/bootstat/boot_complete?
 ```
 
-## Android <small>magisk</small>
+
+## Android <small>magisk</small> (updated version - zygisk - comming soon)
+
+..... will be added very soon.
+
+## Android <small>magisk</small> (older versions)
 
 #### Enable magiskhide
 
      /sbin/magisk magiskhide enable
      
-#### List hided apps by magisk
+#### List hided apps by magisk 
 
     /sbin/magisk magiskhide list
 
@@ -1683,7 +1692,7 @@ rm /data/misc/bootstat/boot_complete?
     
 ## ADB <small>commands sorted by brand</small>
 
-#### Samung
+#### Samsung
 
 #### Bypass Samsung Health block on rooted samsung devices
 
@@ -1700,15 +1709,15 @@ rm /data/misc/bootstat/boot_complete?
  
 ## Android <small>FRP Bypass</small>
 
-* [wuseman - Samsung Galaxy A10](https://www.nr1.nu/hacking/android/Samsung_Galaxy.A10_FRP.Bypass)
-* [wuseman - Samsung Galaxy A10](https://www.nr1.nu/hacking/android/Samsung_Galaxy.A10_Rooting)
-* [wuseman - Samsung Galaxy A5](https://www.nr1.nu/hacking/android/Samsung_Galaxy.A5_FRP.Bypass)
-* [wuseman - Samsung Galaxy S10](https://www.nr1.nu/hacking/android/Samsung_Galaxy.s10_FRP.Bypass)
-* [wuseman - Samsung Galaxy S8](https://www.nr1.nu/hacking/android/Samsung_Galaxy.S8-FRP.Bypass)
-* [wuseman - Samsung Galaxy Xcover 4](https://www.nr1.nu/hacking/android/Samsung.Xcover.4-FrpBypass)
-* [wuseman - Motorola Moto E4 Plus](https://www.nr1.nu/hacking/android/Motorola_Moto_E4.Plus.v7.1-FRP_BYPASS)
-* [wuseman - Huawei MediaTab T5](https://www.nr1.nu/hacking/android/Huawei_Mediatab-T5-FRP-Bypass_V8.0) 
-* [wuseman - LG G6](https://www.nr1.nu/hacking/android/LG_G6-FRP-Bypass)
+* [wuseman - Samsung Galaxy A10](https://github.com/wuseman/Samsung_Galaxy.A10_FRP.Bypass)
+* [wuseman - Samsung Galaxy A10](https://github.com/wuseman/Samsung_Galaxy.A10_Rooting)
+* [wuseman - Samsung Galaxy A5](https://github.com/wuseman/Samsung_Galaxy.A5_FRP.Bypass)
+* [wuseman - Samsung Galaxy S10](https://github.com/wuseman/Samsung_Galaxy.s10_FRP.Bypass)
+* [wuseman - Samsung Galaxy S8](https://github.com/wuseman/Samsung_Galaxy.S8-FRP.Bypass)
+* [wuseman - Samsung Galaxy Xcover 4](https://github.com/wuseman/Samsung.Xcover.4-FrpBypass)
+* [wuseman - Motorola Moto E4 Plus](https://github.com/wuseman/Motorola_Moto_E4.Plus.v7.1-FRP_BYPASS)
+* [wuseman - Huawei MediaTab T5](https://github.com/wuseman/Huawei_Mediatab-T5-FRP-Bypass_V8.0) 
+* [wuseman - LG G6](https://github.com/wuseman/LG_G6-FRP-Bypass)
 
 
 ## Similiar <small>websites</small>
