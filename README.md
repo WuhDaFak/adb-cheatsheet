@@ -378,7 +378,7 @@ Sniff your device network and SMS traffic via Wireshark on your PC
   
 #### Scan for nearby ssid:s, give it 7 seconds for scan and fetch some wifi data
 
-![Screenshot](preview/wifi_result.png)
+![Screenshot](previews/wifi_result.png)
 
     cmd -w wifi start-scan
     sleep 7
