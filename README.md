@@ -336,6 +336,14 @@ Sniff your device network and SMS traffic via Wireshark on your PC
 
 ## ADB <small>cmd</small>
 
+#### Hide all notifications icons on Status Bar
+
+    cmd statusbar send-disable-flag notification-icons 
+
+### Reset all flags to default
+
+    cmd statusbar send-disable-flag none
+
 #### Print Status Bar Icons
 
     cmd statusbar get-status-icons
