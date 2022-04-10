@@ -1,4 +1,4 @@
-### Commands from the legens on below URL
+### Commands from the legends on below URL
 
 https://forum.xda-developers.com/t/a-sgs2-serial-how-to-talk-to-the-modem-with-at-commands.1471241/
 
