@@ -2,6 +2,7 @@
 
 https://forum.xda-developers.com/t/a-sgs2-serial-how-to-talk-to-the-modem-with-at-commands.1471241/
 
+```sh
 AT+CAAP         7.25            -  Automatic answer for eMLPP Service 
 AT+CACM         8.25            -  Accumulated call meter 
 AT+CAEMLPP      7.22            -  eMLPP Priority Registration and Interrogation 
@@ -161,3 +162,4 @@ AT+VSM          C.2.10          -  Select compression method
 AT+VTD          C.2.12          -  Tone duration 
 AT+VTS          C.2.11          -  DTMF and tone generation 
 AT+VTX          C.2.13          -  Transmit data state
+```
