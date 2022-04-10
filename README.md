@@ -334,7 +334,84 @@ Sniff your device network and SMS traffic via Wireshark on your PC
 
     date MMDDYYYY.XX;am broadcast -a android.intent.action.TIME_SET
 
+
 ## ADB <small>cmd</small>
+
+####    cmd testharness                                                                                                                                                                                                                    
+About:
+  Test Harness Mode is a mode that the device can be placed in to prepare
+  the device for running UI tests. The device is placed into this mode by
+  first wiping all data from the device, preserving ADB keys.
+
+  By default, the following settings are configured:
+    * Package Verifier is disabled
+    * Stay Awake While Charging is enabled
+    * OTA Updates are disabled
+    * Auto-Sync for accounts is disabled
+
+  Other apps may configure themselves differently in Test Harness Mode by
+  checking ActivityManager.isRunningInUserTestHarness()
+
+Test Harness Mode commands:
+  help
+    Print this help text.
+
+  enable|restore
+    Erase all data from this device and enable Test Harness Mode,
+    preserving the stored ADB keys currently on the device and toggling
+    settings in a way that are conducive to Instrumentation testing.
+
+
+
+
+#### cmd stats meminfo
+
+* *Prints the malloc debug information. You need to run the following first: 
+   
+     adb shell stop
+     adb shell setprop libc.debug.malloc.program statsd 
+     adb shell setprop libc.debug.malloc.options backtrace 
+     adb shell start
+     cmd stats print-stats
+
+
+####  Send a broadcast that triggers the subscriber to fetch metrics.
+
+     cmd stats send-broadcast [UID] NAME
+
+     UID           The uid of the configuration. It is only possible to pass
+                the UID parameter on eng builds. If UID is omitted the
+                calling uid is used.
+      NAME          The name of the configuration
+
+
+
+
+####  Flushes all data on memory to disk.
+
+     cmd stats write-to-disk 
+
+
+#### Prints the UID, app name, version mapping.
+
+     cmd stats print-uid-map 
+
+#### Log a binary push state changed event.
+
+    cmd stats log-binary-push NAME VERSION STAGING ROLLBACK_ENABLED LOW_LATENCY STATE EXPERIMENT_IDS
+
+    NAME                The train name.
+    VERSION             The train version code.
+    STAGING             If this train requires a restart.
+    ROLLBACK_ENABLED    If rollback should be enabled for this install.
+    LOW_LATENCY         If the train requires low latency monitoring.
+    STATE               The status of the train push.
+                        Integer value of the enum in atoms.proto.
+    EXPERIMENT_IDS      Comma separated list of experiment ids.
+                        Leave blank for none.
+
+
+
 
 #### Hide all notifications icons on Status Bar
 
@@ -1258,6 +1335,28 @@ Establishes a fake Bluetooth connection to Dialer and must be called first to en
 #### Clear all calls, To remove all calls in the call list:
 
     adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "clearAll"                              
+
+## ADB <small>acpi</small>
+
+#### Get Battery Percentage
+
+    acpi
+
+#### Show batteries
+
+    acpi -b 
+
+#### Show Cooling Device State
+
+    acpi -c    
+
+#### Show Temperatures
+
+    acpi -t 
+
+#### Just print everything from acpi
+
+    acpi -V
 
 ## ADB <small>dpm</small>
 
