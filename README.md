@@ -12,9 +12,9 @@ I decided to not add 'adb shell <coommands>' wich means all commands is executed
 
 All commands that require root will have (Root_Required) in descriptionn. 
 
-## FRP Bypass and hack any Android 12 device, see my wiki:
-
-	 
+## For FRP Bypass and hack any Samsung device with Android 12 installed, see my wiki:
+	
+<li><a href="https://github.com/wuseman/Android_12_FRPBypass">Samsung Android 12 FRPBypass - All models</a></li>
 
 ## Websites linked to this Repository
 
@@ -35,6 +35,14 @@ All commands that require root will have (Root_Required) in descriptionn.
 <li><a href="https://wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v9.apk">Google Account Manager Android 9</a></li>
 <li><a href="https://wuseman.nr1.nu/archive/android/google_account_manager/google_account_manager.v10.apk">Google Account Manager Android 10</a></li>
 
+### Custom Apks ™ <small>Blocked</small>
+
+:bangbang: - Notice! On rooted devices samsung health crashing and wont launch anymore and it wont help to change tima from 1 to 0 in build.prop anymore, download the below apk instead to get samsung health working on your rooted device
+
+	
+<li><a href="https://w.nr1.nu/archive/android/apks/samsung_health__android.v12.working.apk">Samsung Health - Android 12</a></li>
+	
+	
 ## Open Android™ <small>Applications</small>
   
 Links works when you clicking the links with your mobile device, please visit [android.nr1.nu](https://www.android.nr1.nu) to get clickable links.
