@@ -1678,7 +1678,7 @@ com.android.vending/.AssetBrowserActivity
 ```sh
 sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select icc_id,card_id,carrier_name,display_name,mcc,mnc from siminfo'
 ```
-
+	
 Example Output
 ```ini
 icc_id = 8946209802SSSSSSSSS
@@ -1695,6 +1695,12 @@ mcc = 240
 mnc = 7
 ```
 
+#### Read All SIM Card Info
+
+```sh
+sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select * from siminfo'
+```
+	
 #### Print ICCID
 
 ```sh
