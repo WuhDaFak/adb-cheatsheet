@@ -318,13 +318,14 @@ Record your device screen via VLC on Windows
 ### Network Analyze 
 
 Sniff your device network and SMS traffic via Wireshark on your PC
-
-    adb exec-out "tcpdump -i any -U -w - 2>/dev/null" | wireshark -k -S -i -
+```sh
+adb exec-out "tcpdump -i any -U -w - 2>/dev/null" | wireshark -k -S -i -
+```
 
 ## ADB <small>reboot</small>
 
 #### System
-
+```sh
     adb reboot
 
 #### Recovery
@@ -349,7 +350,57 @@ Sniff your device network and SMS traffic via Wireshark on your PC
 
 ## ADB <small>cmd</small>
 
-####    cmd testharness                                                                                                                                                                                                                    
+NOTE: when lock screen is set, all commands require the --old <CREDENTIAL> argument.
+
+#### cmd lock_settings
+
+### Sets the package name for server based resume on reboot service provider.
+```sh
+adb shell cmd lock_settings set-resume-on-reboot-provider-package <package_name>
+```
+#### Removes cached unified challenge for the managed profile.
+```sh
+adb shell cmd lock_settings remove-cache --user 0 
+```
+#### Verifies the lock credentials.
+```sh
+adb shell cmd lock_settings verify --old 1234--user 0 
+```
+#### Clears the lock credentials.
+```sh
+adb shell cmd lock_settings clear --old 1234--user 0 
+```
+#### Enables / disables synthetic password.
+```sh
+adb shell cmd lock_settings sp --old 1234--user 0  <1|0>
+```
+#### Gets whether synthetic password is enabled.
+```sh
+adb shell cmd lock_settings sp --old 1234--user 0 
+```
+#### Sets the lock screen as password, using the given PASSOWRD to unlock.
+```sh
+adb shell cmd lock_settings set-password --old 1234--user 0  <PASSWORD>
+```
+#### Sets the lock screen as PIN, using the given PIN to unlock.
+```sh
+adb shell cmd lock_settings set-pin --old 1234--user 0  <PIN>
+```
+#### Sets the lock screen as pattern, using the given PATTERN to unlock.
+```sh
+adb shell cmd lock_settings set-pattern --old 1234--user 0  <PATTERN>
+```
+#### When true, disables lock screen.
+```sh
+adb shell cmd lock_settings set-disabled --old 1234--user 0  <true|false>
+```
+#### Checks whether lock screen is disabled.
+```sh
+adb shell cmd lock_settings get-disabled --old 1234--user 0 
+```
+
+
+#### cmd testharness                                                                                                                                                                                                                    
 About:
   Test Harness Mode is a mode that the device can be placed in to prepare
   the device for running UI tests. The device is placed into this mode by
@@ -372,9 +423,6 @@ Test Harness Mode commands:
     Erase all data from this device and enable Test Harness Mode,
     preserving the stored ADB keys currently on the device and toggling
     settings in a way that are conducive to Instrumentation testing.
-
-
-
 
 #### cmd stats meminfo
 
