@@ -311,7 +311,7 @@ adb exec-out screenrecord --bit-rate=4m --Example Output-format=h264 --size 800x
 Record your device screen via VLC on Windows
 
 ```sh
-   adb exec-out screenrecord --bit-rate=4m --Example Output-format=h264 --size 800x600 --show-frame-time - \
+adb exec-out screenrecord --bit-rate=4m --Example Output-format=h264 --size 800x600 --show-frame-time - \
     |"c:\Program Files\VideoLAN\VLC\vlc" --demux h264 --sout file/ts:c:\temp\screenrec.mpg -  vlc://quit
 ```
 
@@ -326,8 +326,8 @@ adb exec-out "tcpdump -i any -U -w - 2>/dev/null" | wireshark -k -S -i -
 
 #### System
 ```sh
-    adb reboot
-
+adb reboot
+```
 #### Recovery
 
     adb reboot recovery
