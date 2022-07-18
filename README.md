@@ -1869,7 +1869,15 @@ rm /data/misc/bootstat/boot_complete?
 
      mount -o rw,remount /system/etc/mkshrc
      sed -i 's/ro.config.tima=1/ro.config.tima=0/g' build.prop
+     
+#### If you can't use smart view 2 to stream your screen to other devices, use below trick: 
 
+     mount -o rw,remount /
+     printf '%s\n' \
+     	     "# Fix for smartview on rooted devices, android 12" \
+	     "wlan.wfd.hdcp=disable" >> /system/build.prop
+     reboot
+ 
 ## ADB <small>screencap</small>
   
      screencap /storage/emulated/0/Pictures/screenshot.png
