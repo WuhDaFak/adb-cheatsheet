@@ -147,6 +147,10 @@ Links works when you clicking the links with your mobile device, please visit [a
     /system/media/audio/ringtones
     /system/media/audio/notifications
 
+### When you unlock your device your device will save a backup in
+
+    /keyrefuge/misc/vold/user_keys/ce/0/current
+
 ## ADB <small>commands</small>
  
 #### Start ADB server:
@@ -364,41 +368,40 @@ adb shell cmd lock_settings remove-cache --user 0
 ```
 #### Verifies the lock credentials.
 ```sh
-adb shell cmd lock_settings verify --old 1234--user 0 
+adb shell cmd lock_settings verify --old 1234 --user 0 
 ```
 #### Clears the lock credentials.
 ```sh
-adb shell cmd lock_settings clear --old 1234--user 0 
+adb shell cmd lock_settings clear --old 1234 --user 0 
 ```
 #### Enables / disables synthetic password.
 ```sh
-adb shell cmd lock_settings sp --old 1234--user 0  <1|0>
+adb shell cmd lock_settings sp --old 1234 --user 0  <1|0>
 ```
 #### Gets whether synthetic password is enabled.
 ```sh
-adb shell cmd lock_settings sp --old 1234--user 0 
+adb shell cmd lock_settings sp --old 1234 --user 0 
 ```
 #### Sets the lock screen as password, using the given PASSOWRD to unlock.
 ```sh
-adb shell cmd lock_settings set-password --old 1234--user 0  <PASSWORD>
+adb shell cmd lock_settings set-password --old 1234 --user 0  <PASSWORD>
 ```
 #### Sets the lock screen as PIN, using the given PIN to unlock.
 ```sh
-adb shell cmd lock_settings set-pin --old 1234--user 0  <PIN>
+adb shell cmd lock_settings set-pin --old 1234 --user 0  <PIN>
 ```
 #### Sets the lock screen as pattern, using the given PATTERN to unlock.
 ```sh
-adb shell cmd lock_settings set-pattern --old 1234--user 0  <PATTERN>
+adb shell cmd lock_settings set-pattern --old 1234 --user 0  <PATTERN>
 ```
 #### When true, disables lock screen.
 ```sh
-adb shell cmd lock_settings set-disabled --old 1234--user 0  <true|false>
+adb shell cmd lock_settings set-disabled --old 1234 --user 0  <true|false>
 ```
 #### Checks whether lock screen is disabled.
 ```sh
-adb shell cmd lock_settings get-disabled --old 1234--user 0 
+adb shell cmd lock_settings get-disabled --old 1234 --user 0 
 ```
-
 
 #### cmd testharness                                                                                                                                                                                                                    
 About:
@@ -929,7 +932,11 @@ Example Output
 ### Run all at once, no reason for use it like this really
 
     adb logcat -v brief -v long -v process -v raw -v tag -v thread -v threadtime -v time -v color       
-     
+   
+### Log everything about locksettings (device lock)
+
+   adb logcat |grep  "LockSettingsService|LockPatternUtilsKeyStorage|vold|vold|keystore2|keymaster_tee|LockSettingsService|vold_prepare_subdirs"
+
 ## ADB <small>dumpsys</small>
 
 #### List all active services:
