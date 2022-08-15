@@ -1,4 +1,3 @@
-# adb
 <p align="center">
   <img width="120px" src="https://i.imgur.com/o2WZgcl.png" />
   <h2 align="center"># Android™ Debug Bridge (adb)</h2>
