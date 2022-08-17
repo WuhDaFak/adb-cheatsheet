@@ -35,18 +35,20 @@ All commands that require root will have (Root_Required) in descriptionn.
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v9.apk">Google Account Manager Android 9</a></li>
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v10.apk">Google Account Manager Android 10</a></li>
 
-## Download Android™ <small>FRP applications</small>
+## Download Android™ <small>Google Account Manager</small>
 
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.0.3.apk">Google Account Manager Android 4.0.3</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.4.4.apk">Google Account Manager Android 4.4.4</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v5.0.1.apk">Google Account Manager Android 5.0.1</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v6.0.apk">Google Account Manager Android 6.0</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.0.apk">Google Account Manager Android 7.0</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.1.2.apk">Google Account Manager Android 7.1.2</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.1.25.apk">Google Account Manager Android 7.1.25</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.0.apk">Google Account Manager Android 8.0</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.1.apk">Google Account Manager Android 8.1</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v9.apk">Google Account Manager Android 9</a></li>
+<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v10.apk">Google Account Manager Android 10</a></li>
 
-
-
-### Custom Apks ™ <small>Blocked</small>
-
-:bangbang: - Notice! On rooted devices samsung health crashing and wont launch anymore and it wont help to change tima from 1 to 0 in build.prop anymore, download the below apk instead to get samsung health working on your rooted device
-
-<li><a href="https://w.nr1.nu/archive/android/apks/samsung_health__android.v12.working.apk">Samsung Health - Android 12</a></li>
-	
-	
 ## Open Android™ <small>Default Applications</small>
   
 Links works when you clicking the links with your mobile device, please visit [android.nr1.nu](https://www.android.nr1.nu) to get clickable links.
@@ -541,7 +543,8 @@ cmd stats write-to-disk
 #### Prints the UID, app name, version mapping.
 ```bash
 cmd stats print-uid-map 
-```§
+```
+
 #### Log a binary push state changed event.
 ```
 cmd stats log-binary-push NAME VERSION STAGING ROLLBACK_ENABLED LOW_LATENCY STATE EXPERIMENT_IDS
@@ -1326,9 +1329,10 @@ Total PSS by process:
     dumpsys battery unplug
 
 #### See current used app:
-
-    dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'|grep '/'|awk -F'u0' '{print $2}'|awk '{print $1}'
-
+```bash
+dumpsys window windows | grep -E 'mCurrentFocus\
+    |mFocusedApp'|grep '/'|awk -F'u0' '{print $2}'|awk '{print $1}'
+```
 #### Print how many notifications you have: 
 
     dumpsys notification | grep NotificationRecord | wc -l 
@@ -1341,7 +1345,8 @@ Total PSS by process:
 dumpstate -v
 ```
 
-Example Output
+* Example Output
+
 ```ini
 ========================================================
 == dumpstate: 2019-08-30 19:31:05
@@ -1691,21 +1696,22 @@ adb shell service call iphonesubinfo 1 | awk -F"'" 'NR>1 { gsub(/\./,"",$2); ime
 
 ```bash
 adb shell "service call iphonesubinfo 1 | cut -c 52-66 | tr -d '.[:space:]'"
-
+```
 #### Print IMEI - Example 6
      
 ```bash
-adb shell service call iphonesubinfo 1 | awk -F "'" '{print }' | sed '1 d' | tr -d '.' | awk '{print}' ORS=
+service call iphonesubinfo 1 | awk -F "'" '{print }' | sed '1 d' | tr -d '.' | awk '{print}' ORS=
 ```
 
 ### Slot 2
 
 Some devices has 2 sim card slot, for print the second simcards imei use below:
 
-Print IMEI - Slot 2
-  
-    service call iphonesubinfo 3 i32 2 | grep -oE '[0-9a-f]{8} ' | while read hex; do echo -ne "\u${hex:4:4}\u${hex:0:4}"; done; echo       
-    
+* Print IMEI - Slot 2
+
+``` bash
+service call iphonesubinfo 3 i32 2 | grep -oE '[0-9a-f]{8} ' | while read hex; do echo -ne "\u${hex:4:4}\u${hex:0:4}"; done; echo       
+```    
 ## ADB <small>settings</small>
 
 #### List how many times we booted device:
@@ -1861,7 +1867,16 @@ It is not so much to describe here, get info via getprop command.
 Example Usage
 
 ```sh
-getprop | grep "model\|version.sdk\|manufacturer\|hardware\|platform\|revision\|serialno\|product.name\|brand"
+getprop \
+    |grep "model \
+    |version.sdk \
+    |manufacturer \
+    |hardware \
+    |platform \
+    |revision \
+    |serialno \
+    |product.name \
+    |brand"
 ```
 
 #### Print CPU abi
@@ -1929,13 +1944,17 @@ getprop sys.oem_unlock_allowed
 ## ADB <small>keytool</small>
 
 #### Genereate hash from keystore  -Typically used in Facebook
-
-    keytool -exportcert -alias your_alias -keystore debug.keystore | openssl sha1 -binary | openssl base64 
+```sh
+keytool -exportcert -alias your_alias -keystore debug.keystore \
+    | openssl sha1 -binary \
+    | openssl base64 
+```
 
 #### Typically used in Google Maps
+```sh
+keytool -list -v -keystore ~/.android/debug.keystore -alias your_alias           
+```
 
-    keytool -list -v -keystore ~/.android/debug.keystore -alias your_alias           
-    
 ## ADB <small>monkey</small>
 
 #### Test any app by pressing 10000 times at once, this will start your application and perform 10000 random events.# 
@@ -1944,7 +1963,8 @@ getprop sys.oem_unlock_allowed
 monkey -p com.example.myapp -v 10000 
 ```
 
-Example Output
+* Example Output
+
 ```ini
 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity
 com.google.android.googlequicksearchbox/.SearchActivity
@@ -1959,7 +1979,9 @@ com.android.vending/.AssetBrowserActivity
 
 #### Read Lock Settings: 
 
+```sh
 sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select * from locksettings;'
+```
 
 #### Read SIM Card info
 
@@ -1989,17 +2011,85 @@ mnc = 7
 sqlite3 /data/vendor/radio/qcril.db 'select ICCID from qcril_manual_prov_table'
 ```
 
+#### Print Carrier Name, ICC ID, MCC, Card ID and everything that is stored from sim:
+
+```bash
+sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select * from siminfo'  
+```
+```
+                              _id = 1
+                           icc_id = xxxxxxxxxxxxxxxxxxxx
+                           sim_id = 1
+                     display_name = Comviq
+                     carrier_name = Comviq
+                      name_source = 3
+                            color = -XXXXXX
+                           number = 
+            display_number_format = 1
+                     data_roaming = 1
+                              mcc = 240
+                              mnc = 7
+                       mcc_string = 240
+                       mnc_string = 07
+                          ehplmns = 24xxx,24xxx,24xxx
+                           hplmns = 24xxx,24xxx,24xxx,24xxx
+          sim_provisioning_status = 0
+                      is_embedded = 1
+                          card_id = xxxxxxxxxxxxxxxxxxxx
+                     access_rules = 
+access_rules_from_carrier_configs = 
+                     is_removable = 0
+enable_cmas_extreme_threat_alerts = 1
+ enable_cmas_severe_threat_alerts = 1
+         enable_cmas_amber_alerts = 1
+          enable_emergency_alerts = 1
+             alert_sound_duration = 4
+          alert_reminder_interval = 0
+             enable_alert_vibrate = 1
+              enable_alert_speech = 1
+          enable_etws_test_alerts = 0
+         enable_channel_50_alerts = 1
+          enable_cmas_test_alerts = 0
+         show_cmas_opt_out_dialog = 1
+                 volte_vt_enabled = 1
+                   vt_ims_enabled = 1
+                  wfc_ims_enabled = 1
+                     wfc_ims_mode = 1
+             wfc_ims_roaming_mode = -1
+          wfc_ims_roaming_enabled = -1
+                 is_opportunistic = 0
+                       group_uuid = 
+                       is_metered = 1
+                 iso_country_code = se
+                       carrier_id = 1696
+                    profile_class = 2
+                subscription_type = 0
+                      group_owner = 
+      data_enabled_override_rules = 
+                             imsi = xxxxxxxxxxxxxxxx
+        uicc_applications_enabled = 1
+            allowed_network_types = -1
+              ims_rcs_uce_enabled = 0
+        cross_sim_calling_enabled = 0
+                       rcs_config = 
+allowed_network_types_for_reasons = user=xxxxxxx
+              voims_opt_in_status = 0
+               d2d_sharing_status = 0
+             d2d_sharing_contacts = 
+```
+
 #### Print data in .db files, clean:
 
-    grep -vx -f <(sqlite3 Main.db .dump) <(sqlite3 ${DB} .schema) 
-     
+```bash
+grep -vx -f <(sqlite3 Main.db .dump) <(sqlite3 ${DB} .schema) 
+```
 #### Use below command fr update dg.db file:
-          
-    sqlite3 /data/data/com.google.android.gms/databases/dg.db "update main set c='0' where a like '%attest%';" 
-
+```bash          
+sqlite3 /data/data/com.google.android.gms/databases/dg.db "update main set c='0' where a like '%attest%';" 
+```
 #### Grab all file extensions of a kind and download to PC
 
-```sh
+```bash
 for i in `adb shell "su -c find /data /system -name '*.key'"`; do 
    mkdir -p ".`dirname $i`";adb shell "su -c cat $i" > ".$i";
 done
@@ -2031,16 +2121,24 @@ TZ=UTC date -d@$(cut -d\  -f1 /proc/uptime) +'%j %T' | awk '{print $1-1"d",$2}'
 Commands for rooted devices
 
 #### Find out if the device is rooted and if su exist
+```bash
+which su &> /dev/null
+if [[ $? = "0" ]]; then
+    echo "Device Rooted: 
+else
+    echo "Device Rooted: No"
+fi
+```
 
-    which su &> /dev/null;[[ $? = "0" ]] && echo "Rooted" || echo "Not rooted"
-
-### Bypass Google Pay Block
+### Bypass Google Pay Block for Rooted Devices
 
 #### Stop wallnetfcrel
 
-     am force-stop /data/data/com.google.android.apps.walletnfcrel
+```bash
+am force-stop /data/data/com.google.android.apps.walletnfcrel
+```
 
-     Hide root for Google apps:
+#### Hide root for Google apps:
 
 ```sh     
 for google_apps in $(cmd package list packages|grep -i com.google |cut -d: -f2); do 
@@ -2097,28 +2195,32 @@ rm /data/misc/bootstat/boot_complete?
 
 #### Samsung
 
-#### Bypass Samsung Health block on rooted samsung devices
+#### Bypass Samsung Health block on rooted samsung devices (Old Method, wont work on latest updates from samsung health)
 
-     mount -o rw,remount /system/etc/mkshrc
-     sed -i 's/ro.config.tima=1/ro.config.tima=0/g' build.prop
-     
+```bash
+mount -o rw,remount /system/etc/mkshrc
+sed -i 's/ro.config.tima=1/ro.config.tima=0/g' build.prop
+```
 #### If you can't use smart view 2 to stream your screen to other devices, use below trick: 
-
-     mount -o rw,remount /
-     printf '%s\n' \
-     	     "# Fix for smartview on rooted devices, android 12" \
-	     "wlan.wfd.hdcp=disable" >> /system/build.prop
-     reboot
- 
+```bash
+mount -o rw,remount /
+printf '%s\n' \
+     "# Fix for smartview on rooted devices, android 12" \
+     "wlan.wfd.hdcp=disable" >> /system/build.prop
+reboot
+``` 
 ## ADB <small>screencap</small>
-  
-     screencap /storage/emulated/0/Pictures/screenshot.png
-  
+```bash  
+ screencap /storage/emulated/0/Pictures/screenshot.png
+  ```
+
 ## ADB <small>screenrecord</small>
 
-    screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
- 
-## Android <small>FRP Bypass</small>
+```absh
+screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
+```
+
+## Android Wikis <small>FRP Bypass</small>
 
 * [wuseman - Samsung Galaxy A10](https://github.com/wuseman/Samsung_Galaxy.A10_FRP.Bypass)
 * [wuseman - Samsung Galaxy A10](https://github.com/wuseman/Samsung_Galaxy.A10_Rooting)
@@ -2129,7 +2231,6 @@ rm /data/misc/bootstat/boot_complete?
 * [wuseman - Motorola Moto E4 Plus](https://github.com/wuseman/Motorola_Moto_E4.Plus.v7.1-FRP_BYPASS)
 * [wuseman - Huawei MediaTab T5](https://github.com/wuseman/Huawei_Mediatab-T5-FRP-Bypass_V8.0) 
 * [wuseman - LG G6](https://github.com/wuseman/LG_G6-FRP-Bypass)
-
 
 ## Similiar <small>websites</small>
 
