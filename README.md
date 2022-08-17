@@ -55,7 +55,6 @@ Links works when you clicking the links with your mobile device, please visit [a
 * [Click to Open - Device Set Screen Lock](intent://com.google.android.gms/#Intent;scheme=promote_smartlock_scheme;end)
 * [Click to Open - Device Settings](intent://com.android.settings/#Intent;scheme=android-app;end)
 * [Click to Open - Device Calculator](intent://com.sec.android.app.popupcalculator/#Intent;scheme=android-app;end)
-
 * [Click to Open USB Settings ](intent://com.sec.android.app.servicemodeapp/#Intent;scheme=promote_USBSettings_scheme;end)
 
 ## Open Android™ <small>Samsung Applications</small>
@@ -76,7 +75,6 @@ Links works when you clicking the links with your mobile device, please visit [a
 * [Click to Open - Google Youtube App](intent://com.google.android.youtube/#Intent;scheme=android-app;end)
 * [Click to Open - Google GMAIL](intent://com.google.android.gm/#Intent;scheme=android-app;end)
 
-
 ## Open Android™ <small>Motorola Applications</small>
 
 * [Click to Open - Motorola Default Launcher](intent://com.motorola.launcher3/#Intent;scheme=android-app;end)
@@ -85,14 +83,10 @@ Links works when you clicking the links with your mobile device, please visit [a
 
 * [Click to Open Mi Manager](intent://com.mi.android.globalFileexplorer/#Intent;scheme=android-app;end)
 
-
 ## Open Android™ <small>Secret Codes</small>
 
-* [Click to Open UUISD Code *#0#*](tel:%20*#0*#/#Intent;scheme=android-app;end")
-
-
-
-
+* [Click to Open UUISD Code - Show IMEI - *#06*](tel:%20*#0*#/#Intent;scheme=android-app;end")
+* [Click to Open UUISD Code - Show Secret Diagnostic Mode - *#0#*](tel:%20*#0*#/#Intent;scheme=android-app;end")
 
 #### Android™ <small>Source Code</small>
 
@@ -184,8 +178,7 @@ apt install adb fastboot -y
 ## Android™ <small>files</small>
 
 #### SMS and Phone Phone logs is stored in below files
- 
- ```
+  ```
 /data/user_de/0/com.android.providers.telephony/databases/mmssms.db
 /data/user_de/0/com.android.providers.telephony/databases/telephony.db
 ```
