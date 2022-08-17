@@ -98,11 +98,11 @@ Links works when you clicking the links with your mobile device, please visit [a
 
 * [Android™ Issue Tracker](https://code.google.com/p/android/issues/entry)
 
-## ADB <strong>install</strong>
-
 ## Android Firmware <strong>Downloading</strong>
 
 * [Download Samsung firmware faster with Frija](https://github.com/SlackingVeteran/frija/releases/download/v1.4.4/Frija-v1.4.4.zip) 
+
+## ADB <strong>install</strong>
 
 #### Source Files
 
