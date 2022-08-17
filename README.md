@@ -311,7 +311,7 @@ adb pull = tansfer a file: device > pc
 
 ```bash
 adb pull /storage/on/device/mypicture.png /path/on/pc
-
+```
 #### Pull a folder (Transfer a folder FROM device > pc)
 
 ```bash
@@ -406,7 +406,7 @@ adb reboot
 
 ```bash
 adb reboot recovery
-
+```
 #### Bootloader
 
 ```bash
@@ -477,7 +477,7 @@ adb shell cmd lock_settings set-disabled --old 1234 --user 0  <true|false>
 adb shell cmd lock_settings get-disabled --old 1234 --user 0 
 ```
 
-#### cmd testharness                                                                                                                                                                                               ```                  
+#### cmd testharness                                                                                                                                                                                                          
 About:
   Test Harness Mode is a mode that the device can be placed in to prepare
   the device for running UI tests. The device is placed into this mode by
@@ -500,11 +500,11 @@ Test Harness Mode commands:
     Erase all data from this device and enable Test Harness Mode,
     preserving the stored ADB keys currently on the device and toggling
     settings in a way that are conducive to Instrumentation testing.
-```
+
 
 #### cmd stats meminfo
 
-* *Prints the malloc debug information. You need to run the following first: 
+* Prints the malloc debug information. You need to run the following first: 
    
 ```bash
 adb shell stop
@@ -541,7 +541,7 @@ cmd stats write-to-disk
 #### Prints the UID, app name, version mapping.
 ```bash
 cmd stats print-uid-map 
-```
+```§
 #### Log a binary push state changed event.
 ```
 cmd stats log-binary-push NAME VERSION STAGING ROLLBACK_ENABLED LOW_LATENCY STATE EXPERIMENT_IDS
@@ -982,8 +982,7 @@ done
 
 ```sh
 for packages in com.package1 com.package2; do 
-```bash
-adb shell pm uninstall --user 0 "${packages}"
+    adb shell pm uninstall --user 0 "${packages}"
 done 
 ```
 
@@ -1030,90 +1029,93 @@ Example Output
 
 ```bash
 adb logcat -v time ...
+```
+
 ```bash
 adb logcat -v threadtime ....
-
+```
 #### For get Example Output colorized with logcat:
 
 ```bash
 adb logcat ... -v color
-
+```
 #### Displays current log buffer sizes:
 
 ```bash
 adb logcat -g   
-
+```
 #### Sets the buffer size (K or M):
 
 ```bash
 adb logcat -G 16M   
-
+```
 #### Clear the log buffer:
 
 ```bash
 adb logcat -c
-
+```
 #### Enables ALL log messages (verbose mode)
 
 ```bash
 adb logcat *:V  
-
+```
 #### Dump everything to a file:
 
 ```bash
 adb logcat -f <filename>    Dumps to specified file
-
+```
 #### Display PID with the log info 
 
 ```bash
 adb logcat -v process
-
+```
 #### Display the raw log message, with no other metadata fields
 
 ```bash
 adb logcat -v raw
-
+```
 #### Display the date, invocation time, priority/tag, and PID of the process issuing the message
 
 ```bash
 adb logcat -v time
-
+```
 #### Display the priority, tag, and the PID and TID of the thread issuing the message
 
 ```bash
 adb logcat -v thread
-
+```
 #### Display the date, invocation time, priority, tag, and the PID and TID of the thread issuing the message
 
 ```bash
 adb logcat -v threadtime
-
+```
 #### Display all metadata fields and separate messages with blank lines
 
 ```bash
 adb logcat -v long
-    
+```
 #### Log multiple options (-b ... -b ....): 
 
 ```bash
 adb logcat -b main -b radio -b events
-
+```
 ### Run all at once, no reason for use it like this really
 
 ```bash
 adb logcat -v brief -v long -v process -v raw -v tag -v thread -v threadtime -v time -v color       
-   
+```
 ### Log everything about locksettings (device lock)
-
-   adb logcat |grep  "LockSettingsService|LockPatternUtilsKeyStorage|vold|vold|keystore2|keymaster_tee|LockSettingsService|vold_prepare_subdirs"
-
+```bash
+adb logcat |grep  "LockSettingsService|LockPatternUtilsKeyStorage|vold|vold|keystore2|keymaster_tee|LockSettingsService|vold_prepare_subdirs"
+```
 ## ADB <small>dumpsys</small>
 
 #### List all active services:
+```bash
+dumpsys -l 
+```
 
-    dumpsys -l 
-    
-List services on older devices via command below 
+* List services on older devices via command below 
 
 ```sh
 dumpsys -l |sed 's/^  /      /g'
@@ -1149,7 +1151,8 @@ Currently running services:
 dumpsys lock_settings
 ```
 
-Example Output
+* Example Output
+
 ```ini
 Current lock settings service state:
 
@@ -1222,13 +1225,14 @@ _id:59 name:install_non_market_apps pkg:android value:1 default:1
 
 ```bash
 adb shell dumpsys simphonebook
-
+```
 #### Show hardware info as thermal stuff for cpu, gpu and battery
 
 ```sh
 adb shell dumpsys hardware_properties
 ```
-Example Output
+* Example Output
+
 ```ini
 ****** Dump of HardwarePropertiesManagerService ******
 CPU temperatures: [38.0, 38.0]
@@ -1241,7 +1245,9 @@ CPU shutdown temperatures: [115.0, 115.0]
 ```sh
 dumpsys account|grep -i com.*$ -o|cut -d' ' -f1|cut -d} -f1|grep -v com$
 ```
-Example Output
+
+* Example Output
+
 ```ini
 com.microsoft.workaccount
 com.skype.raider
@@ -1268,7 +1274,9 @@ com.google.android.gm.exchange
 ```sh
 adb shell dumpsys  user
 ```
-Example Output
+
+* Example Output
+
 ```ini
 State: RUNNING_UNLOCKED
 Last logged in fingerprint
@@ -1279,22 +1287,24 @@ agree Knox Privacy Policy: false
 
 ```bash
 adb shell dumpsys battery
-
+```
 #### Dump stats for your battery:
 
 ```bash
 adb shell dumpsys batterystats 
-
+```
 #### Erase old stats for battery:
- 
-    dumpsys batterystats --reset 
-
+```bash
+dumpsys batterystats --reset 
+```
 #### Sort Applications By Ram Usage:
 
 ```sh
 dumpsys meminfo
 ```
-Example Output
+
+* Example Output
+
 ```ini
 Applications Memory Usage (in Kilobytes):
 Uptime: 29602806 Realtime: 57806941
@@ -1351,7 +1361,8 @@ Dumpstate info: id=0 pid=26940 dry_run=0 args=dumpstate -v extra_options=
      
 ## ADB <small>am</small>
 
-#### How to use Demo Mode
+### How to use Demo Mode
+
 #### First you enable the Demo Mode:
 
      settings put global sysui_demo_allowed 1 
@@ -1382,48 +1393,57 @@ Dumpstate info: id=0 pid=26940 dry_run=0 args=dumpstate -v extra_options=
 
 ```bash
 adb shell 'am broadcast -a org.example.app.sp.PUT --es key key_name --es value "hello world!"'
-
+```
 #### Remove a value to default shared preferences.
 
 ```bash
 adb shell 'am broadcast -a org.example.app.sp.REMOVE --es key key_name'
-
+```
 #### Clear all default shared preferences.
 
 ```bash
 adb shell 'am broadcast -a org.example.app.sp.CLEAR --es key key_name'
-
+```
 #### It's also possible to specify shared preferences file.
 
 ```bash
 adb shell 'am broadcast -a org.example.app.sp.PUT --es name Game --es key level --ei value 10'
-
+```
 #### Play a mp3 track on device
-
-    am start -a android.intent.action.VIEW -d file:////storage/9A8A-1069/wuseman/ringtones/<mp3_track>.mp3 -t audio/mp3    
-
+```sh
+am start -a android.intent.action.VIEW -d file:////storage/9A8A-1069/wuseman/ringtones/<mp3_track>.mp3 -t audio/mp3    
+```
 #### Data types
 
 ```bash
 adb shell 'am broadcast -a org.example.app.sp.PUT --es key string --es value "hello world!"'
+```
 ```bash
 adb shell 'am broadcast -a org.example.app.sp.PUT --es key boolean --ez value true'
+```
+
 ```bash
 adb shell 'am broadcast -a org.example.app.sp.PUT --es key float --ef value 3.14159'
+```
+
 ```bash
 adb shell 'am broadcast -a org.example.app.sp.PUT --es key int --ei value 2015'
+```
+
 ```bash
 adb shell 'am broadcast -a org.example.app.sp.PUT --es key long --el value 9223372036854775807'
+```
 
 #### Restart application process after making changes
 
 ```bash
 adb shell 'am broadcast -a org.example.app.sp.CLEAR --ez restart true'
+```
 
 #### Open Google Camera (Pixel 4)
-
-    am start com.google.android.GoogleCamera 
-
+```bash
+am start com.google.android.GoogleCamera 
+```
 #### Set default preferences for an app:
 
     am broadcast -a org.example.app.sp.CLEAR --es key key_name
@@ -1558,41 +1578,49 @@ Establishes a fake Bluetooth connection to Dialer and must be called first to en
 
 ```bash
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "connect" 
+```
 
 #### Place an outgoing call
 
 ```bash
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "addCall" --es "id" "4085524874"  
+```
 
 #### Receive an incoming call      
 
 ```bash
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "rcvCall" --es "id" "4085524874"        
+```
 
 #### End a call
 
 ```bash
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "endCall" --es "id" "4085524874"        
+```
 
 #### Hold the current call 
 
 ```bash
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "holdCall"                     
+```
 
 #### Unhold the current call
 
 ```bash
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
+```
 
 #### Merge calls
 
 ```bash
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
+```
 
 #### Clear all calls, To remove all calls in the call list:
 
 ```bash
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "clearAll"                              
+```
 
 ## ADB <small>acpi</small>
 
@@ -1656,18 +1684,19 @@ adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action"
 
 #### Print IMEI - Example 4
 
- ```bash
+```bash
 adb shell service call iphonesubinfo 1 | awk -F"'" 'NR>1 { gsub(/\./,"",$2); imei=imei $2 } END {print imei}' 
 
 #### Print IMEI - Example 5 
 
- ```bash
+```bash
 adb shell "service call iphonesubinfo 1 | cut -c 52-66 | tr -d '.[:space:]'"
 
 #### Print IMEI - Example 6
      
- ```bash
+```bash
 adb shell service call iphonesubinfo 1 | awk -F "'" '{print }' | sed '1 d' | tr -d '.' | awk '{print}' ORS=
+```
 
 ### Slot 2
 
@@ -1736,7 +1765,8 @@ Print IMEI - Slot 2
 
  ```bash
 adb shell 'content read --uri content://settings/system/ringtone_cache' > a.ogg|xargs ffplay a.ogg
- 
+```
+
 #### Various ways to print contacts
 
      content query --uri content://contacts/phones/  --projection display_name:number:notes 
