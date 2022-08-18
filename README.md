@@ -2097,7 +2097,8 @@ adb shell  wm size WxH
 ##### Set Overscan:
 ```bash
 adb shell wm overscan 0,0,0,200
-```b
+```
+
 ## ADB <small>getprop</small>
 
 It is not so much to describe here, get info via getprop command. 
