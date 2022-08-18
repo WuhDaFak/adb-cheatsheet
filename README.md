@@ -2485,9 +2485,9 @@ sed -i 's/ro.config.tima=1/ro.config.tima=0/g' build.prop
 ```bash
 mount -o rw,remount /
 printf '%s\n' \
-     "# Fix for smartview on rooted devices, android 12" \
-     "wlan.wfd.hdcp=disable" >> /system/build.prop
-reboot
+     # Fix for smartview on rooted devices, android 12" \
+     wlan.wfd.hdcp=disable" >> /system/build.prop
+    reboot
 ``` 
 ## ADB <small>screencap</small>
 ```bash  
@@ -2518,18 +2518,8 @@ screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
 
 * [Gentoo Wiki - ADB](https://wiki.gentoo.org/wiki/Android/adb) (__Maintained by wuseman__)
 
-##### Nr1 / wuseman 
-
-* [Nr1 - Your journey to master Android™ Shell begins here](https://android.nr1.nu) 
-* [wuseman - ADB Cheatsheet](https://github.com/wuseman/adb-cheatsheet)
-* [Stackoverflow - Bluetooth](https://stackoverflow.com/a/55064471) 
-
 ##### ADB Shell
 
-*[- Just Another ADB Cheatsheet wiki](https://adbshell.com/commands/adb-install)
-
-##### Android
-    
 * [Android™ Developer - Emulator Console](https://developer.android.com/studio/run/emulator-console)
 * [Android™ Developer - Write your app](https://developer.android.com/studio/write)
 * [Android™ Google Source - Source Code](https://android.googlesource.com/)
@@ -2539,59 +2529,17 @@ screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
 * [Android™ Source - Understand Logging](https://source.android.com/devices/tech/debug/understanding-logging)
 * [Android™ Source - Network Connectivity Tests](https://source.android.com/devices/tech/connect/connect_tests)
 * [Android™ Platform Tools](https://android.googlesource.com/platform/prebuilts/cmdline-tools/+/34a182b3646de1051ea2c9b23132d073bcaa5087/tools/bin/) 
-
-##### Github 
-
 * [Github Randorise - Mobile Hacking CheatSheet](https://github.com/randorisec/MobileHackingCheatSheet)
-
-##### Mazhuang
-
 * [Mazhuang - Awesome ADB - Another Cheatsheet Wiki](https://mazhuang.org/awesome-adb/README.en.html)
-
-##### Jfsso
-
 * [Jfsso - Preferences Editor](https://github.com/jfsso/PreferencesEditor)
-
-##### Nahamsec
-
 * [Nahamsec - Resources For Beginner - Bug Bounty Hunters](https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters/blob/master/assets/mobile.md)
-
-##### Raywenderlich
-
 * [Raywenderlich -Forensic Artifacts](https://www.raywenderlich.com/3419415-hack-an-android-app-finding-forensic-artifacts#toc-anchor-002)
-
-##### Noobsec
-
 * [Noobsec - Bypass Fingerprint Lock In Just 1 Second](https://noobsec.org/project/2019-12-22-bypass-fingerprint-lock-in-just-1-second/)
 * [Noobsec - Cara Reverse Engineering](https://noobsec.org/project/2018-11-04-cara-reverse-engineering-apk/)
-
-##### Oracle 
-
 * [Oracle- JVMS](https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html)
-
-##### Tjtech
-
 * [Tjtech - Analyze OEM Unlocking Under Android](http://tjtech.me/analyze-oem-unlocking-under-android.html)
-
-##### U'Smile 
-
 * [U'Smile - How to change the IMEI on Android devices](https://usmile.at/blog/how-to-change-imei-on-android-devices)
-
-##### XDA Developers 
-
 * [Android™ Q Navigation - Gesture Controls](https://www.xda-developers.com/android-q-navigation-gesture-controls/#fitvid892986)
-
-## Get in <small>Touch</small>
-
-Want your website listed here and you think you have something to contribute? 
-
-Send me an email or contact me on ÍRC: 
-
-- **iRC**: wuseman@**Libera**
-
-Enter Libera's network via your own client 'chat.libera.chat:+6697 or use their new web client [here](https://web.libera.chat/).
-
-- **Mail**: wuseman@**nr1.nu**
 
 ## Wiki <small>author</small>
 
