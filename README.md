@@ -1797,7 +1797,7 @@ adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action"
 ##### Print Battery Percentage
 ```bash
 adb shell acip
-
+```
 ##### Show batteries
 ```bash
 adb shell acip -b 
@@ -2134,8 +2134,9 @@ getprop sys.oem_unlock_allowed
 ```
 
 ##### Is System boot completed
- 
-   getprop sys.boot_completed
+ ```bash
+adb shell getprop sys.boot_completed
+```
 
 ## ADB <small>setprop</small>
      
