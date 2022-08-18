@@ -1905,7 +1905,8 @@ adb shell settings put global policy_control immersive.full=*
 adb shell settings put global policy_control null*
 ```
 ###### It is also possible to specify this behavior for a specific application. 
-###### Examples to modify the behavior when Enterprise Browser is in the foreground: 
+
+* Examples to modify the behavior when Enterprise Browser is in the foreground: 
 
 ```bash
 adb shell settings put global policy_control immersive.full=com.honeywell.enterprisebrowser
