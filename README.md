@@ -515,7 +515,7 @@ Test Harness Mode commands:
 adb shell cmd stop
 ```
 
- ```bash
+```bash
 setprop libc.debug.malloc.program statsd 
 ```
 ```bash
@@ -977,7 +977,7 @@ adb shell pm list users
 adb shell pm list permission-groups
 ```
 ##### List features
- ```bash
+```bash
 adb shell pm list features
 ```
 ##### Uninstall any installed package:
@@ -1961,10 +1961,10 @@ content read --uri content://settings/system/ringtone_cache' > a.ogg|xargs ffpla
 ```bash
 adb shell content query --uri content://contacts/phones/  --projection display_name:number:notes 
 ```
- ```bash
+```bash
 adb shell content query --uri content://com.android.contacts/data --projection display_name:data1:data4:contact_id
 ```
- ```bash
+```bash
 adb shell content query --uri content://contacts/people/
 ```
 ##### Print Contacts Phone Numbers:
@@ -2066,7 +2066,7 @@ adb shell content insert –uri content://settings/system –bind name:s:acceler
 ```
 ##### Rotate to landscape
 
- ```bash
+```bash
 adb shell content insert —uri content://settings/system –bind name:s:user_rotation –bind value:i:1
 ```
 ##### Rotate portrait
@@ -2077,17 +2077,17 @@ adb shell content insert –uri content://settings/system –bind name:s:user_ro
 ## ADB <small>input</small>
      
 ##### Simulate a swipe down for notification bar:
- ```bash
+```bash
 adb shell input swipe 0 0 0 300 
 ```
 ##### Swipe and unlock screen:
- ```bash
+```bash
 adb shell input swipe 300 1000 300 500 
 ```
 ## ADB <small>wm</small>
-     
+
 ##### Print Screen Resolution
- ```bash
+```bash
 adb shell wm size
 ```
 ##### Set Screen Size
@@ -2095,14 +2095,14 @@ adb shell wm size
 adb shell  wm size WxH 
 ```
 ##### Set Overscan:
- ```bash
+```bash
 adb shell wm overscan 0,0,0,200
-     
+```b
 ## ADB <small>getprop</small>
 
 It is not so much to describe here, get info via getprop command. 
 
-Example Usage
+* Example Usage
 
 ```bash
 adb shell getprop \
@@ -2115,7 +2115,7 @@ adb shell getprop \
     |serialno \
     |product.name \
     |brand"
-```
+```b
 
 ##### Print CPU abi
 ```bash
@@ -2134,7 +2134,7 @@ getprop sys.oem_unlock_allowed
 ```
 
 ##### Is System boot completed
- ```bash
+```bash
 adb shell getprop sys.boot_completed
 ```
 
