@@ -1941,11 +1941,11 @@ adb shell content query --uri content://settings/seure
 ##### Print files for all applications
 ```bash
 adb shell content query --uri content://media/external/file --projection _data
-
+```
 ##### Select "name" and "value" columns from secure settings where "name" is equal to "new_setting" and sort the result by name in ascending order
 ```bash
 adb shell content query --uri content://settings/secure --projection name:value
-
+```
 ##### Remove "new_setting" secure setting.
 ```bash
 adb shell content delete --uri content://settings/secure --where "name='new_setting'"
