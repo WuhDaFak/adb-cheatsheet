@@ -988,7 +988,7 @@ adb shell pm uninstall --user 0 com.package.name
 
 ```sh
 for packages in com.package1 com.package2; do 
-    pm uninstall --user 0 "${packages}"
+    adb shell pm uninstall --user 0 "${packages}"
 done 
 ```
 
@@ -1874,7 +1874,7 @@ Some devices has 2 sim card slot, for print the second simcards imei use below:
 
 * Print IMEI - Slot 2
 
-``` bash
+```bash
 adbb shell service call iphonesubinfo 3 i32 2 | grep -oE '[0-9a-f]{8} ' | while read hex; do echo -ne "\u${hex:4:4}\u${hex:0:4}"; done; echo       
 ```    
 ## ADB <small>settings</small>
