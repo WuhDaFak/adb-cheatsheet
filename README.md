@@ -351,7 +351,7 @@ adb exec-out screenrecord --output-format=h264 - | ffplay -framerate 60 -probesi
 FFPlay Default - No Settings
 
 ```bash
-screenrecord --Example Output-format=h264 - | ffplay -
+adb shell screenrecord --Example Output-format=h264 - | ffplay -
 ```
 FFplay Customized
 
@@ -360,7 +360,7 @@ adb exec-out screenrecord --Example Output-format=h264 - | ffplay -framerate 60 
 ```
 
 ```sh
-screenrecord --bit-rate=16m --Example Output-format=h264 --size 800x600 - | ffplay -framerate 60 -framedrop -bufsize 16M -
+adb shell screenrecord --bit-rate=16m --Example Output-format=h264 --size 800x600 - | ffplay -framerate 60 -framedrop -bufsize 16M -
 ```
 
 ![Screenshot](https://nr1.nu/u/adb_record.gif)
@@ -423,7 +423,7 @@ adb reboot fastboot
 ##### Set date
 
 ```bash
-date MMDDYYYY.XX;am broadcast -a android.intent.action.TIME_SET
+adb shell date MMDDYYYY.XX;am broadcast -a android.intent.action.TIME_SET
 ```
 
 ## ADB <small>cmd</small>
@@ -436,27 +436,27 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'adb pwnz' 'Tag' 'it rly doe
 
 #### cmd lock_settings
 
-#### Sets the package name for server based resume on reboot service provider.
+##### Sets the package name for server based resume on reboot service provider.
 ```sh
 cmd lock_settings set-resume-on-reboot-provider-package <package_name>
 ```
-##### Removes cached unified challenge for the managed profile.
+###### Removes cached unified challenge for the managed profile.
 ```sh
 cmd lock_settings remove-cache --user 0 
 ```
-##### Verifies the lock credentials.
+###### Verifies the lock credentials.
 ```sh
 cmd lock_settings verify --old 1234 --user 0 
 ```
-##### Clears the lock credentials.
+###### Clears the lock credentials.
 ```sh
 cmd lock_settings clear --old 1234 --user 0 
 ```
-##### Enables / disables synthetic password.
+###### Enables / disables synthetic password.
 ```sh
 cmd lock_settings sp --old 1234 --user 0  <1|0>
 ```
-##### Gets whether synthetic password is enabled.
+###### Gets whether synthetic password is enabled.
 ```sh
 cmd lock_settings sp --old 1234 --user 0 
 ```
@@ -464,19 +464,19 @@ cmd lock_settings sp --old 1234 --user 0
 ```sh
 cmd lock_settings set-password --old 1234 --user 0  <PASSWORD>
 ```
-##### Sets the lock screen as PIN, using the given PIN to unlock.
+###### Sets the lock screen as PIN, using the given PIN to unlock.
 ```sh
 cmd lock_settings set-pin --old 1234 --user 0  <PIN>
 ```
-##### Sets the lock screen as pattern, using the given PATTERN to unlock.
+###### Sets the lock screen as pattern, using the given PATTERN to unlock.
 ```sh
 cmd lock_settings set-pattern --old 1234 --user 0  <PATTERN>
 ```
-##### When true, disables lock screen.
+###### When true, disables lock screen.
 ```sh
 cmd lock_settings set-disabled --old 1234 --user 0  <true|false>
 ```
-##### Checks whether lock screen is disabled.
+###### Checks whether lock screen is disabled.
 ```sh
 cmd lock_settings get-disabled --old 1234 --user 0 
 ```
@@ -2590,7 +2590,7 @@ Enter Libera's network via your own client 'chat.libera.chat:+6697 or use their 
 
 ## Wiki <small>author</small>
 
-- *wuseman <wuseman@nr1.nu\>**
+- wuseman <wuseman@nr1.nu>
 
 ## Wiki <small>License</small>
 
