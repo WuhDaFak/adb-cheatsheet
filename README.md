@@ -2116,7 +2116,7 @@ adb shell getprop \
     |serialno \
     |product.name \
     |brand"
-```b
+```
 
 ##### Print CPU abi
 ```bash
