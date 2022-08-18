@@ -1395,7 +1395,7 @@ adb shell dumpsys notification | grep NotificationRecord | wc -l
 ##### Dump info about your sim provider and kernel bootloader ID etc.
 
 ```sh
-dumpstate -v
+adb shell dumpstate -v
 ```
 
 * Example Output
@@ -1421,96 +1421,98 @@ Dumpstate info: id=0 pid=26940 dry_run=0 args=dumpstate -v extra_options=
 
 
 #### Send simple notification
-
-"am broadcast -n your.package.name/com.google.firebase.iid.FirebaseInstanceIdReceiver -c your.package.name -a com.google.android.c2dm.intent.RECEIVE"
-
+```bash
+adb shell am broadcast -n your.package.name/com.google.firebase.iid.FirebaseInstanceIdReceiver -c your.package.name -a com.google.android.c2dm.intent.RECEIVE"
+```
 
 #### Send notification
-
-am broadcast -n com.android.google.youtube/com.google.firebase.iid.FirebaseInstanceIdReceiver \
+```bash
+adb shell am am broadcast -n com.android.google.youtube/com.google.firebase.iid.FirebaseInstanceIdReceiver \
     -a "com.google.android.c2dm.intent.RECEIVE" --es "title" "Title" --es "body" "Body"
+```
 
 #### How to send push notification locally using ADB without need network connection.
-
-am broadcast \
+```bash
+adb shell am broadcast \
   -n com.your.app/com.google.firebase.iid.FirebaseInstanceIdReceiver \
   -a "com.google.android.c2dm.intent.RECEIVE" \
   --es "extra1" "65" \
   --es "guid" "1f400184-9215-479c-b19a-a9cd9a1d9dc9" \
   --es "extra3" "VALUE" \
   --es "extra4" "'Long string with spaces'"
+```
 
 #### How to use Demo Mode
 
 ##### First you enable the Demo Mode:
-
-     settings put global sysui_demo_allowed 1 
-
+```bash
+adb shell settings put global sysui_demo_allowed 1 
+```
 ##### Display time 12:00
-
-     am broadcast -a com.android.systemui.demo -e command clock -e hhmm 1200
-
+```bash
+adb shell am broadcast -a com.android.systemui.demo -e command clock -e hhmm 1200
+```
 ##### Display full mobile data without type
-
-     am broadcast -a com.android.systemui.demo -e command network -e mobile show -e level 4 -e datatype false
-
+```bash
+adb shell am broadcast -a com.android.systemui.demo -e command network -e mobile show -e level 4 -e datatype false
+```
 ##### Hide notifications
-
-     am broadcast -a com.android.systemui.demo -e command notifications -e visible false
-
+```bash
+adb shell am broadcast -a com.android.systemui.demo -e command notifications -e visible false
+```
 ##### Show full battery but not in charging state
- 
-     am broadcast -a com.android.systemui.demo -e command battery -e plugged false -e level 100
-
+```bash
+adb shell am broadcast -a com.android.systemui.demo -e command battery -e plugged false -e level 100
+```
 ##### Exit Demo Mode
-
-     am broadcast -a com.android.systemui.demo -e command exit
-
+```bash
+adb shell am broadcast -a com.android.systemui.demo -e command exit
+```
 ***
 
 ##### Add a value to default shared preferences.
 
 ```bash
-'am broadcast -a org.example.app.sp.PUT --es key key_name --es value "hello world!"'
+adb shell am broadcast -a org.example.app.sp.PUT --es key key_name --es value "hello world!"'
 ```
 ##### Remove a value to default shared preferences.
 
 ```bash
-'am broadcast -a org.example.app.sp.REMOVE --es key key_name'
+adb shell am broadcast -a org.example.app.sp.REMOVE --es key key_name'
 ```
 ##### Clear all default shared preferences.
 
 ```bash
-'am broadcast -a org.example.app.sp.CLEAR --es key key_name'
+adb shell am broadcast -a org.example.app.sp.CLEAR --es key key_name'
 ```
 ##### It's also possible to specify shared preferences file.
 
 ```bash
-'am broadcast -a org.example.app.sp.PUT --es name Game --es key level --ei value 10'
+adb shell am broadcast -a org.example.app.sp.PUT --es name Game --es key level --ei value 10'
 ```
 ##### Play a mp3 track on device
 ```sh
-am start -a android.intent.action.VIEW -d file:////storage/9A8A-1069/wuseman/ringtones/<mp3_track>.mp3 -t audio/mp3    
+adb shell am start -a android.intent.action.VIEW -d file:////storage/9A8A-1069/wuseman/ringtones/<mp3_track>.mp3 -t audio/mp3    
 ```
 ##### Data types
 
 ```bash
-am broadcast -a org.example.app.sp.PUT --es key string --es value "hello world!"'
+adb shell am broadcast -a org.example.app.sp.PUT --es key string --es value "hello world!"'
 ```
 ```bash
-am broadcast -a org.example.app.sp.PUT --es key boolean --ez value true'
-```
-
-```bash
-am broadcast -a org.example.app.sp.PUT --es key float --ef value 3.14159'
+adb shell am broadcast -a org.example.app.sp.PUT --es key boolean --ez value true'
 ```
 
 ```bash
-am broadcast -a org.example.app.sp.PUT --es key int --ei value 2015'
+adb shell am broadcast -a org.example.app.sp.PUT --es key float --ef value 3.14159'
 ```
 
 ```bash
-am broadcast -a org.example.app.sp.PUT --es key long --el value 9223372036854775807'
+adb shell am broadcast -a org.example.app.sp.PUT --es key int --ei value 2015'
+```
+
+```bash
+adb shell am broadcast -a org.example.app.sp.PUT --es key long --el value 9223372036854775807'
 ```
 
 ##### Restart application process after making changes
@@ -1521,21 +1523,21 @@ aam broadcast -a org.example.app.sp.CLEAR --ez restart true'
 
 ##### Open Google Camera (Pixel 4)
 ```bash
-am start com.google.android.GoogleCamera 
+adb shell am start com.google.android.GoogleCamera 
 ```
 ##### Set default preferences for an app:
 ```bash
-am broadcast -a org.example.app.sp.CLEAR --es key key_name
+adb shell am broadcast -a org.example.app.sp.CLEAR --es key key_name
 ```
 
 ##### WARNING!! Factory Reset
 ```bash
-am broadcast -a android.intent.action.MASTER_CLEAR
+adb shell am broadcast -a android.intent.action.MASTER_CLEAR
 ```
 
 ##### Open Special Menu
 ```bash
-am start -a android.intent.action.VIEW \
+adb shell am start -a android.intent.action.VIEW \
 ```
 
 ##### Open settings:
@@ -1555,7 +1557,7 @@ su -c "am broadcast -a android.provider.Telephony.SECRET_CODE -d android_secret_
 
 ##### Start prefered webbrowser (remove # for wich you wanna use)
 ```bash
-am start -a android.intent.action.VIEW -d <url> <add any of below here>
+adb shell am start -a android.intent.action.VIEW -d <url> <add any of below here>
   # Default Browser:        com.android.browser 
   # Gogle Chrome Browser:   com.android.chrome 
   # Samsung Browser:        com.sec.android.sbrowser) 
@@ -1563,110 +1565,110 @@ am start -a android.intent.action.VIEW -d <url> <add any of below here>
 
 ##### Print Activities:
 ```bash
-am start -a com.android.settings/.wifi.CaptivePortalWebViewActivity
+adb shell am start -a com.android.settings/.wifi.CaptivePortalWebViewActivity
 ```
 ##### Open Camera in Photo mode
 ```bash
-am start -a android.media.action.IMAGE_CAPTURE
+adb shell am start -a android.media.action.IMAGE_CAPTURE
 ```
 
 ##### Open Camera in Photo mode and take a picture
 ```bash
-am start -a android.media.action.IMAGE_CAPTURE
+adb shell am start -a android.media.action.IMAGE_CAPTURE
     input keyevent 66
 ```    
 ##### Open Camera in Video mode
 ```bash
-am start -a android.media.action.VIDEO_CAMERA
+adb shell am start -a android.media.action.VIDEO_CAMERA
 ```
 
 ##### Open Camera in Video mode and start recording
 ```bash
-am start -a android.media.action.VIDEO_CAMERA
+adb shell am start -a android.media.action.VIDEO_CAMERA
 input keyevent 66
 ```
 
 ##### Go to gallary and choose a picture and then set wallpaper:
 ```bash
-am start -a android.intent.action.SET_WALLPAPER
+adb shell am start -a android.intent.action.SET_WALLPAPER
 ```
 
 ##### Open any URL in default browser
 
 ```bash
-am start -a android.intent.action.VIEW -d https://github.com/wuseman
+adb shell am start -a android.intent.action.VIEW -d https://github.com/wuseman
 ```
 
 ##### Open Google Maps with fixed coordinates
 ```bash
-am start -a android.intent.action.VIEW -d "geo:46.457398,-119.407305"
+adb shell am start -a android.intent.action.VIEW -d "geo:46.457398,-119.407305"
 ```
 
 ##### Simulate waking your app using the following commands
 ```bash
-am set-inactive <packageName> 
-am set-inactive <packageName> false
+adb shell am set-inactive <packageName> 
+adb shell am set-inactive <packageName> false
 ```
 
 ##### Enabling Night Mode (If Supported)
 ```bash
-am start --ez show_night_mode true com.android.systemui/.tuner.TunerActivity
+adb shell am start --ez show_night_mode true com.android.systemui/.tuner.TunerActivity
 ```
 
 ##### Start facebook application inbox by using URI
 ```bash
-am start -a android.intent.action.VIEW -d facebook://facebook.com/inbox
+adb shell am start -a android.intent.action.VIEW -d facebook://facebook.com/inbox
 ```
 
 ##### Open a vcard file from sdcard (will open contacts app)
 ```bash
-am start -a android.intent.action.VIEW -d file:///sdcard/me.vcard -t text/x-vcard
+adb shell am start -a android.intent.action.VIEW -d file:///sdcard/me.vcard -t text/x-vcard
 ```
 
 ##### Open an application to get content (in this case to get a jpeg picture)
 ```bash
-am start -a android.intent.action.GET_CONTENT -t image/jpeg
+adb shell am start -a android.intent.action.GET_CONTENT -t image/jpeg
 ```
 ##### There is several ways to send a SMS via AM, here is just one of several ways:
 ```bash
-am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
+adb shell am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
 ```
 
 ##### Simulate waking your app using the following commands:
 ```bash
-am set-inactive <packageName> 
-am set-inactive <packageName> false
+adb shell am set-inactive <packageName> 
+adb shell am set-inactive <packageName> false
 ```
 
 ##### Start facebook application inbox by using URI
 ```bash
-am start -a android.intent.action.VIEW -d facebook://facebook.com/inbox
+adb shell am start -a android.intent.action.VIEW -d facebook://facebook.com/inbox
 ```  
 ##### Open a vcard file from sdcard (will open contacts app)
 ```bash
-am start -a android.intent.action.VIEW -d file:///sdcard/me.vcard -t text/x-vcard  
+adb shell am start -a android.intent.action.VIEW -d file:///sdcard/me.vcard -t text/x-vcard  
 ```
 
 ##### Open an application to get content (in this case to get a jpeg picture)
 ```bash
-am start -a android.intent.action.GET_CONTENT -t image/jpeg
+adb shell am start -a android.intent.action.GET_CONTENT -t image/jpeg
 ```
 
 ##### There is several ways to send a SMS via AM, here is one example:
 ```bash
-am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
+adb shell am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
 ```
 
 ##### Open settings for a specifik app
 ```bash
-am start -a android.settings.APPLICATION_DETAILS_SETTINGS package:<com.package.example>
+adb shell am start -a android.settings.APPLICATION_DETAILS_SETTINGS package:<com.package.example>
 ```
 
 #### Add Contacts
 
 #### Add a Contact - Example 1
 ```bash
-am start -a android.intent.action.INSERT \
+adb shell am start -a android.intent.action.INSERT \
     -t vnd.android.cursor.dir/contact \
     -e name "$(dialog --stdout --inputbox 'wuseman' 0 0)" \
     -e postal "$(dialog --stdout --inputbox 'Postal Address' 0 0)" \
@@ -1675,7 +1677,7 @@ am start -a android.intent.action.INSERT \
     
 ##### Add a Contact - Example 2
 ```bash
-am start -a android.intent.action.INSERT \
+adb shell am start -a android.intent.action.INSERT \
     -t vnd.android.cursor.dir/contact \
     -e name 'wuseman' \
     -e phone <phone_number>
@@ -1683,59 +1685,59 @@ am start -a android.intent.action.INSERT \
 
 #### Open dialer
 ```bash
-am start com.samsung.android.dialer/.DialtactsActivity
+adb shell am start com.samsung.android.dialer/.DialtactsActivity
 ```
 #### Launch Launcher Activitíes
 
 ```bash
-am start com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity
+adb shell am start com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity
 ```
 
 #### Launch homescreen at first screen
 ```bash
-am start com.sec.android.app.launcher/com.android.launcher3.uioverrides.QuickstepLauncher  
-am start com.sec.android.app.launcher/.activities.LauncherActivity
+adb shell am start com.sec.android.app.launcher/com.android.launcher3.uioverrides.QuickstepLauncher  
+adb shell am start com.sec.android.app.launcher/.activities.LauncherActivity
 ```
 
 #### Launch all open apps in launcher
 ```bash
-am start com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity
+adb shell am start com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity
 ```
 
 ## Launch messenger default settings
 ```bash
-am start com.samsung.android.messaging/com.samsung.android.messaging.ui.view.setting.MainSettingActivity
+adb shell am start com.samsung.android.messaging/com.samsung.android.messaging.ui.view.setting.MainSettingActivity
 ```
 
 #### Launch messenger converstation composer
 ```bash
-am start com.samsung.android.messaging/com.android.mms.ui.ConversationComposer
+adb shell am start com.samsung.android.messaging/com.android.mms.ui.ConversationComposer
 ```
 #### Launch messenger select contact
 ```bash
-am start com.samsung.android.messaging/com.samsung.android.messaging.ui.view.recipientspicker.PickerActivity
+adb shell am start com.samsung.android.messaging/com.samsung.android.messaging.ui.view.recipientspicker.PickerActivity
 ```
 ##### Launch messenger with latest contacted
 ```bash
-am start com.samsung.android.dialer/com.samsung.android.dialer.calllog.view.picker.CallLogPickerActivity
+adb shell am start com.samsung.android.dialer/com.samsung.android.dialer.calllog.view.picker.CallLogPickerActivity
 ```
 #### Launch Samsung Gallery
 ```bash
-am start com.sec.android.gallery3d/com.samsung.android.gallery.app.activity.GalleryActivity
+adb shell am start com.sec.android.gallery3d/com.samsung.android.gallery.app.activity.GalleryActivity
 ```
 
 #### Samsung Myfiles
 ```bash
-am start com.sec.android.app.myfiles/com.sec.android.app.myfiles.external.ui.MainActivity
+adb shell am start com.sec.android.app.myfiles/com.sec.android.app.myfiles.external.ui.MainActivity
 ```
 
 #### Launs Android Settings, connections
 ```bash
-am start com.android.settings/com.android.settings.SubSettings
+adb shell am start com.android.settings/com.android.settings.SubSettings
 ```
 ##### Open Projectmenu (Huawei only)
 ```bash
-am start com.huawei.android.projectmenu/com.huawei.android.projectmenu.ProjectMenuActivity
+adb shell am start com.huawei.android.projectmenu/com.huawei.android.projectmenu.ProjectMenuActivity
 ```
 
 #### Make Demo Call   
@@ -1745,7 +1747,7 @@ am start com.huawei.android.projectmenu/com.huawei.android.projectmenu.ProjectMe
 ##### To connect a device
 
 ```bash
-am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "connect" 
+adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "connect" 
 ```
 
 ##### Place an outgoing call
@@ -1757,37 +1759,37 @@ am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "connect"
 ##### Receive an incoming call      
 
 ```bash
-am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "rcvCall" --es "id" "4085524874"        
+adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "rcvCall" --es "id" "4085524874"        
 ```
 
 ##### End a call
 
 ```bash
-am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "endCall" --es "id" "4085524874"        
+adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "endCall" --es "id" "4085524874"        
 ```
 
 ##### Hold the current call 
 
 ```bash
-am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "holdCall"                     
+adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "holdCall"                     
 ```
 
 ##### Unhold the current call
 
 ```bash
-am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
+adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
 ```
 
 ##### Merge calls
 
 ```bash
-am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
+adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
 ```
 
 ##### Clear all calls, To remove all calls in the call list:
 
 ```bash
-am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "clearAll"                              
+adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "clearAll"                              
 ```
 
 ## ADB <small>acpi</small>
@@ -2338,7 +2340,7 @@ fi
 ##### Stop wallnetfcrel
 
 ```bash
-am force-stop /data/data/com.google.android.apps.walletnfcrel
+adb shell am force-stop /data/data/com.google.android.apps.walletnfcrel
 ```
 
 ##### Hide root for Google apps:
