@@ -1960,36 +1960,38 @@ content read --uri content://settings/system/ringtone_cache' > a.ogg|xargs ffpla
 
 ```bash
 adb shell content query --uri content://contacts/phones/  --projection display_name:number:notes 
+```
  ```bash
 adb shell content query --uri content://com.android.contacts/data --projection display_name:data1:data4:contact_id
+```
  ```bash
 adb shell content query --uri content://contacts/people/
-
+```
 ##### Print Contacts Phone Numbers:
 
 ```bash
 adb shell content query --uri content://contacts/phones/
-
+```
 ##### Print Contacts Added In Groups:
 
 ```bash
 adb shell content query --uri content://contacts/groups/
-
+```
 ##### Print Group Mmembership:
 
 ```bash
 adb shell content query --uri content://contacts/groupmembership/
-
+```
 ##### Print organiztations: 
 
 ```bash
 adb shell content query --uri content://contacts/organizations/
-
+```
 ##### Print Call Logs
 
 ```bash
 adb shell content query --uri content://call_log/calls
-
+```
 ##### Print text from SMS sections
 
 ```bash
