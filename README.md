@@ -21,19 +21,17 @@ All commands that require root will have (Root_Required) in descriptionn.
 * [Android™ Debug Bridge - Main](https://android.nr1.nu)
 * [Android™ Debug Bridge - Wiki](https://github.com/wuseman/adb-cheatsheet/wiki/Android%E2%84%A2-Debug-Bridge-(adb))
 
-## Download Android™ <small>Google Account Manager</small>
+## Secret Codes™ <small>Samsung Latest Models</small>
 
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.0.3.apk">Google Account Manager Android 4.0.3</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.4.4.apk">Google Account Manager Android 4.4.4</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v5.0.1.apk">Google Account Manager Android 5.0.1</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v6.0.apk">Google Account Manager Android 6.0</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.0.apk">Google Account Manager Android 7.0</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.1.2.apk">Google Account Manager Android 7.1.2</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v7.1.25.apk">Google Account Manager Android 7.1.25</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.0.apk">Google Account Manager Android 8.0</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v8.1.apk">Google Account Manager Android 8.1</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v9.apk">Google Account Manager Android 9</a></li>
-<li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v10.apk">Google Account Manager Android 10</a></li>
+| Secret Code        | Description                         | ADB Command                         |
+| :----------------- | :---------------------------------- | :-----------------------------------|
+| *#06#              |  IMEI number     | com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI
+| *#0228#            |  Battery status  | com.sec.android.app.factorykeystring/com.sec.android.app.status.BatteryStatus
+| *#0*#              |  HW Module Test  | com.sec.android.app.hwmoduletest/com.sec.android.app.hwmoduletest.HwModuleTest
+| *#2222#            |  Service Mode    | com.sec.android.RilServiceModeApp/com.sec.android.RilServiceModeApp.ServiceModeApp
+| *#2663             |  Touch FIrmware  | com.sec.android.app.factorykeystring/com.sec.android.app.status.touch_firmware
+| *#1234             |  FIrmware info   | com.sec.android.app.factorykeystring/com.sec.android.app.version.SimpleVersion
+| ?                  |  WiFi Info       | com.sec.android.app.servicemodeapp/com.sec.android.app.servicemodeapp.WifiInfoActivity
 
 ## Download Android™ <small>Google Account Manager</small>
 
@@ -436,7 +434,7 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'adb pwnz' 'Tag' 'it rly doe
 
 !!! Notice "when lock screen is set, all commands require the --old <CREDENTIAL> argument."
 
-##### cmd lock_settings
+#### cmd lock_settings
 
 #### Sets the package name for server based resume on reboot service provider.
 ```sh
@@ -483,7 +481,8 @@ cmd lock_settings set-disabled --old 1234 --user 0  <true|false>
 cmd lock_settings get-disabled --old 1234 --user 0 
 ```
 
-##### cmd testharness                                                                                                                                                                                                          
+##### cmd testharness      
+```                                                                                                                                                                                                    
 About:
   Test Harness Mode is a mode that the device can be placed in to prepare
   the device for running UI tests. The device is placed into this mode by
@@ -506,7 +505,7 @@ Test Harness Mode commands:
     Erase all data from this device and enable Test Harness Mode,
     preserving the stored ADB keys currently on the device and toggling
     settings in a way that are conducive to Instrumentation testing.
-
+```
 
 ##### cmd stats meminfo
 
@@ -528,14 +527,14 @@ cmd stats print-stats
 ```
 
 #####  Send a broadcast that triggers the subscriber to fetch metrics.
-
-     cmd stats send-broadcast [UID] NAME
+```
+ cmd stats send-broadcast [UID] NAME
 
      UID           The uid of the configuration. It is only possible to pass
-                the UID parameter on eng builds. If UID is omitted the
-                calling uid is used.
-      NAME          The name of the configuration
-
+                   the UID parameter on eng builds. If UID is omitted the
+                   calling uid is used.
+     NAME          The name of the configuration
+```
 
 
 
@@ -662,14 +661,14 @@ cmd -w wifi list-all-suggestions
 ```
 ##### Note: This only returns whether the app was set via the 'network-requests-set-user-approved' shell command
 
-Queries whether network requests from the app is approved or not.
+* Queries whether network requests from the app is approved or not.
 
 ```bash
 cmd -w wifi network-requests-has-user-approved <package name>
 ```
 ##### Note: Only 1 such app can be approved from the shell at a time
 
-Sets whether network requests from the app is approved or not.
+* Sets whether network requests from the app is approved or not.
 
 ```bash
 cmd -w wifi network-requests-set-user-approved <package name> yes|no
@@ -899,7 +898,7 @@ cmd -w wifi imsi-protection-exemption-set-user-approved-for-carrier <carrier id>
 ##### List uid owner of a app
 
 ```bash
-cmd package list packages -U#####                            
+cmd package list packages -U                
 ```
 ##### List packages a.k.a: pm list packages
 
@@ -954,37 +953,37 @@ done
 ```
 
 ##### List all packages installed on device 
-
-    pm list packages
-
+```bash
+pm list packages
+```
 ##### List enabled packages
-
-    pm list packages -e
-    
+```bash
+pm list packages -e
+```
 ##### List disabled packages
-
-    pm list packages -d
-
+```bash
+pm list packages -d
+```
 ##### List third party packages installed by user
-
-    pm list packages -3
-
+```bash
+pm list packages -3
+```
 ##### List users
-
-    pm list users
-
+```bash
+pm list users
+```
 ##### List permission groups
-
-    pm list permission-groups
-
+```bash
+pm list permission-groups
+```
 ##### List features
- 
-    pm list features
-
+ ```bash
+pm list features
+```
 ##### Uninstall any installed package:
-
-    pm uninstall --user 0 com.package.name
-
+```bash
+pm uninstall --user 0 com.package.name
+```
 ##### Uninstall multiple apps:
 
 ```sh
@@ -994,34 +993,36 @@ done
 ```
 
 ##### Clear application data:
-
-    pm clear PACKAGE_NAME
-
+```bash
+pm clear PACKAGE_NAME
+```
 ##### List permission groups: 
-
-    pm list permission-groups 
-
+```bash
+pm list permission-groups 
+```
 ##### List instrumentation:
-
-    pm list instrumentation
-
+```bash
+pm list instrumentation
+```
 ##### Grant permission to an app (Example Only For Grant): 
-
-    pm grant com.application android.permission.READ_LOGS
-    
+```bash
+pm grant com.application android.permission.READ_LOGS
+```
 ##### Revoke permission to an app (Example Only For Revoke): 
-
-    pm revoke com.application android.permission.READ_LOGS
-
+```bash
+pm revoke com.application android.permission.READ_LOGS
+```
 ##### Reset all permissions for an app:
+```bash
+pm reset-permissions -p your.app.package
+```
 
-    pm reset-permissions -p your.app.package
-    
 ## ADB <small>logcat</small>
 
 ##### Default options: 
 
-Example Output
+* Examples
+
 ```ini
 * V — Verbose (lowest priority)
 * D — Debug
@@ -1035,42 +1036,47 @@ Example Output
 #### Logcat
 
 ##### Log buffer containing all buffer logs
-
+```bash
 adb logcat -b all -c color 
-
+```
+#### Print all ŕaido info
+```bash
+adb logcat -v threadtime -b radio -d -f /data/log/radio_*.log
+```
 ##### Log buffer containing radio and telephony messages
-
+```bash
 adb logcat -b radio -c color
-
+```
 ##### Log buffer containing events
-
+```bash
 adb logcat -b  events -c color
-
+```
 ##### Log buffer contains multi values is ofc possible, log radio and events
-
-logcat -b main -b radio -b events
-
+```bash
+adb logcat -b main -b radio -b events
+```
 ##### You can use , for separator
-
-logcat -b main,radio,events
-
-##### Show log buffer event descriptions. This modifier affects event log buffer messages only, and has no effect on the other non-vinary buffers. The event descriptions come from the event-log-tags database.
-
+```bash
+adb logcat -b main,radio,events
+```
+##### Show log buffer event descriptions
+```bash
 adb logcat -v descriptive -v color
+```
 
 ##### Display time in seconds starting from Jan 1, 1970.
-
+```bash
 adb logcat -v epoch -v color
-
+```
 ##### Display time in CPU seconds starting from the last boot.
-
+```bash
 adb logcat -v monotonic -v color
-
+```
 
 ##### Ensure that any binary logging content is escaped.
-
+```bash
 adb logcat -v printable -v color
-
+```
 
 ##### Use -v time for print timestamps, and threadtime for dates:
 
@@ -1159,16 +1165,17 @@ adb logcat |grep  "LockSettingsService|LockPatternUtilsKeyStorage|vold|vold|keys
 
 ##### List all active services:
 ```bash
-dumpsys -l 
+adb shell dumpsys -l 
 ```
 
 * List services on older devices via command below 
 
 ```sh
-dumpsys -l |sed 's/^  /      /g'
+adb shell dumpsys -l |sed 's/^  /      /g'
 ```
 
-Example Output
+* Example Output
+
 ```ini
 Currently running services:
   AAS
@@ -1195,7 +1202,7 @@ Currently running services:
 ##### Dumpsys lock_settings 
 
 ```sh
-dumpsys lock_settings
+adb shell dumpsys lock_settings
 ```
 
 * Example Output
@@ -1236,28 +1243,29 @@ mPendingRebootEscrowKey is not set
 ```
 
 ##### Print codecs for bluetooth headphones
-
-    dumpsys media.audio_flinger | grep -A3 Input 
-
+```sh
+adb shell dumpsys media.audio_flinger | grep -A3 Input 
+```
 ##### Show bluetooth macaddr, bluetooth name and such things
-
-    dumpsys bluetooth_manager
-
+```sh
+adb shell dumpsys bluetooth_manager
+```
 ##### Dump phone registry
-
-    dumpsys telephony.registry
-
+```sh
+adb shell dumpsys telephony.registry
+```
 ##### Dump GPS Data:
-
-    dumpsys location
-
+```sh
+adb shell dumpsys dumpsys location
+```
 ##### Dump Settings
 
 ```sh
-dumpsys settings
+adb shell dumpsys settings
 ```
 
-Example Output
+* Example Output
+
 ```ini
 _id:225 name:lock_screen_show_notifications pkg:com.android.settings value:1 
 _id:6 name:volume_bluetooth_sco pkg:android value:7 default:7
@@ -1271,12 +1279,12 @@ _id:59 name:install_non_market_apps pkg:android value:1 default:1
 ##### Display Contacts On Sim Card
 
 ```bash
-dumpsys simphonebook
+adb shell dumpsys simphonebook
 ```
 ##### Show hardware info as thermal stuff for cpu, gpu and battery
 
 ```sh
-dumpsys hardware_properties
+adb shell dumpsys hardware_properties
 ```
 * Example Output
 
@@ -1290,7 +1298,7 @@ CPU shutdown temperatures: [115.0, 115.0]
 ##### Show all application you have an account on:
 
 ```sh
-dumpsys account|grep -i com.*$ -o|cut -d' ' -f1|cut -d} -f1|grep -v com$
+adb shell dumpsys account|grep -i com.*$ -o|cut -d' ' -f1|cut -d} -f1|grep -v com$
 ```
 
 * Example Output
@@ -1304,18 +1312,18 @@ com.google.android.gm.exchange
 ```
 
 ##### Show all notifications listener and so on:
-
-    dumpsys notification
-    
+```bash
+adb shell dumpsys notification
+```
 ##### List email addresses registerd on different stuff on device:
-
-    dumpsys | grep -E -o "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b"
-    
+```bash
+adb shell dumpsys | grep -E -o "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b"
+```    
 ##### Print version of a specifik package
 
-    dumpsys package com.lge.signboard | grep versionName
+adb shell dumpsys dumpsys package com.lge.signboard | grep versionName
     versionName=6.00.170603-0
-    
+```
 ##### Check state for screen and figoure how device was unlcked last time:
 
 ```sh
@@ -1333,21 +1341,21 @@ agree Knox Privacy Policy: false
 ##### And for example, you can dump data for all of the running services, dump all data for battery: 
 
 ```bash
-dumpsys battery
+adb shell dumpsys battery
 ```
 ##### Dump stats for your battery:
 
 ```bash
-dumpsys batterystats 
+adb shell dumpsys atterystats 
 ```
 ##### Erase old stats for battery:
 ```bash
-dumpsys batterystats --reset 
+adb shell dumpsys batterystats --reset 
 ```
 ##### Sort Applications By Ram Usage:
 
 ```sh
-dumpsys meminfo
+adb shell dumpsys meminfo
 ```
 
 * Example Output
@@ -1369,17 +1377,18 @@ Total PSS by process:
 ```
 
 ##### Unplug AC:
-
-    dumpsys battery unplug
-
+```bash
+adb shell dumpsys battery unplug
+```
 ##### See current used app:
 ```bash
-dumpsys window windows | grep -E 'mCurrentFocus\
+adb shell dumpsys window windows | grep -E 'mCurrentFocus\
     |mFocusedApp'|grep '/'|awk -F'u0' '{print $2}'|awk '{print $1}'
 ```
 ##### Print how many notifications you have: 
-
-    dumpsys notification | grep NotificationRecord | wc -l 
+```bash
+adb shell dumpsys notification | grep NotificationRecord | wc -l 
+```
 
 ## ADB <small>dumpstate</small>
 
