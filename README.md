@@ -1795,77 +1795,77 @@ adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action"
 ## ADB <small>acpi</small>
 
 ##### Print Battery Percentage
-
-    acpi
+```bash
+adb shell acip
 
 ##### Show batteries
-
-    acpi -b 
-
+```bash
+adb shell acip -b 
+```
 ##### Show Cooling Device State
-
-    acpi -c    
-
+```bash
+adb shell acip -c    
+```
 ##### Show Temperatures
-
-    acpi -t 
-
+```bash
+adb shell acip -t 
+```
 ##### Just print everything from acpi
-
-    acpi -V
-
+```bash
+adb shell acip -V
+```
 ## ADB <small>dpm</small>
 
 ##### Enable Device Admin
-
-    dpm set-device-owner com.package.name/.DeviceAdminReceiver
-
+```bash
+adb shell dpm set-device-owner com.package.name/.DeviceAdminReceiver
+```
 ## ADB <small>service</small>
 
 #### StatusBar
 
 ##### Expand Status Bar
-
-    service call statusbar 1
-
+```bash
+adb shell service call statusbar 1
+```
 ##### Expand Status Bar <full>
-
-    service call statusbar 2
-
+```bash
+adb shell service call statusbar 2
+```
 ##### Collapse Status Bar
-
-    service call statusbar 2
-
+```bash
+adb shell service call statusbar 2
+```
 #### IMEI Related
 
 #### Slot 1
 
 ##### Print IMEI - Example 1
-
-    service call iphonesubinfo 1| cut -d "'" -f2| grep -Eo '[0-9]'| xargs| sed 's/\ //g'  
-
+```bash
+adb shell service call iphonesubinfo 1| cut -d "'" -f2| grep -Eo '[0-9]'| xargs| sed 's/\ //g'  
+```
 ##### Print IMEI - Example 2
-   
-    service call iphonesubinfo 3 i32 1 | grep -oE '[0-9a-f]{8} ' | while read hex; do echo -ne "\u${hex:4:4}\u${hex:0:4}"; done; echo          
-
+```bash
+adb shell service call iphonesubinfo 3 i32 1 | grep -oE '[0-9a-f]{8} ' | while read hex; do echo -ne "\u${hex:4:4}\u${hex:0:4}"; done; echo          
+```
 ##### Print IMEI - Example 3
-
-     echo "[device.imei]: [$(service call iphonesubinfo 1 | awk -F "'" '{print $2}' | sed '1 d'| tr -d '\n' | tr -d '.' | tr -d ' ')]"
-
+```bash
+adb shell echo "[device.imei]: [$(service call iphonesubinfo 1 | awk -F "'" '{print $2}' | sed '1 d'| tr -d '\n' | tr -d '.' | tr -d ' ')]"
+```
 ##### Print IMEI - Example 4
 
 ```bash
-service call iphonesubinfo 1 | awk -F"'" 'NR>1 { gsub(/\./,"",$2); imei=imei $2 } END {print imei}' 
-
+adb shell service call iphonesubinfo 1 | awk -F"'" 'NR>1 { gsub(/\./,"",$2); imei=imei $2 } END {print imei}' 
+```
 ##### Print IMEI - Example 5 
 
 ```bash
-"service call iphonesubinfo 1 | cut -c 52-66 | tr -d '.[:space:]'"
+adb shell service call iphonesubinfo 1 | cut -c 52-66 | tr -d '.[:space:]'"
 ```
 ##### Print IMEI - Example 6
      
 ```bash
-service call iphonesubinfo 1 | awk -F "'" '{print }' | sed '1 d' | tr -d '.' | awk '{print}' ORS=
+adb shell service call iphonesubinfo 1 | awk -F "'" '{print }' | sed '1 d' | tr -d '.' | awk '{print}' ORS=
 ```
 
 #### Slot 2
@@ -1875,155 +1875,225 @@ Some devices has 2 sim card slot, for print the second simcards imei use below:
 * Print IMEI - Slot 2
 
 ``` bash
-service call iphonesubinfo 3 i32 2 | grep -oE '[0-9a-f]{8} ' | while read hex; do echo -ne "\u${hex:4:4}\u${hex:0:4}"; done; echo       
+adbb shell service call iphonesubinfo 3 i32 2 | grep -oE '[0-9a-f]{8} ' | while read hex; do echo -ne "\u${hex:4:4}\u${hex:0:4}"; done; echo       
 ```    
 ## ADB <small>settings</small>
 
 ##### List how many times we booted device:
 
-    settings list global|grep "boot_count="|cut -d= -f2|head -n 1|xargs echo "Booted:"|sed 's/$/ times/g'
-
+```bash
+adb shell settings list global|grep "boot_count="|cut -d= -f2|head -n 1|xargs echo "Booted:"|sed 's/$/ times/g'
+```
 ##### Hide Status bar
 
-    settings put global policy_control immersive.status=*
-
+```bash
+adb shell settings put global policy_control immersive.status=*
+```
 ##### Hide Navigation bar
 
-    settings put global policy_control immersive.navigation=*
-
+```bash
+adb shell settings put global policy_control immersive.navigation=*
+```
 ##### Hide both status and navigation bars
 
-    settings put global policy_control immersive.full=*
-
+```bash
+adb shell settings put global policy_control immersive.full=*
+```
 ##### Revert bars to stock configuration
 
-    settings put global policy_control null*
-
+```bash
+adb shell settings put global policy_control null*
+```
 ###### It is also possible to specify this behavior for a specific application. 
 ###### Examples to modify the behavior when Enterprise Browser is in the foreground: 
 
-    settings put global policy_control immersive.full=com.honeywell.enterprisebrowser
-    settings put global policy_control immersive.navigation=com.honeywell.enterprisebrowser
-    settings put global policy_control immersive.status=com.honeywell.enterprisebrowser
-
+```bash
+adb shell settings put global policy_control immersive.full=com.honeywell.enterprisebrowser
+```
+```bash
+adb shell settings put global policy_control immersive.navigation=com.honeywell.enterprisebrowser
+```
+```bash
+adb shell settings put global policy_control immersive.status=com.honeywell.enterprisebrowser
+```
 ## ADB <small>content</small>
 
 ##### Trick device that setup already has been done (FRP Bypassing)
 
-    content insert --uri content://settings/secure --bind name:s:user_setup_complete --bind value:s:1
-    am start -n com.google.android.gsf.login/
-    am start -n com.google.android.gsf.login.LoginActivity
+```bash
+adb shellcontent insert --uri content://settings/secure \
+    --bind name:s:user_setup_complete --bind value:s:1
+
+adb shell am start -n com.google.android.gsf.login/
+adb shell am start -n com.google.android.gsf.login.LoginActivity
+```
 
 ##### Global/Settings/Secure
 
-    content query --uri content://settings/global
-    content query --uri content://settings/settings
-    content query --uri content://settings/seure
+```bash
+adb shell content query --uri content://settings/global
 
+adb shell content query --uri content://settings/settings
+
+adb shell content query --uri content://settings/seure
+```
 ##### Print files for all applications
-
-    content query --uri content://media/external/file --projection _data
+```bash
+adb shell content query --uri content://media/external/file --projection _data
 
 ##### Select "name" and "value" columns from secure settings where "name" is equal to "new_setting" and sort the result by name in ascending order
-
-    content query --uri content://settings/secure --projection name:value
+```bash
+adb shell content query --uri content://settings/secure --projection name:value
 
 ##### Remove "new_setting" secure setting.
-
-    content delete --uri content://settings/secure --where "name='new_setting'"
-
+```bash
+adb shell content delete --uri content://settings/secure --where "name='new_setting'"
+```
 ##### Download current ringtone and play on PC via ffplay: 
 
- ```bash
-'content read --uri content://settings/system/ringtone_cache' > a.ogg|xargs ffplay a.ogg
+```bash
+content read --uri content://settings/system/ringtone_cache' > a.ogg|xargs ffplay a.ogg
 ```
 
 ##### Various ways to print contacts
 
-     content query --uri content://contacts/phones/  --projection display_name:number:notes 
-     content query --uri content://com.android.contacts/data --projection display_name:data1:data4:contact_id
-     content query --uri content://contacts/people/
+```bash
+adb shell content query --uri content://contacts/phones/  --projection display_name:number:notes 
+ ```bash
+adb shell content query --uri content://com.android.contacts/data --projection display_name:data1:data4:contact_id
+ ```bash
+adb shell content query --uri content://contacts/people/
 
 ##### Print Contacts Phone Numbers:
 
-     content query --uri content://contacts/phones/
+```bash
+adb shell content query --uri content://contacts/phones/
 
 ##### Print Contacts Added In Groups:
 
-     content query --uri content://contacts/groups/
+```bash
+adb shell content query --uri content://contacts/groups/
 
 ##### Print Group Mmembership:
 
-     content query --uri content://contacts/groupmembership/
+```bash
+adb shell content query --uri content://contacts/groupmembership/
 
 ##### Print organiztations: 
 
-    content query --uri content://contacts/organizations/
+```bash
+adb shell content query --uri content://contacts/organizations/
 
 ##### Print Call Logs
 
-    content query --uri content://call_log/calls
+```bash
+adb shell content query --uri content://call_log/calls
 
 ##### Print text from SMS sections
 
-    content query --uri content://sms/conversations
-    content query --uri content://sms/conversations
-    content query --uri content://sms/draft
-    content query --uri content://sms/inbox
-    content query --uri content://sms/outbox
-    content query --uri content://sms/sent
+```bash
+adb shell content query --uri content://sms/conversations
+```
+
+```bash
+adb shell content query --uri content://sms/conversations
+```
+
+```bash
+adb shell content query --uri content://sms/draft
+```
+
+```bash
+adb shell content query --uri content://sms/inbox
+```
+
+```bash
+adb shell content query --uri content://sms/outbox
+```
+
+```bash
+adb shell content query --uri content://sms/sent
+```
 
 ##### Print text from MMS sections
 
-    content query --uri content://mms
-    content query --uri content://mms/inbox
-    content query --uri content://mms/outbox
-    content query --uri content://mms/part
-    content query --uri content://mms/sent
-    content query --uri content://mms-sms/conversations
-    content query --uri content://mms-sms/draft
-    content query --uri content://mms-sms/locked
-    content query --uri content://mms-sms/search
+```bash
+adb shell content query --uri content://mms
+```
 
+```bash
+adb shell content query --uri content://mms/inbox
+```
+
+```bash
+adb shell content query --uri content://mms/outbox
+```
+
+```bash
+adb shell content query --uri content://mms/part
+```
+
+```bash
+adb shell content query --uri content://mms/sent
+```
+
+```bash
+adb shell content query --uri content://mms-sms/conversations
+```
+
+```bash
+adb shell content query --uri content://mms-sms/draft
+```
+
+```bash
+adb shell content query --uri content://mms-sms/locked
+```
+```bash
+adb shell content query --uri content://mms-sms/search
+```
 ##### Auto rotation on
 
-    content insert –uri content://settings/system –bind name:s:accelerometer_rotation –bind value:i:1
-
+```bash
+adb shell content insert –uri content://settings/system –bind name:s:accelerometer_rotation –bind value:i:1
+```
 ##### Auto rotation off
     
-    content insert –uri content://settings/system –bind name:s:accelerometer_rotation –bind value:i:0
-
+```bash
+adb shell content insert –uri content://settings/system –bind name:s:accelerometer_rotation –bind value:i:0
+```
 ##### Rotate to landscape
 
-     content insert —uri content://settings/system –bind name:s:user_rotation –bind value:i:1
-
+ ```bash
+adb shell content insert —uri content://settings/system –bind name:s:user_rotation –bind value:i:1
+```
 ##### Rotate portrait
 
-     content insert –uri content://settings/system –bind name:s:user_rotation –bind value:i:0
-
+```bash
+adb shell content insert –uri content://settings/system –bind name:s:user_rotation –bind value:i:0
+```
 ## ADB <small>input</small>
      
 ##### Simulate a swipe down for notification bar:
-
-    input swipe 0 0 0 300 
-    
+ ```bash
+adb shell input swipe 0 0 0 300 
+```
 ##### Swipe and unlock screen:
-
-    input swipe 300 1000 300 500 
-
+ ```bash
+adb shell input swipe 300 1000 300 500 
+```
 ## ADB <small>wm</small>
      
 ##### Print Screen Resolution
-
-    wm size
-
+ ```bash
+adb shell wm size
+```
 ##### Set Screen Size
-
-    wm size WxH 
-    
+```bash
+adb shell  wm size WxH 
+```
 ##### Set Overscan:
-
-    wm overscan 0,0,0,200
+ ```bash
+adb shell wm overscan 0,0,0,200
      
 ## ADB <small>getprop</small>
 
@@ -2031,8 +2101,8 @@ It is not so much to describe here, get info via getprop command.
 
 Example Usage
 
-```sh
-getprop \
+```bash
+adb shell getprop \
     |grep "model \
     |version.sdk \
     |manufacturer \
@@ -2045,9 +2115,9 @@ getprop \
 ```
 
 ##### Print CPU abi
-
-    getprop ro.product.cpu.abi
-
+```bash
+adb shell getprop ro.product.cpu.abi
+```
 
 ##### Get info if OEM Unlock is Allowed
 
@@ -2528,133 +2598,3 @@ Android Nr1 nu wiki is licensed under the GNU General Public License v3.0 - See 
 
 - Happy Hacking!
 
-
-
-
-
-
-
-
-
-z3s:/data/user_de/0/com.android.providers.telephony # ls /data/data/com.android.providers.telephony/ ;ls     ?
-
-
-/data/user_de/0/com.android.providers.telephony/databases/apninfo.xml
-
-
-
-z3s:/data/user_de/0/com.android.providers.telephony/databases # echo .dump|sqlite3 nwk_info.db                                                                                                                                             
-PRAGMA foreign_keys=OFF;
-BEGIN TRANSACTION;
-CREATE TABLE android_metadata (locale TEXT);
-INSERT INTO android_metadata VALUES('sv_SE');
-CREATE TABLE nwkinfo(plmn TEXT, nwkname TEXT, dormancy TEXT, mtu INTEGER, codetype TEXT, subsetcode TEXT, spcode TEXT, spname TEXT, sim_slot INTEGER DEFAULT -1, CONSTRAINT PKcompKey PRIMARY KEY (plmn, nwkname, codetype, subsetcode, spcode, spname, sim_slot));
-INSERT INTO nwkinfo VALUES('90112','Telenor Maritime','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24414','Ålcom','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24001','Halebop','on',1500,'','714','','',0);
-INSERT INTO nwkinfo VALUES('24001','Halebop S','on',1500,'','704','','',0);
-INSERT INTO nwkinfo VALUES('24491','Aina (S)','on',1500,'','92','','',0);
-INSERT INTO nwkinfo VALUES('24010','Spring','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24201','Telenor','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24202','Telia N','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24205','OneCall','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24412','DNA','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24413','DNA','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24412','DNA Pro','on',1500,'','16','','',0);
-INSERT INTO nwkinfo VALUES('24403','DNA','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24405','Elisa','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24491','Telia FI','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24421','Saunalahti','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24001','S Telia','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('23801','DK TDC','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('23810','DK TDC','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('23820','TELIA DK','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('23820','CallMe','on',1500,'','94','','',0);
-INSERT INTO nwkinfo VALUES('23802','Telenor DK','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('23801','Telmore','on',1500,'','381','','',0);
-INSERT INTO nwkinfo VALUES('24007','Tele2comviq','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24008','Telenor SE','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24014','TDC Sweden','on',1500,'','72','','',0);
-INSERT INTO nwkinfo VALUES('23801','TDC Sweden','on',1500,'','72','','',0);
-INSERT INTO nwkinfo VALUES('24208','Telia N','on',1500,'','71','','',0);
-INSERT INTO nwkinfo VALUES('23801','TDC Norway','on',1500,'','71','','',0);
-INSERT INTO nwkinfo VALUES('24002','3 SE','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('27411','Nova','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('27402','Vodafone Iceland','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('27401','Siminn','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('23806','3 DK','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('29001','Tele Greenland','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('27412','Tal','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('22201','Nova','on',1500,'','','','NOVA',0);
-INSERT INTO nwkinfo VALUES('24214','ice','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24006','Vimla','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('24206','ice','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('23820','Mit Tele','on',1500,'','93','','',0);
-INSERT INTO nwkinfo VALUES('24040','Netmore Mobile Network','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('23820','Mobilevalue','on',1500,'','89','','',0);
-INSERT INTO nwkinfo VALUES('23820','Telavox','on',1500,'','85','','',0);
-INSERT INTO nwkinfo VALUES('28801','Føroya Tele','on',1500,'','','','',0);
-INSERT INTO nwkinfo VALUES('90112','Telenor Maritime','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24414','Ålcom','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24001','Halebop','on',1500,'','714','','',1);
-INSERT INTO nwkinfo VALUES('24001','Halebop S','on',1500,'','704','','',1);
-INSERT INTO nwkinfo VALUES('24491','Aina (S)','on',1500,'','92','','',1);
-INSERT INTO nwkinfo VALUES('24010','Spring','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24201','Telenor','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24202','Telia N','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24205','OneCall','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24412','DNA','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24413','DNA','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24412','DNA Pro','on',1500,'','16','','',1);
-INSERT INTO nwkinfo VALUES('24403','DNA','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24405','Elisa','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24491','Telia FI','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24421','Saunalahti','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24001','S Telia','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('23801','DK TDC','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('23810','DK TDC','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('23820','TELIA DK','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('23820','CallMe','on',1500,'','94','','',1);
-INSERT INTO nwkinfo VALUES('23802','Telenor DK','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('23801','Telmore','on',1500,'','381','','',1);
-INSERT INTO nwkinfo VALUES('24007','Tele2comviq','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24008','Telenor SE','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24014','TDC Sweden','on',1500,'','72','','',1);
-INSERT INTO nwkinfo VALUES('23801','TDC Sweden','on',1500,'','72','','',1);
-INSERT INTO nwkinfo VALUES('24208','Telia N','on',1500,'','71','','',1);
-INSERT INTO nwkinfo VALUES('23801','TDC Norway','on',1500,'','71','','',1);
-INSERT INTO nwkinfo VALUES('24002','3 SE','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('27411','Nova','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('27402','Vodafone Iceland','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('27401','Siminn','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('23806','3 DK','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('29001','Tele Greenland','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('27412','Tal','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('22201','Nova','on',1500,'','','','NOVA',1);
-INSERT INTO nwkinfo VALUES('24214','ice','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24006','Vimla','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('24206','ice','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('23820','Mit Tele','on',1500,'','93','','',1);
-INSERT INTO nwkinfo VALUES('24040','Netmore Mobile Network','on',1500,'','','','',1);
-INSERT INTO nwkinfo VALUES('23820','Mobilevalue','on',1500,'','89','','',1);
-INSERT INTO nwkinfo VALUES('23820','Telavox','on',1500,'','85','','',1);
-INSERT INTO nwkinfo VALUES('28801','Føroya Tele','on',1500,'','','','',1);
-COMMIT;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### SMS
-/data/data/com.android.providers.telephony 
