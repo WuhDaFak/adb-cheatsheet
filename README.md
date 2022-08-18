@@ -8,7 +8,7 @@ Time flies, it's about time to get up new commands for our Android devices since
 
 Feel free to contribute to this repo if there is something that i forgot and is worth to know, however, let me show you what's new.
 
-I decided to not add 'adb shell <coommands>' wich means all commands is executed when we are connected to device but of course if you want to, just add 'adb shell' infront of all commands and it will work aswell without being connected to the device shell
+I decided to not add '<coommands>' wich means all commands is executed when we are connected to device but of course if you want to, just add 'adb shell' infront of all commands and it will work aswell without being connected to the device shell
 
 All commands that require root will have (Root_Required) in descriptionn. 
 
@@ -199,8 +199,8 @@ apt install adb fastboot -y
 
 #### Backup all Partitions from /dev/block/by-name on your PC (root required)
 ```bash
-for partitions in $(adb shell ls /dev/block/by-name/); do 
-    adb shell "su -c dd if=/dev/block/by-name/partitions"|dd of=${partitions}.img; 
+for partitions in $(ls /dev/block/by-name/); do 
+    "su -c dd if=/dev/block/by-name/partitions"|dd of=${partitions}.img; 
 done
 ```
 
@@ -265,7 +265,7 @@ adb restore /path/to/backupflile.adb
 ```bash
 adb shell
 ```
-##### Enter ADB shell if there is multiple devices connected:
+##### Enter if there is multiple devices connected:
 
 ```bash
 adb -s <id_from_adb_devices> shell 
@@ -353,7 +353,7 @@ adb exec-out screenrecord --output-format=h264 - | ffplay -framerate 60 -probesi
 FFPlay Default - No Settings
 
 ```bash
-adb shell screenrecord --Example Output-format=h264 - | ffplay -
+screenrecord --Example Output-format=h264 - | ffplay -
 ```
 FFplay Customized
 
@@ -362,7 +362,7 @@ adb exec-out screenrecord --Example Output-format=h264 - | ffplay -framerate 60 
 ```
 
 ```sh
-adb shell screenrecord --bit-rate=16m --Example Output-format=h264 --size 800x600 - | ffplay -framerate 60 -framedrop -bufsize 16M -
+screenrecord --bit-rate=16m --Example Output-format=h264 --size 800x600 - | ffplay -framerate 60 -framedrop -bufsize 16M -
 ```
 
 ![Screenshot](https://nr1.nu/u/adb_record.gif)
@@ -440,47 +440,47 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'adb pwnz' 'Tag' 'it rly doe
 
 #### Sets the package name for server based resume on reboot service provider.
 ```sh
-adb shell cmd lock_settings set-resume-on-reboot-provider-package <package_name>
+cmd lock_settings set-resume-on-reboot-provider-package <package_name>
 ```
 ##### Removes cached unified challenge for the managed profile.
 ```sh
-adb shell cmd lock_settings remove-cache --user 0 
+cmd lock_settings remove-cache --user 0 
 ```
 ##### Verifies the lock credentials.
 ```sh
-adb shell cmd lock_settings verify --old 1234 --user 0 
+cmd lock_settings verify --old 1234 --user 0 
 ```
 ##### Clears the lock credentials.
 ```sh
-adb shell cmd lock_settings clear --old 1234 --user 0 
+cmd lock_settings clear --old 1234 --user 0 
 ```
 ##### Enables / disables synthetic password.
 ```sh
-adb shell cmd lock_settings sp --old 1234 --user 0  <1|0>
+cmd lock_settings sp --old 1234 --user 0  <1|0>
 ```
 ##### Gets whether synthetic password is enabled.
 ```sh
-adb shell cmd lock_settings sp --old 1234 --user 0 
+cmd lock_settings sp --old 1234 --user 0 
 ```
 ##### Sets the lock screen as password, using the given PASSOWRD to unlock.
 ```sh
-adb shell cmd lock_settings set-password --old 1234 --user 0  <PASSWORD>
+cmd lock_settings set-password --old 1234 --user 0  <PASSWORD>
 ```
 ##### Sets the lock screen as PIN, using the given PIN to unlock.
 ```sh
-adb shell cmd lock_settings set-pin --old 1234 --user 0  <PIN>
+cmd lock_settings set-pin --old 1234 --user 0  <PIN>
 ```
 ##### Sets the lock screen as pattern, using the given PATTERN to unlock.
 ```sh
-adb shell cmd lock_settings set-pattern --old 1234 --user 0  <PATTERN>
+cmd lock_settings set-pattern --old 1234 --user 0  <PATTERN>
 ```
 ##### When true, disables lock screen.
 ```sh
-adb shell cmd lock_settings set-disabled --old 1234 --user 0  <true|false>
+cmd lock_settings set-disabled --old 1234 --user 0  <true|false>
 ```
 ##### Checks whether lock screen is disabled.
 ```sh
-adb shell cmd lock_settings get-disabled --old 1234 --user 0 
+cmd lock_settings get-disabled --old 1234 --user 0 
 ```
 
 ##### cmd testharness                                                                                                                                                                                                          
@@ -513,17 +513,17 @@ Test Harness Mode commands:
 * Prints the malloc debug information. You need to run the following first: 
    
 ```bash
-adb shell stop
+stop
 ```
 
  ```bash
-adb shell setprop libc.debug.malloc.program statsd 
+setprop libc.debug.malloc.program statsd 
 ```
 ```bash
-adb shell setprop libc.debug.malloc.options backtrace 
+setprop libc.debug.malloc.options backtrace 
 ```
 ```bash
-adb shell start
+start
 cmd stats print-stats
 ```
 
@@ -989,7 +989,7 @@ done
 
 ```sh
 for packages in com.package1 com.package2; do 
-    adb shell pm uninstall --user 0 "${packages}"
+    pm uninstall --user 0 "${packages}"
 done 
 ```
 
@@ -1254,7 +1254,7 @@ mPendingRebootEscrowKey is not set
 ##### Dump Settings
 
 ```sh
-adb shell dumpsys settings
+dumpsys settings
 ```
 
 Example Output
@@ -1271,12 +1271,12 @@ _id:59 name:install_non_market_apps pkg:android value:1 default:1
 ##### Display Contacts On Sim Card
 
 ```bash
-adb shell dumpsys simphonebook
+dumpsys simphonebook
 ```
 ##### Show hardware info as thermal stuff for cpu, gpu and battery
 
 ```sh
-adb shell dumpsys hardware_properties
+dumpsys hardware_properties
 ```
 * Example Output
 
@@ -1319,7 +1319,7 @@ com.google.android.gm.exchange
 ##### Check state for screen and figoure how device was unlcked last time:
 
 ```sh
-adb shell dumpsys  user
+dumpsys  user
 ```
 
 * Example Output
@@ -1333,12 +1333,12 @@ agree Knox Privacy Policy: false
 ##### And for example, you can dump data for all of the running services, dump all data for battery: 
 
 ```bash
-adb shell dumpsys battery
+dumpsys battery
 ```
 ##### Dump stats for your battery:
 
 ```bash
-adb shell dumpsys batterystats 
+dumpsys batterystats 
 ```
 ##### Erase old stats for battery:
 ```bash
@@ -1413,17 +1413,17 @@ Dumpstate info: id=0 pid=26940 dry_run=0 args=dumpstate -v extra_options=
 
 #### Send simple notification
 
-adb shell "am broadcast -n your.package.name/com.google.firebase.iid.FirebaseInstanceIdReceiver -c your.package.name -a com.google.android.c2dm.intent.RECEIVE"
+"am broadcast -n your.package.name/com.google.firebase.iid.FirebaseInstanceIdReceiver -c your.package.name -a com.google.android.c2dm.intent.RECEIVE"
 
 
 #### Send notification
 
-adb shell am broadcast -n com.android.google.youtube/com.google.firebase.iid.FirebaseInstanceIdReceiver \
+am broadcast -n com.android.google.youtube/com.google.firebase.iid.FirebaseInstanceIdReceiver \
     -a "com.google.android.c2dm.intent.RECEIVE" --es "title" "Title" --es "body" "Body"
 
 #### How to send push notification locally using ADB without need network connection.
 
-adb shell am broadcast \
+am broadcast \
   -n com.your.app/com.google.firebase.iid.FirebaseInstanceIdReceiver \
   -a "com.google.android.c2dm.intent.RECEIVE" \
   --es "extra1" "65" \
@@ -1462,22 +1462,22 @@ adb shell am broadcast \
 ##### Add a value to default shared preferences.
 
 ```bash
-adb shell 'am broadcast -a org.example.app.sp.PUT --es key key_name --es value "hello world!"'
+'am broadcast -a org.example.app.sp.PUT --es key key_name --es value "hello world!"'
 ```
 ##### Remove a value to default shared preferences.
 
 ```bash
-adb shell 'am broadcast -a org.example.app.sp.REMOVE --es key key_name'
+'am broadcast -a org.example.app.sp.REMOVE --es key key_name'
 ```
 ##### Clear all default shared preferences.
 
 ```bash
-adb shell 'am broadcast -a org.example.app.sp.CLEAR --es key key_name'
+'am broadcast -a org.example.app.sp.CLEAR --es key key_name'
 ```
 ##### It's also possible to specify shared preferences file.
 
 ```bash
-adb shell 'am broadcast -a org.example.app.sp.PUT --es name Game --es key level --ei value 10'
+'am broadcast -a org.example.app.sp.PUT --es name Game --es key level --ei value 10'
 ```
 ##### Play a mp3 track on device
 ```sh
@@ -1486,28 +1486,28 @@ am start -a android.intent.action.VIEW -d file:////storage/9A8A-1069/wuseman/rin
 ##### Data types
 
 ```bash
-adb shell 'am broadcast -a org.example.app.sp.PUT --es key string --es value "hello world!"'
+am broadcast -a org.example.app.sp.PUT --es key string --es value "hello world!"'
 ```
 ```bash
-adb shell 'am broadcast -a org.example.app.sp.PUT --es key boolean --ez value true'
-```
-
-```bash
-adb shell 'am broadcast -a org.example.app.sp.PUT --es key float --ef value 3.14159'
+am broadcast -a org.example.app.sp.PUT --es key boolean --ez value true'
 ```
 
 ```bash
-adb shell 'am broadcast -a org.example.app.sp.PUT --es key int --ei value 2015'
+am broadcast -a org.example.app.sp.PUT --es key float --ef value 3.14159'
 ```
 
 ```bash
-adb shell 'am broadcast -a org.example.app.sp.PUT --es key long --el value 9223372036854775807'
+am broadcast -a org.example.app.sp.PUT --es key int --ei value 2015'
+```
+
+```bash
+am broadcast -a org.example.app.sp.PUT --es key long --el value 9223372036854775807'
 ```
 
 ##### Restart application process after making changes
 
 ```bash
-adb shell 'am broadcast -a org.example.app.sp.CLEAR --ez restart true'
+aam broadcast -a org.example.app.sp.CLEAR --ez restart true'
 ```
 
 ##### Open Google Camera (Pixel 4)
@@ -1515,189 +1515,275 @@ adb shell 'am broadcast -a org.example.app.sp.CLEAR --ez restart true'
 am start com.google.android.GoogleCamera 
 ```
 ##### Set default preferences for an app:
-
-    am broadcast -a org.example.app.sp.CLEAR --es key key_name
+```bash
+am broadcast -a org.example.app.sp.CLEAR --es key key_name
+```
 
 ##### WARNING!! Factory Reset
-
-    am broadcast -a android.intent.action.MASTER_CLEAR
+```bash
+am broadcast -a android.intent.action.MASTER_CLEAR
+```
 
 ##### Open Special Menu
-
-    am start -a android.intent.action.VIEW \
+```bash
+am start -a android.intent.action.VIEW \
+```
 
 ##### Open settings:
-
-     am start -n com.android.settings/com.android.settings.Settings
+```bash
+ am start -n com.android.settings/com.android.settings.Settings
+```
 
 ##### Open activity to new APN
-
-     am start -a android.intent.action.INSERT  content://telephony/carriers  --ei simId 
+```bash
+ am start -a android.intent.action.INSERT  content://telephony/carriers  --ei simId 
+```
 
 ##### Open hiden menu (require root)
-
-    su -c "am broadcast -a android.provider.Telephony.SECRET_CODE -d android_secret_code://IOTHIDDENMENU"
+```bash
+su -c "am broadcast -a android.provider.Telephony.SECRET_CODE -d android_secret_code://IOTHIDDENMENU"
+```
 
 ##### Start prefered webbrowser (remove # for wich you wanna use)
-
-    am start -a android.intent.action.VIEW -d <url> <add any of below here>
-      # Default Browser:        com.android.browser 
-      # Gogle Chrome Browser:   com.android.chrome 
-      # Samsung Browser:        com.sec.android.sbrowser) 
+```bash
+am start -a android.intent.action.VIEW -d <url> <add any of below here>
+  # Default Browser:        com.android.browser 
+  # Gogle Chrome Browser:   com.android.chrome 
+  # Samsung Browser:        com.sec.android.sbrowser) 
+```
 
 ##### Print Activities:
-    
-    am start -a com.android.settings/.wifi.CaptivePortalWebViewActivity
-
+```bash
+am start -a com.android.settings/.wifi.CaptivePortalWebViewActivity
+```
 ##### Open Camera in Photo mode
-
-    am start -a android.media.action.IMAGE_CAPTURE
+```bash
+am start -a android.media.action.IMAGE_CAPTURE
+```
 
 ##### Open Camera in Photo mode and take a picture
-
-    am start -a android.media.action.IMAGE_CAPTURE
+```bash
+am start -a android.media.action.IMAGE_CAPTURE
     input keyevent 66
-    
+```    
 ##### Open Camera in Video mode
-
-    am start -a android.media.action.VIDEO_CAMERA
+```bash
+am start -a android.media.action.VIDEO_CAMERA
+```
 
 ##### Open Camera in Video mode and start recording
-
-    am start -a android.media.action.VIDEO_CAMERA
-    input keyevent 66
+```bash
+am start -a android.media.action.VIDEO_CAMERA
+input keyevent 66
+```
 
 ##### Go to gallary and choose a picture and then set wallpaper:
-
-    am start -a android.intent.action.SET_WALLPAPER
+```bash
+am start -a android.intent.action.SET_WALLPAPER
+```
 
 ##### Open any URL in default browser
 
-    am start -a android.intent.action.VIEW -d https://github.com/wuseman
+```bash
+am start -a android.intent.action.VIEW -d https://github.com/wuseman
+```
 
 ##### Open Google Maps with fixed coordinates
-
-    am start -a android.intent.action.VIEW -d "geo:46.457398,-119.407305"
+```bash
+am start -a android.intent.action.VIEW -d "geo:46.457398,-119.407305"
+```
 
 ##### Simulate waking your app using the following commands
+```bash
+am set-inactive <packageName> 
+am set-inactive <packageName> false
+```
 
-    am set-inactive <packageName> 
-    am set-inactive <packageName> false
-    
 ##### Enabling Night Mode (If Supported)
-    
-    am start --ez show_night_mode true com.android.systemui/.tuner.TunerActivity
+```bash
+am start --ez show_night_mode true com.android.systemui/.tuner.TunerActivity
+```
 
 ##### Start facebook application inbox by using URI
-
-    am start -a android.intent.action.VIEW -d facebook://facebook.com/inbox
+```bash
+am start -a android.intent.action.VIEW -d facebook://facebook.com/inbox
+```
 
 ##### Open a vcard file from sdcard (will open contacts app)
-
-    am start -a android.intent.action.VIEW -d file:///sdcard/me.vcard -t text/x-vcard
+```bash
+am start -a android.intent.action.VIEW -d file:///sdcard/me.vcard -t text/x-vcard
+```
 
 ##### Open an application to get content (in this case to get a jpeg picture)
-
-    am start -a android.intent.action.GET_CONTENT -t image/jpeg
-
+```bash
+am start -a android.intent.action.GET_CONTENT -t image/jpeg
+```
 ##### There is several ways to send a SMS via AM, here is just one of several ways:
+```bash
+am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
+```
 
-    am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
+##### Simulate waking your app using the following commands:
+```bash
+am set-inactive <packageName> 
+am set-inactive <packageName> false
+```
 
-  ##### Simulate waking your app using the following commands:
-
-    am set-inactive <packageName> 
-    am set-inactive <packageName> false
-    
 ##### Start facebook application inbox by using URI
-
-    am start -a android.intent.action.VIEW -d facebook://facebook.com/inbox
-  
+```bash
+am start -a android.intent.action.VIEW -d facebook://facebook.com/inbox
+```  
 ##### Open a vcard file from sdcard (will open contacts app)
-
-    am start -a android.intent.action.VIEW -d file:///sdcard/me.vcard -t text/x-vcard  
+```bash
+am start -a android.intent.action.VIEW -d file:///sdcard/me.vcard -t text/x-vcard  
+```
 
 ##### Open an application to get content (in this case to get a jpeg picture)
-
-    am start -a android.intent.action.GET_CONTENT -t image/jpeg
+```bash
+am start -a android.intent.action.GET_CONTENT -t image/jpeg
+```
 
 ##### There is several ways to send a SMS via AM, here is one example:
-
-    am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
+```bash
+am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
+```
 
 ##### Open settings for a specifik app
+```bash
+am start -a android.settings.APPLICATION_DETAILS_SETTINGS package:<com.package.example>
+```
 
-    am start -a android.settings.APPLICATION_DETAILS_SETTINGS package:<com.package.example>
+#### Add Contacts
 
-##### Add Contacts
-
-Add a Contact - Example 1
-
-    am start -a android.intent.action.INSERT -t vnd.android.cursor.dir/contact -e name "$(dialog --stdout --inputbox 'wuseman' 0 0)" -e postal "$(dialog --stdout --inputbox 'Postal Address' 0 0)" -e phone "$(dialog --stdout --inputbox 'Phone Number' 0 0)" -e email "$(dialog --stdout --inputbox 'Email' 0 0)"
+#### Add a Contact - Example 1
+```bash
+am start -a android.intent.action.INSERT \
+    -t vnd.android.cursor.dir/contact \
+    -e name "$(dialog --stdout --inputbox 'wuseman' 0 0)" \
+    -e postal "$(dialog --stdout --inputbox 'Postal Address' 0 0)" \
+    -e phone "$(dialog --stdout --inputbox 'Phone Number' 0 0)" \
+    -e email "$(dialog --stdout --inputbox 'Email' 0 0)"
     
-Add a Contact - Example 2
+##### Add a Contact - Example 2
+```bash
+am start -a android.intent.action.INSERT \
+    -t vnd.android.cursor.dir/contact \
+    -e name 'wuseman' \
+    -e phone <phone_number>
+```
 
-    am start -a android.intent.action.INSERT -t vnd.android.cursor.dir/contact -e name 'wuseman' -e phone <phone_number>
+#### Open dialer
+```bash
+am start com.samsung.android.dialer/.DialtactsActivity
+```
+#### Launch Launcher Activitíes
 
+```bash
+am start com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity
+```
+
+#### Launch homescreen at first screen
+```bash
+am start com.sec.android.app.launcher/com.android.launcher3.uioverrides.QuickstepLauncher  
+am start com.sec.android.app.launcher/.activities.LauncherActivity
+```
+
+#### Launch all open apps in launcher
+```bash
+am start com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity
+```
+
+## Launch messenger default settings
+```bash
+am start com.samsung.android.messaging/com.samsung.android.messaging.ui.view.setting.MainSettingActivity
+```
+
+#### Launch messenger converstation composer
+```bash
+am start com.samsung.android.messaging/com.android.mms.ui.ConversationComposer
+```
+#### Launch messenger select contact
+```bash
+am start com.samsung.android.messaging/com.samsung.android.messaging.ui.view.recipientspicker.PickerActivity
+```
+##### Launch messenger with latest contacted
+```bash
+am start com.samsung.android.dialer/com.samsung.android.dialer.calllog.view.picker.CallLogPickerActivity
+```
+#### Launch Samsung Gallery
+```bash
+am start com.sec.android.gallery3d/com.samsung.android.gallery.app.activity.GalleryActivity
+```
+
+#### Samsung Myfiles
+```bash
+am start com.sec.android.app.myfiles/com.sec.android.app.myfiles.external.ui.MainActivity
+```
+
+#### Launs Android Settings, connections
+```bash
+am start com.android.settings/com.android.settings.SubSettings
+```
 ##### Open Projectmenu (Huawei only)
+```bash
+am start com.huawei.android.projectmenu/com.huawei.android.projectmenu.ProjectMenuActivity
+```
 
-    am start com.huawei.android.projectmenu/com.huawei.android.projectmenu.ProjectMenuActivity
+#### Make Demo Call   
 
-##### Make Demo Call   
-
-Establishes a fake Bluetooth connection to Dialer and must be called first to enable access to all call-related commands.
+*** Establishes a fake Bluetooth connection to Dialer and must be called first to enable access to all call-related commands.
 
 ##### To connect a device
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "connect" 
+am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "connect" 
 ```
 
 ##### Place an outgoing call
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "addCall" --es "id" "4085524874"  
+ am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "addCall" --es "id" "4085524874"  
 ```
 
 ##### Receive an incoming call      
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "rcvCall" --es "id" "4085524874"        
+am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "rcvCall" --es "id" "4085524874"        
 ```
 
 ##### End a call
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "endCall" --es "id" "4085524874"        
+am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "endCall" --es "id" "4085524874"        
 ```
 
 ##### Hold the current call 
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "holdCall"                     
+am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "holdCall"                     
 ```
 
 ##### Unhold the current call
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
+am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
 ```
 
 ##### Merge calls
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
+am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
 ```
 
 ##### Clear all calls, To remove all calls in the call list:
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "clearAll"                              
+am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "clearAll"                              
 ```
 
 ## ADB <small>acpi</small>
 
-##### Get Battery Percentage
+##### Print Battery Percentage
 
     acpi
 
@@ -1753,17 +1839,17 @@ adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action"
 
 ##### Print IMEI - Example 3
 
-     echo "[device.imei]: [$(adb shell service call iphonesubinfo 1 | awk -F "'" '{print $2}' | sed '1 d'| tr -d '\n' | tr -d '.' | tr -d ' ')]"
+     echo "[device.imei]: [$(service call iphonesubinfo 1 | awk -F "'" '{print $2}' | sed '1 d'| tr -d '\n' | tr -d '.' | tr -d ' ')]"
 
 ##### Print IMEI - Example 4
 
 ```bash
-adb shell service call iphonesubinfo 1 | awk -F"'" 'NR>1 { gsub(/\./,"",$2); imei=imei $2 } END {print imei}' 
+service call iphonesubinfo 1 | awk -F"'" 'NR>1 { gsub(/\./,"",$2); imei=imei $2 } END {print imei}' 
 
 ##### Print IMEI - Example 5 
 
 ```bash
-adb shell "service call iphonesubinfo 1 | cut -c 52-66 | tr -d '.[:space:]'"
+"service call iphonesubinfo 1 | cut -c 52-66 | tr -d '.[:space:]'"
 ```
 ##### Print IMEI - Example 6
      
@@ -1838,7 +1924,7 @@ service call iphonesubinfo 3 i32 2 | grep -oE '[0-9a-f]{8} ' | while read hex; d
 ##### Download current ringtone and play on PC via ffplay: 
 
  ```bash
-adb shell 'content read --uri content://settings/system/ringtone_cache' > a.ogg|xargs ffplay a.ogg
+'content read --uri content://settings/system/ringtone_cache' > a.ogg|xargs ffplay a.ogg
 ```
 
 ##### Various ways to print contacts
@@ -2045,6 +2131,32 @@ com.android.vending/.AssetBrowserActivity
 
 ## ADB <small>sqlite3</small>
 
+##### All previous commands is stored in
+
+```sh
+/data/user_de/0/com.android.providers.telephony/Log/FileLog0.log
+z3s:/ # cat /data/user_de/0/com.android.providers.telephony/Log/FileLog0.log                               
+```
+```                                                                                                                                
+06-06 18:17:04.084 TP/MSP(27290): u:content://mms-sms/selected-conversations?type=all&multipleThreadIds=0, caller:com.samsung.android.messaging
+06-06 18:17:08.209 TP/MSP(27290): u:content://mms-sms/selected-conversations?type=all&multipleThreadIds=0, caller:com.samsung.android.messaging
+06-07 10:32:17.684 TP/MSP(4617) : u:content://mms-sms/selected-conversations?type=all&multipleThreadIds=0, caller:com.samsung.android.messaging
+06-20 16:22:00.555 TP/MSP(8855) : u:content://mms-sms/selected-conversations?type=all&multipleThreadIds=0, caller:com.samsung.android.messaging
+07-04 11:39:09.070 TP/BinSms(27174): move() - delete duplicated sms : 0
+07-04 11:39:09.103 TP/BinIm(27174): move() - delete duplicated im : 0
+07-04 12:04:09.178 TP/BinIm(5264): move() - delete duplicated im : 0
+07-04 12:38:35.577 TP/IP(20576) : u:content://im/chat/72, r:1, caller:com.samsung.android.messaging
+07-04 13:46:43.746 TP/IP(29004) : u:content://im/chat/77, r:1, caller:com.samsung.android.messaging
+07-04 13:57:14.609 TP/IP(29004) : u:content://im/chat/83, r:1, caller:com.samsung.android.messaging
+08-16 07:20:44.451 TP/BnR(30184): FILE       all backup finished
+08-17 07:56:18.262 TP/MSP(9363) : u:content://mms-sms/selected-conversations?type=all&multipleThreadIds=32&multipleThreadIds=24, r:30, caller:com.samsung.android.messaging
+```
+
+
+#### Carrier info
+
+cat /data/user_de/0/com.android.providers.telephony/files/carrierconfig-com.android
+
 ##### Read Lock Settings: 
 
 ```sh
@@ -2053,8 +2165,22 @@ sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephon
 
 ##### Read SIM Card info
 
+
 ```sh
-sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select icc_id,card_id,carrier_name,display_name,mcc,mnc from siminfo'
+sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select * from android_metadata'
+```
+
+```sh
+sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select *  from carrier'
+```
+
+
+```sh
+sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select *  from original'
+```
+
+```sh
+sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select * * from siminfo'
 ```
 
 Example Output
@@ -2158,8 +2284,8 @@ sqlite3 /data/data/com.google.android.gms/databases/dg.db "update main set c='0'
 ##### Grab all file extensions of a kind and download to PC
 
 ```bash
-for i in `adb shell "su -c find /data /system -name '*.key'"`; do 
-   mkdir -p ".`dirname $i`";adb shell "su -c cat $i" > ".$i";
+for i in `"su -c find /data /system -name '*.key'"`; do 
+   mkdir -p ".`dirname $i`";"su -c cat $i" > ".$i";
 done
 ```
 
@@ -2227,8 +2353,8 @@ Clear cache for your Google Pay application and have fun! :)
 ##### Grab all file extensions of a kind and download to PC
 
 ```sh
-for i in `adb shell "su -c find /data /system -name '*.key'"`; do 
-   mkdir -p ".`dirname $i`";adb shell "su -c cat $i" > ".$i";
+for i in `"su -c find /data /system -name '*.key'"`; do 
+   mkdir -p ".`dirname $i`";"su -c cat $i" > ".$i";
 done
 ```
 
@@ -2314,7 +2440,7 @@ screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
 
 ##### ADB Shell
 
-*[ADB Shell - Just Another ADB Cheatsheet wiki](https://adbshell.com/commands/adb-install)
+*[- Just Another ADB Cheatsheet wiki](https://adbshell.com/commands/adb-install)
 
 ##### Android
     
@@ -2390,3 +2516,134 @@ Enter Libera's network via your own client 'chat.libera.chat:+6697 or use their 
 Android Nr1 nu wiki is licensed under the GNU General Public License v3.0 - See the [LICENSE.md](LICENSE.md) file for details
 
 - Happy Hacking!
+
+
+
+
+
+
+
+
+
+z3s:/data/user_de/0/com.android.providers.telephony # ls /data/data/com.android.providers.telephony/ ;ls     ?
+
+
+/data/user_de/0/com.android.providers.telephony/databases/apninfo.xml
+
+
+
+z3s:/data/user_de/0/com.android.providers.telephony/databases # echo .dump|sqlite3 nwk_info.db                                                                                                                                             
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE android_metadata (locale TEXT);
+INSERT INTO android_metadata VALUES('sv_SE');
+CREATE TABLE nwkinfo(plmn TEXT, nwkname TEXT, dormancy TEXT, mtu INTEGER, codetype TEXT, subsetcode TEXT, spcode TEXT, spname TEXT, sim_slot INTEGER DEFAULT -1, CONSTRAINT PKcompKey PRIMARY KEY (plmn, nwkname, codetype, subsetcode, spcode, spname, sim_slot));
+INSERT INTO nwkinfo VALUES('90112','Telenor Maritime','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24414','Ålcom','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24001','Halebop','on',1500,'','714','','',0);
+INSERT INTO nwkinfo VALUES('24001','Halebop S','on',1500,'','704','','',0);
+INSERT INTO nwkinfo VALUES('24491','Aina (S)','on',1500,'','92','','',0);
+INSERT INTO nwkinfo VALUES('24010','Spring','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24201','Telenor','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24202','Telia N','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24205','OneCall','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24412','DNA','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24413','DNA','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24412','DNA Pro','on',1500,'','16','','',0);
+INSERT INTO nwkinfo VALUES('24403','DNA','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24405','Elisa','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24491','Telia FI','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24421','Saunalahti','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24001','S Telia','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('23801','DK TDC','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('23810','DK TDC','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('23820','TELIA DK','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('23820','CallMe','on',1500,'','94','','',0);
+INSERT INTO nwkinfo VALUES('23802','Telenor DK','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('23801','Telmore','on',1500,'','381','','',0);
+INSERT INTO nwkinfo VALUES('24007','Tele2comviq','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24008','Telenor SE','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24014','TDC Sweden','on',1500,'','72','','',0);
+INSERT INTO nwkinfo VALUES('23801','TDC Sweden','on',1500,'','72','','',0);
+INSERT INTO nwkinfo VALUES('24208','Telia N','on',1500,'','71','','',0);
+INSERT INTO nwkinfo VALUES('23801','TDC Norway','on',1500,'','71','','',0);
+INSERT INTO nwkinfo VALUES('24002','3 SE','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('27411','Nova','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('27402','Vodafone Iceland','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('27401','Siminn','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('23806','3 DK','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('29001','Tele Greenland','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('27412','Tal','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('22201','Nova','on',1500,'','','','NOVA',0);
+INSERT INTO nwkinfo VALUES('24214','ice','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24006','Vimla','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('24206','ice','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('23820','Mit Tele','on',1500,'','93','','',0);
+INSERT INTO nwkinfo VALUES('24040','Netmore Mobile Network','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('23820','Mobilevalue','on',1500,'','89','','',0);
+INSERT INTO nwkinfo VALUES('23820','Telavox','on',1500,'','85','','',0);
+INSERT INTO nwkinfo VALUES('28801','Føroya Tele','on',1500,'','','','',0);
+INSERT INTO nwkinfo VALUES('90112','Telenor Maritime','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24414','Ålcom','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24001','Halebop','on',1500,'','714','','',1);
+INSERT INTO nwkinfo VALUES('24001','Halebop S','on',1500,'','704','','',1);
+INSERT INTO nwkinfo VALUES('24491','Aina (S)','on',1500,'','92','','',1);
+INSERT INTO nwkinfo VALUES('24010','Spring','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24201','Telenor','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24202','Telia N','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24205','OneCall','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24412','DNA','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24413','DNA','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24412','DNA Pro','on',1500,'','16','','',1);
+INSERT INTO nwkinfo VALUES('24403','DNA','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24405','Elisa','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24491','Telia FI','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24421','Saunalahti','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24001','S Telia','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('23801','DK TDC','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('23810','DK TDC','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('23820','TELIA DK','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('23820','CallMe','on',1500,'','94','','',1);
+INSERT INTO nwkinfo VALUES('23802','Telenor DK','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('23801','Telmore','on',1500,'','381','','',1);
+INSERT INTO nwkinfo VALUES('24007','Tele2comviq','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24008','Telenor SE','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24014','TDC Sweden','on',1500,'','72','','',1);
+INSERT INTO nwkinfo VALUES('23801','TDC Sweden','on',1500,'','72','','',1);
+INSERT INTO nwkinfo VALUES('24208','Telia N','on',1500,'','71','','',1);
+INSERT INTO nwkinfo VALUES('23801','TDC Norway','on',1500,'','71','','',1);
+INSERT INTO nwkinfo VALUES('24002','3 SE','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('27411','Nova','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('27402','Vodafone Iceland','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('27401','Siminn','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('23806','3 DK','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('29001','Tele Greenland','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('27412','Tal','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('22201','Nova','on',1500,'','','','NOVA',1);
+INSERT INTO nwkinfo VALUES('24214','ice','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24006','Vimla','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('24206','ice','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('23820','Mit Tele','on',1500,'','93','','',1);
+INSERT INTO nwkinfo VALUES('24040','Netmore Mobile Network','on',1500,'','','','',1);
+INSERT INTO nwkinfo VALUES('23820','Mobilevalue','on',1500,'','89','','',1);
+INSERT INTO nwkinfo VALUES('23820','Telavox','on',1500,'','85','','',1);
+INSERT INTO nwkinfo VALUES('28801','Føroya Tele','on',1500,'','','','',1);
+COMMIT;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### SMS
+/data/data/com.android.providers.telephony 
