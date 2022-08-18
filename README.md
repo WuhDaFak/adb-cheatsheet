@@ -943,7 +943,7 @@ com.facebook.katana/.LoginActivity
 ##### Print all applications in use
 
 ```sh
-pm list packages|sed -e "s/package://" 
+adb shell pm list packages|sed -e "s/package://" 
 
 |while read x; do 
     cmd package resolve-activity --brief $x \
@@ -954,35 +954,35 @@ done
 
 ##### List all packages installed on device 
 ```bash
-pm list packages
+adb shell pm list packages
 ```
 ##### List enabled packages
 ```bash
-pm list packages -e
+adb shell pm list packages -e
 ```
 ##### List disabled packages
 ```bash
-pm list packages -d
+adb shell pm list packages -d
 ```
 ##### List third party packages installed by user
 ```bash
-pm list packages -3
+adb shell pm list packages -3
 ```
 ##### List users
 ```bash
-pm list users
+adb shell pm list users
 ```
 ##### List permission groups
 ```bash
-pm list permission-groups
+adb shell pm list permission-groups
 ```
 ##### List features
  ```bash
-pm list features
+adb shell pm list features
 ```
 ##### Uninstall any installed package:
 ```bash
-pm uninstall --user 0 com.package.name
+adb shell pm uninstall --user 0 com.package.name
 ```
 ##### Uninstall multiple apps:
 
@@ -994,27 +994,27 @@ done
 
 ##### Clear application data:
 ```bash
-pm clear PACKAGE_NAME
+adb shell pm clear PACKAGE_NAME
 ```
 ##### List permission groups: 
 ```bash
-pm list permission-groups 
+adb shell pm list permission-groups 
 ```
 ##### List instrumentation:
 ```bash
-pm list instrumentation
+adb shell pm list instrumentation
 ```
 ##### Grant permission to an app (Example Only For Grant): 
 ```bash
-pm grant com.application android.permission.READ_LOGS
+adb shell pm grant com.application android.permission.READ_LOGS
 ```
 ##### Revoke permission to an app (Example Only For Revoke): 
 ```bash
-pm revoke com.application android.permission.READ_LOGS
+adb shell pm revoke com.application android.permission.READ_LOGS
 ```
 ##### Reset all permissions for an app:
 ```bash
-pm reset-permissions -p your.app.package
+adb shell pm reset-permissions -p your.app.package
 ```
 
 ## ADB <small>logcat</small>
