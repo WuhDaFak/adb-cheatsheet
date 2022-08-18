@@ -438,47 +438,47 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'adb pwnz' 'Tag' 'it rly doe
 
 ##### Sets the package name for server based resume on reboot service provider.
 ```sh
-cmd lock_settings set-resume-on-reboot-provider-package <package_name>
+adb shell cmd lock_settings set-resume-on-reboot-provider-package <package_name>
 ```
 ###### Removes cached unified challenge for the managed profile.
 ```sh
-cmd lock_settings remove-cache --user 0 
+adb shell cmd lock_settings remove-cache --user 0 
 ```
 ###### Verifies the lock credentials.
 ```sh
-cmd lock_settings verify --old 1234 --user 0 
+adb shell cmd lock_settings verify --old 1234 --user 0 
 ```
 ###### Clears the lock credentials.
 ```sh
-cmd lock_settings clear --old 1234 --user 0 
+adb shell cmd lock_settings clear --old 1234 --user 0 
 ```
 ###### Enables / disables synthetic password.
 ```sh
-cmd lock_settings sp --old 1234 --user 0  <1|0>
+adb shell cmd lock_settings sp --old 1234 --user 0  <1|0>
 ```
 ###### Gets whether synthetic password is enabled.
 ```sh
-cmd lock_settings sp --old 1234 --user 0 
+adb shell cmd lock_settings sp --old 1234 --user 0 
 ```
 ##### Sets the lock screen as password, using the given PASSOWRD to unlock.
 ```sh
-cmd lock_settings set-password --old 1234 --user 0  <PASSWORD>
+adb shell cmd lock_settings set-password --old 1234 --user 0  <PASSWORD>
 ```
 ###### Sets the lock screen as PIN, using the given PIN to unlock.
 ```sh
-cmd lock_settings set-pin --old 1234 --user 0  <PIN>
+adb shell cmd lock_settings set-pin --old 1234 --user 0  <PIN>
 ```
 ###### Sets the lock screen as pattern, using the given PATTERN to unlock.
 ```sh
-cmd lock_settings set-pattern --old 1234 --user 0  <PATTERN>
+adb shell cmd lock_settings set-pattern --old 1234 --user 0  <PATTERN>
 ```
 ###### When true, disables lock screen.
 ```sh
-cmd lock_settings set-disabled --old 1234 --user 0  <true|false>
+adb shell cmd lock_settings set-disabled --old 1234 --user 0  <true|false>
 ```
 ###### Checks whether lock screen is disabled.
 ```sh
-cmd lock_settings get-disabled --old 1234 --user 0 
+adb shell cmd lock_settings get-disabled --old 1234 --user 0 
 ```
 
 ##### cmd testharness      
@@ -512,7 +512,7 @@ Test Harness Mode commands:
 * Prints the malloc debug information. You need to run the following first: 
    
 ```bash
-stop
+adb shell cmd stop
 ```
 
  ```bash
@@ -523,7 +523,7 @@ setprop libc.debug.malloc.options backtrace
 ```
 ```bash
 start
-cmd stats print-stats
+adb shell cmd stats print-stats
 ```
 
 #####  Send a broadcast that triggers the subscriber to fetch metrics.
@@ -540,17 +540,17 @@ cmd stats print-stats
 
 #####  Flushes all data on memory to disk.
 ```bash
-cmd stats write-to-disk 
+adb shell cmd stats write-to-disk 
 ```
 
 ##### Prints the UID, app name, version mapping.
 ```bash
-cmd stats print-uid-map 
+adb shell cmd stats print-uid-map 
 ```
 
 ##### Log a binary push state changed event.
 ```
-cmd stats log-binary-push NAME VERSION STAGING ROLLBACK_ENABLED LOW_LATENCY STATE EXPERIMENT_IDS
+adb shell cmd stats log-binary-push NAME VERSION STAGING ROLLBACK_ENABLED LOW_LATENCY STATE EXPERIMENT_IDS
 
 NAME                The train name.
 VERSION             The train version code.
@@ -566,217 +566,217 @@ EXPERIMENT_IDS      Comma separated list of experiment ids.
 ##### Hide all notifications icons on Status Bar
 
 ```bash
-cmd statusbar send-disable-flag notification-icons 
+adb shell cmd statusbar send-disable-flag notification-icons 
 ```
 ##### Reset all flags to default
 
 ```bash
-cmd statusbar send-disable-flag none
+adb shell cmd statusbar send-disable-flag none
 ```
 ##### Print Status Bar Icons
 
 ```bash
-cmd statusbar get-status-icons
+adb shell cmd statusbar get-status-icons
 ```
 ##### Print Preferences for Status Bar
 
 ```bash
-cmd statusbar prefs list-prefs
+adb shell cmd statusbar prefs list-prefs
 ```
 ##### Expand Status Bar
 
 ```bash
-cmd statusbar expand-notifications
+adb shell cmd statusbar expand-notifications
 ```
 ##### Collapse Status Bar
 
 ```bash
-cmd statusbar collapse
+adb shell cmd statusbar collapse
 ```
 ##### Expand Full Settings
 
 ```bash
-cmd statusbar expand-settings
+adb shell cmd statusbar expand-settings
 ```
 ##### Status Bar Help
 
 ```bash
-cmd statusbar help
+adb shell cmd statusbar help
 ```
 ##### Print auth user
   
 ```bash
-cmd user list   
+adb shell cmd user list   
 ```
 ##### Enable night mode (Dark Mode) 
   
 ```bash
-cmd uimode night yes 
+adb shell cmd uimode night yes 
 ```
 ##### Disable night mode
   
 ```bash
-cmd uimode night no
+adb shell cmd uimode night no
 ```
 ##### Enable car Mode
   
 ```bash
-cmd uimode car yes
+adb shell cmd uimode car yes
 ```
 ##### Disable car (car Mode) 
   
 ```bash
-cmd uimode car no
+adb shell cmd uimode car no
 ```
 ##### Scan for nearby ssid:s, give it 7 seconds for scan and fetch some wifi data
 
 ![Screenshot](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/previews/wifi_result.png)
 
 ```bash
-cmd -w wifi start-scan
+adb shell cmd -w wifi start-scan
 sleep 7
-cmd -w wifi list-scan-results  
+adb shell cmd -w wifi list-scan-results  
 ```  
 ##### Sets whether we are in the middle of an emergency call.
     
 Equivalent to receiving the `TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED` broadcast.
 
 ```bash
-cmd -w wifi set-emergency-call-state enabled|disabled
+adb shell cmd -w wifi set-emergency-call-state enabled|disabled
 ```
 ##### Sets whether Emergency Callback Mode (ECBM) is enabled.
 
 ```bash
-cmd -w wifi set-emergency-callback-mode enabled|disabled
+adb shell cmd -w wifi set-emergency-callback-mode enabled|disabled
 ```
 ##### Lists the suggested networks from the app
 
 ```bash
-cmd -w wifi list-suggestions-from-app <package name>
+adb shell cmd -w wifi list-suggestions-from-app <package name>
 ```
 ##### Lists all suggested networks on this device
  
 ```bash
-cmd -w wifi list-all-suggestions
+adb shell cmd -w wifi list-all-suggestions
 ```
 ##### Note: This only returns whether the app was set via the 'network-requests-set-user-approved' shell command
 
 * Queries whether network requests from the app is approved or not.
 
 ```bash
-cmd -w wifi network-requests-has-user-approved <package name>
+adb shell cmd -w wifi network-requests-has-user-approved <package name>
 ```
 ##### Note: Only 1 such app can be approved from the shell at a time
 
 * Sets whether network requests from the app is approved or not.
 
 ```bash
-cmd -w wifi network-requests-set-user-approved <package name> yes|no
+adb shell cmd -w wifi network-requests-set-user-approved <package name> yes|no
 ```
 #####  Lists the requested networks added via shell
 
 ```bash
-cmd -w wifi list-requests
+adb shell cmd -w wifi list-requests
 ```
 ##### Removes all active requests added via shell
 
 ```bash
-cmd -w wifi remove-all-requests
+adb shell cmd -w wifi remove-all-requests
 ```
 ##### Remove a network request with provided SSID of the network
     
 ```bash
-cmd -w wifi remove-request <ssid>
+adb shell cmd -w wifi remove-request <ssid>
 ```
 ##### Add a network request with provided params
 
 ```bash
-cmd -w wifi add-request <ssid> open|owe|wpa2|wpa3 [<passphrase>] [-b <bssid>]
+adb shell cmd -w wifi add-request <ssid> open|owe|wpa2|wpa3 [<passphrase>] [-b <bssid>]
 ```
 ##### Initiates wifi settings reset
     
 ```bash
-cmd -w wifi settings-reset
+adb shell cmd -w wifi settings-reset
 ```
 ##### Gets softap supported features. Will print 'wifi_softap_acs_supported'
     
 ```bash
-cmd -w wifi get-softap-supported-features
+adb shell cmd -w wifi get-softap-supported-features
 ```
 ##### Gets setting of wifi watchdog trigger recovery.
     
 ```bash
-cmd -w wifi get-wifi-watchdog
+adb shell cmd -w wifi get-wifi-watchdog
 ```
 ##### Sets whether wifi watchdog should trigger recovery
 
 ```bash
-cmd -w wifi set-wifi-watchdog enabled|disabled
+adb shell cmd -w wifi set-wifi-watchdog enabled|disabled
 ```
 ##### Sets country code to <two-letter code> or left for normal value
     
 ```bash
-cmd -w wifi force-country-code enabled <two-letter code> | disabled 
+adb shell cmd -w wifi force-country-code enabled <two-letter code> | disabled 
 ```
 ##### Manually triggers a link probe.
     
 ```bash
-cmd -w wifi send-link-probe
+adb shell cmd -w wifi send-link-probe
 ```
 ##### Clears the user disabled networks list.
     
 ```bash
-cmd -w wifi clear-user-disabled-networks
+adb shell cmd -w wifi clear-user-disabled-networks
 ```
 ##### Removes all user approved network requests for the app.
 
 ```bash
-cmd -w wifi network-requests-remove-user-approved-access-points <package name>
+adb shell cmd -w wifi network-requests-remove-user-approved-access-points <package name>
 ```
 ##### Clear the user choice on Imsi protection exemption for carrier
 
 ```bash
-cmd -w wifi imsi-protection-exemption-clear-user-approved-for-carrier <carrier id>
+adb shell cmd -w wifi imsi-protection-exemption-clear-user-approved-for-carrier <carrier id>
 ```
 ##### Queries whether Imsi protection exemption for carrier is approved or not
 
 ```bash
-cmd -w wifi imsi-protection-exemption-has-user-approved-for-carrier <carrier id>
+adb shell cmd -w wifi imsi-protection-exemption-has-user-approved-for-carrier <carrier id>
 ```
 ##### Sets whether Imsi protection exemption for carrier is approved or not
 
 ```bash
-cmd -w wifi imsi-protection-exemption-set-user-approved-for-carrier <carrier id> yes|no
+adb shell cmd -w wifi imsi-protection-exemption-set-user-approved-for-carrier <carrier id> yes|no
 ```
 ##### Queries whether network suggestions from the app is approved or not.
 
 ```bash
-cmd -w wifi network-suggestions-has-user-approved <package name>
+adb shell cmd -w wifi network-suggestions-has-user-approved <package name>
 ```
 ##### Sets whether network suggestions from the app is approved or not.
 
 ```bash
-cmd -w wifi network-suggestions-set-user-approved <package name> yes|no
+adb shell cmd -w wifi network-suggestions-set-user-approved <package name> yes|no
 ```
 ##### Sets whether low latency mode is forced or left for normal operation.
 
 ```bash
-cmd -w wifi force-low-latency-mode enabled|disabled
+adb shell cmd -w wifi force-low-latency-mode enabled|disabled
 ```
 ##### Sets whether hi-perf mode is forced or left for normal operation.
 
 ```bash
-cmd -w wifi force-hi-perf-mode enabled|disabled
+adb shell cmd -w wifi force-hi-perf-mode enabled|disabled
 ```
 ##### Gets current interval between RSSI polls, in milliseconds.
 
 ```bash
-cmd -w wifi get-poll-rssi-interval-msecs
+adb shell cmd -w wifi get-poll-rssi-interval-msecs
 ```
 ##### Sets the interval between RSSI polls to <int> milliseconds.
 
 ```bash
-cmd -w wifi set-poll-rssi-interval-msecs <int>
+adb shell cmd -w wifi set-poll-rssi-interval-msecs <int>
 ```
 ##### Gets setting of CMD_IP_REACHABILITY_LOST events triggering disconnects.
 
@@ -784,156 +784,156 @@ Equivalent to receiving the `TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGE
 sets whether we are in the middle of an emergency call.
 
 ```bash
-cmd -w wifi set-emergency-call-state enabled|disabled
+adb shell cmd -w wifi set-emergency-call-state enabled|disabled
 ```
 ##### Equivalent to receiving the TelephonyManager.ACTION_EMERGENCY_CALLBACK_MODE_CHANGED broadcast.
 
 ```bash
-cmd -w wifi set-emergency-callback-mode enabled|disabled
+adb shell cmd -w wifi set-emergency-callback-mode enabled|disabled
 ```
 ##### Lists the suggested networks from the app
 
 ```bash
-cmd -w wifi list-suggestions-from-app <package name>
+adb shell cmd -w wifi list-suggestions-from-app <package name>
 ```
 ##### Lists all suggested networks on this device
 
 ```bash
-cmd -w wifi list-all-suggestions
+adb shell cmd -w wifi list-all-suggestions
 ```
 ##### Notice: This only returns whether the app was set via the 'network-requests-set-user-approved' shell command
 
 Queries whether network requests from the app is approved or not
 
 ```bash
-cmd -w wifi network-requests-has-user-approved <package name>
+adb shell cmd -w wifi network-requests-has-user-approved <package name>
 ```
 ##### Note: Only 1 such app can be approved from the shell at a time
 
 Sets whether network requests from the app is approved or not.
 
 ```bash
-cmd -w wifi network-requests-set-user-approved <package name> yes|no
+adb shell cmd -w wifi network-requests-set-user-approved <package name> yes|no
 ```
 ##### Lists the requested networks added via shell
 
 ```bash
-cmd -w wifi list-requests
+adb shell cmd -w wifi list-requests
 ```
 ##### Removes all active requests added via shell
 
 ```bash
-cmd -w wifi remove-all-requests
+adb shell cmd -w wifi remove-all-requests
 ```
 ##### Remove a network request with provided SSID of the network
 
 ```bash
-cmd -w wifi remove-request <ssid>
+adb shell cmd -w wifi remove-request <ssid>
 ```
 ##### Add a network request with provided params
 
 ```bash
-cmd -w wifi add-request <ssid> open|owe|wpa2|wpa3 [<passphrase>] [-b <bssid>]
+adb shell cmd -w wifi add-request <ssid> open|owe|wpa2|wpa3 [<passphrase>] [-b <bssid>]
 ```
 ##### Initiates wifi settings reset
 
 ```bash
-cmd -w wifi settings-reset
+adb shell cmd -w wifi settings-reset
 ```
 ##### and/or 'wifi_softap_wpa3_sae_supported', each on a separate line.
 
 ```bash
-cmd -w wifi get-softap-supported-features
+adb shell cmd -w wifi get-softap-supported-features
 ```
 ##### Gets setting of wifi watchdog trigger recovery.
 
 ```bash
-cmd -w wifi get-wifi-watchdog
+adb shell cmd -w wifi get-wifi-watchdog
 ```
 ##### Sets whether wifi watchdog should trigger recovery
 
 ```bash
-cmd -w wifi set-wifi-watchdog enabled|disabled
+adb shell cmd -w wifi set-wifi-watchdog enabled|disabled
 ```
 ##### Sets country code to <two-letter code> or left for normal value
 
 ```bash
-cmd -w wifi force-country-code enabled <two-letter code> | disabled 
+adb shell cmd -w wifi force-country-code enabled <two-letter code> | disabled 
 ```
 ##### Sets whether soft AP channel is forced to <int> MHz
 
 ```bash
-cmd -w wifi force-softap-channel enabled <int> | disabled
+adb shell cmd -w wifi force-softap-channel enabled <int> | disabled
 ```
 ##### Manually triggers a link probe.
  
 ```bash
-cmd -w wifi send-link-probe
+adb shell cmd -w wifi send-link-probe
 ```
 ##### Clears the user disabled networks list.
  
 ```bash
-cmd -w wifi clear-user-disabled-networks
+adb shell cmd -w wifi clear-user-disabled-networks
 ```
 ##### Removes all user approved network requests for the app.
  
 ```bash
-cmd -w wifi network-requests-remove-user-approved-access-points <package name>
+adb shell cmd -w wifi network-requests-remove-user-approved-access-points <package name>
 ```
 ##### Clear the user choice on Imsi protection exemption for carrier
  
 ```bash
-cmd -w wifi imsi-protection-exemption-clear-user-approved-for-carrier <carrier id>
+adb shell cmd -w wifi imsi-protection-exemption-clear-user-approved-for-carrier <carrier id>
 ```
 ##### Queries whether Imsi protection exemption for carrier is approved or not
  
 ```bash
-cmd -w wifi imsi-protection-exemption-has-user-approved-for-carrier <carrier id>
+adb shell cmd -w wifi imsi-protection-exemption-has-user-approved-for-carrier <carrier id>
 ```
 ##### Sets whether Imsi protection exemption for carrier is approved or not
  
 ```bash
-cmd -w wifi imsi-protection-exemption-set-user-approved-for-carrier <carrier id> yes|no
+adb shell cmd -w wifi imsi-protection-exemption-set-user-approved-for-carrier <carrier id> yes|no
 ```
 ##### List uid owner of a app
 
 ```bash
-cmd package list packages -U                
+adb shell cmd package list packages -U                
 ```
 ##### List packages a.k.a: pm list packages
 
 ```bash
-cmd package list packages -l                                          
+adb shell cmd package list packages -l                                          
 ```
 ##### List disabled packages
      
 ```bash
-cmd package list packages -d
+adb shell cmd package list packages -d
 ```
 ##### Filter to only show enabled packages     
      
 ```bash
-cmd package list packages -e                                       
+adb shell cmd package list packages -e                                       
 ```
 ##### Filter to only show third party packages    
 
 ```bash
-cmd package list packages -3                                                 
+adb shell cmd package list packages -3                                                 
 ```
 ##### Set the default home activity (aka launcher)
 
 ```bash
-cmd package set-home-activity [--user USER_ID] TARGET-COMPONENT        
+adb shell cmd package set-home-activity [--user USER_ID] TARGET-COMPONENT        
 ```
 ##### Prints all features of the system
 
 ```bash
-cmd package list features 
+adb shell cmd package list features 
 ```
 ##### Print briefs
 
 ```bash
-cmd package resolve-activity --brief  com.facebook.katana        
+adb shell cmd package resolve-activity --brief  com.facebook.katana        
 priority=0 preferredOrder=0 match=0x108000 specificIndex=-1 isDefault=false
 com.facebook.katana/.LoginActivity
 ```
