@@ -430,6 +430,10 @@ date MMDDYYYY.XX;am broadcast -a android.intent.action.TIME_SET
 
 ## ADB <small>cmd</small>
 
+#### Send push notice and message to notification bar
+
+su -lp 2000 -c "cmd notification post -S bigtext -t 'adb pwnz' 'Tag' 'it rly does'"
+
 !!! Notice "when lock screen is set, all commands require the --old <CREDENTIAL> argument."
 
 ##### cmd lock_settings
@@ -1405,6 +1409,17 @@ Dumpstate info: id=0 pid=26940 dry_run=0 args=dumpstate -v extra_options=
 ```
      
 ## ADB <small>am</small>
+
+
+#### Send simple notification
+
+adb shell "am broadcast -n your.package.name/com.google.firebase.iid.FirebaseInstanceIdReceiver -c your.package.name -a com.google.android.c2dm.intent.RECEIVE"
+
+
+#### Send notification
+
+adb shell am broadcast -n com.android.google.youtube/com.google.firebase.iid.FirebaseInstanceIdReceiver \
+    -a "com.google.android.c2dm.intent.RECEIVE" --es "title" "Title" --es "body" "Body"
 
 #### How to send push notification locally using ADB without need network connection.
 
