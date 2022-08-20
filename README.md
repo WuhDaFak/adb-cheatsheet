@@ -1953,21 +1953,32 @@ Complete
 
 ## ADB <small>appopos</small>
 
+#### Set Application Run In Background Behavior
 ```bash
 cmd appops set <package_name> RUN_IN_BACKGROUND ignore
 ```
+
+#### Set Any Application Run In Background Behavior
 ```bash
 cmd appops set <package_name> RUN_ANY_IN_BACKGROUND ignore
 ```
+
+#### Set Application To Launch in Foreground
 ```bash
 cmd appops set <package_name> START_FOREGROUND ignore
 ```
+
+#### Set Application Settings for Instant Launch In Foreground
 ```bash
 cmd appops set <package_name> INSTANT_APP_START_FOREGROUND ignore
 ```
+
+#### Set Application Perrmision for Cliboard
 ```bash
 cmd appops set <packagename> READ_CLIPBOARD allow
 ```
+
+
 ## ADB <small>acpi</small>## ADB <small>acpi</small>
 
 ##### Print Battery Percentage
