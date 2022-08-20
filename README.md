@@ -1664,26 +1664,79 @@ adb shell am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "tes
 adb shell am start -a android.settings.APPLICATION_DETAILS_SETTINGS package:<com.package.example>
 ```
 
+
+
+
+
 ## Android™ Input <small>keyevent</small>
+
+##### Start Calculator via Keyevent
+```bash
+adb shell input keyevent KEYCODE_CALCULATOR
+```
+##### Start Calendar via Keyevent
+```bash
+adb shell input keyevent KEYCODE_CALENDAR
+```
+##### Start Call Application via Keyevent
+```bash
+adb shell input keyevent KEYCODE_CALL
+```
+##### Start Camera via Keyevent
+```bash
+adb shell input keyevent KEYCODE_CAMERA
+```
+##### Press Caps Lock via Keyevent
+```bash
+adb shell input keyevent KEYCODE_CAPS_LOCK
+```
+##### Start Captions via Keyevent
+```bash
+adb shell input keyevent KEYCODE_CAPTIONS
+```
+##### Open Contacts Application via Keyevent
+```bash
+adb shell input keyevent KEYCODE_CONTACTS
+```
+##### Copy via Keyevent
+```bash
+adb shell input keyevent KEYCODE_COPY
+```
+##### Cut via Keyevent
+```bash
+adb shell input keyevent KEYCODE_CUT
+```
+##### Delete via Keyevent
+```bash
+adb shell input keyevent KEYCODE_DEL
+```
+##### EndCall via Keyevent
+```bash
+adb shell input keyevent KEYCODE_ENDCALL
+```
+##### Press END via Keyevent
+```bash
+adb shell input keyevent KEYCODE_END
+```
 
 ##### Jump to begin of line
 ```bash
-adb shell input keyevent  KEYCODE_DPAD_UP
+adb shell input keyevent KEYCODE_DPAD_UP
 ```
 ##### Jump to end of line
 ```bash
-adb shell input keyevent  KEYCODE_DPAD_DOWN
+adb shell input keyevent KEYCODE_DPAD_DOWN
 ```
 ##### Move cursor one step to left/righgt
 ```bash
-adb shell input keyevent  KEYCODE_DPAD_LEFT
+adb shell input keyevent KEYCODE_DPAD_LEFT
 ```
 ```bash
-adb shell input keyevent  KEYCODE_DPAD_RIGFHT
+adb shell input keyevent KEYCODE_DPAD_RIGFHT
 ```
 ##### Print -> `
 ```bash
-adb shell input keyevent  KEYCODE_GRAVE
+adb shell input keyevent KEYCODE_GRAVE
 ```
 ##### Press Home Button
 ```bash
