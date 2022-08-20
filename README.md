@@ -1575,7 +1575,7 @@ adb shell am start -a android.media.action.IMAGE_CAPTURE
 ##### Open Camera in Photo mode and take a picture
 ```bash
 adb shell am start -a android.media.action.IMAGE_CAPTURE
-    input keyevent 66
+adb shell input keyevent 66
 ```    
 ##### Open Camera in Video mode
 ```bash
@@ -1663,6 +1663,95 @@ adb shell am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "tes
 ```bash
 adb shell am start -a android.settings.APPLICATION_DETAILS_SETTINGS package:<com.package.example>
 ```
+
+## Android™ Input <small>keyevent</small>
+
+##### Jump to begin of line
+```bash
+adb shell input keyevent  KEYCODE_DPAD_UP
+```
+##### Jump to end of line
+```bash
+adb shell input keyevent  KEYCODE_DPAD_DOWN
+```
+##### Move cursor one step to left/righgt
+```bash
+adb shell input keyevent  KEYCODE_DPAD_LEFT
+```
+```bash
+adb shell input keyevent  KEYCODE_DPAD_RIGFHT
+```
+##### Print -> `
+```bash
+adb shell input keyevent  KEYCODE_GRAVE
+```
+##### Press Home Button
+```bash
+adb shell input keyevent  KEYCODE_HOME
+```
+##### Press + and - button
+```bash
+adb shell input keyevent  KEYCODE_MINUS
+```
+```bash
+adb shell input keyevent  KEYCODE_PLUS
+```
+##### Press + in numpad
+```bash
+adb shell input keyevent  KEYCODE_NUMPAD_ADD
+```
+##### Press * button
+```bash
+adb shell input keyevent   KEYCODE_NUMPAD_MULTIPLY
+```
+##### Press serach key
+```bash
+adb shell input keyevent   KEYCODE_SEARCH
+```
+##### Open Settings
+```bash
+adb shell input keyevent   KEYCODE_SETTINGS
+```
+##### Press # button
+```bash
+adb shell input keyevent   KEYCODE_NUMPAD_MULTIPLY
+```
+##### Start default music app
+```bash
+adb shell input keyevent  KEYCODE_POUND
+```
+##### Mute Volume
+``` bash
+adb shell input keyevent  KEYCODE_MUTE
+```
+##### Open notification bar and close
+```bash
+adb shell input keyevent KEYCODE_NOTIFICATION
+```
+```bash
+adb shell input keyevent KEYCODE_NOTIFICATION
+```
+##### Cancel long press
+```bash
+adb shell input keyevent FLAG_CANCELED_LONG_PRESS
+```
+##### Open App Switch for change application
+```bash
+adb shell input keyevent KEYCODE_APP_SWITCH
+```
+##### Open Default Assistant
+```bash
+adb shell input keyevent KEYCODE_BRIGHTNESS_DOWN
+```
+```bash
+adb shell input keyevent KEYCODE_BRIGHTNESS_UP
+```
+##### Select
+```bash
+adb shell input keyevent KEYCODE_BUTTON_SELECT
+```
+
+
 
 #### Add Contacts
 
