@@ -1934,7 +1934,41 @@ adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action"
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "clearAll"                              
 ```
 
-## ADB <small>acpi</small>
+##### Press home button via intent and print status info
+
+```bash
+adb shell am start -W -c android.intent.category.HOME -a android.intent.action.MAIN
+```
+
+```
+Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+Status: ok
+LaunchState: UNKNOWN (0)
+Activity: com.sec.android.app.launcher/com.android.launcher3.uioverrides.QuickstepLauncher
+TotalTime: 0
+WaitTime: 17
+Complete
+```
+
+## ADB <small>appopos</small>
+
+```bash
+cmd appops set <package_name> RUN_IN_BACKGROUND ignore
+```
+```bash
+cmd appops set <package_name> RUN_ANY_IN_BACKGROUND ignore
+```
+```bash
+cmd appops set <package_name> START_FOREGROUND ignore
+```
+```bash
+cmd appops set <package_name> INSTANT_APP_START_FOREGROUND ignore
+```
+```bash
+cmd appops set <packagename> READ_CLIPBOARD allow
+```
+## ADB <small>acpi</small>## ADB <small>acpi</small>
 
 ##### Print Battery Percentage
 ```bash
