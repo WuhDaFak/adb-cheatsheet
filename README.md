@@ -1739,7 +1739,7 @@ adb shell am broadcast \
 
 #### Send notification
 ```bash
-adb shell am am broadcast \
+adb shell am broadcast \
     -n com.android.google.youtube/com.google.firebase.iid.FirebaseInstanceIdReceiver \
     -a "com.google.android.c2dm.intent.RECEIVE" }-es "title" "Title" --es "body" "Body"
 ```
