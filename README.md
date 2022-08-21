@@ -33,6 +33,17 @@ All commands that require root will have (Root_Required) in descriptionn.
 | *#1234             |  FIrmware info   | com.sec.android.app.factorykeystring/com.sec.android.app.version.SimpleVersion
 | ?                  |  WiFi Info       | com.sec.android.app.servicemodeapp/com.sec.android.app.servicemodeapp.WifiInfoActivity
 
+## Awesome Aliases For <small>ADB</small>
+
+```bash
+cat <<! > ~/.bashrc
+##### Aliases for ADB
+alias startintent="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell am start $1"
+alias apkinstall="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X install -r $1"
+alias rmapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X uninstall $1"
+alias clearapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell pm clear $1"
+```
+
 ## Download Android™ <small>Google Account Manager</small>
 
 <li><a href="https://www.nr1.nu/archive/android/google_account_manager/google_account_manager.v4.0.3.apk">Google Account Manager Android 4.0.3</a></li>
@@ -49,7 +60,7 @@ All commands that require root will have (Root_Required) in descriptionn.
 
 ## Open Android™ <small>Default Applications</small>
   
-Links works when you clicking the links with your mobile device, please visit [android.nr1.nu](https://www.android.nr1.nu) to get clickable links.
+You must visit ![https://wuseman.github.io/adb-cheatsheet/](https://wuseman.github.io/adb-cheatsheet/) for clickable buttons
  
 * [Click to Open ADB Settings](intent://com.sec.android.app.modemui.activities.USB.settings/#Intent;scheme=android-app;end)
 * [Click to Open - Device Set Screen Lock](intent://com.google.android.gms/#Intent;scheme=promote_smartlock_scheme;end)
@@ -88,19 +99,19 @@ Links works when you clicking the links with your mobile device, please visit [a
 * [Click to Open UUISD Code - Show IMEI - *#06*](tel:%20*#0*#/#Intent;scheme=android-app;end")
 * [Click to Open UUISD Code - Show Secret Diagnostic Mode - *#0#*](tel:%20*#0*#/#Intent;scheme=android-app;end")
 
-##### Android™ <small>Source Code</small>
+## Android™ <small>Source Code</small>
 
 * [Android™ Source Code](https://cs.android.com/android/platform/superproject/)
 
-##### Android™ Issue <small>Tracker</small>
+## Android™ Issue <small>Tracker</small>
 
 * [Android™ Issue Tracker](https://code.google.com/p/android/issues/entry)
 
-## Android Firmware <strong>Downloading</strong>
+## Android Firmware <small>Downloading</small>
 
 * [Download Samsung firmware faster with Frija](https://github.com/SlackingVeteran/frija/releases/download/v1.4.4/Frija-v1.4.4.zip) 
 
-## ADB <strong>install</strong>
+## ADB Shell / Fastboot <small>install</small>
 
 ##### Source Files
 
@@ -335,14 +346,20 @@ adb pull /storage/on/device/ /path/on/pc # Notice the trial slash
 Stream Device Screen on your PC
 
 ```bash
-adb exec-out screenrecord --Example Output-format=h264 - | prefered tool - <stdin>
+adb exec-out screenrecord --Example Output-format=h264 - \
+    | prefered tool - <stdin>
 ```
 #### Stream via Mplayer (Recommended)
 
 Recommended since it is starts immediately, very little delay, and doesn't freak out like vlc.
 
 ```bash
-adb exec-out screenrecord --output-format=h264 - | ffplay -framerate 60 -probesize 32 -sync video  -
+adb exec-out screenrecord \
+    --output-format=h264 - \
+        |ffplay \
+        -framerate 60 \
+        -probesize 32 \
+        -sync video  -
 ```
 * ffplay works, but it seems to take a few seconds to decide to start, and ends up lagging well behind the entire time.
 
@@ -356,11 +373,23 @@ adb shell screenrecord --Example Output-format=h264 - | ffplay -
 FFplay Customized
 
 ```sh
-adb exec-out screenrecord --Example Output-format=h264 - | ffplay -framerate 60 -probesize 32 -sync video  -
+adb exec-out screenrecord \
+    --Example Output-format=h264 - \
+        |ffplay \
+        -framerate 60 \
+        -probesize 32 \
+        -sync video  -
 ```
 
 ```sh
-adb shell screenrecord --bit-rate=16m --Example Output-format=h264 --size 800x600 - | ffplay -framerate 60 -framedrop -bufsize 16M -
+adb shell screenrecord \
+    --bit-rate=16m \
+    --Example Output-format=h264 \
+    --size 800x600 - \
+        |ffplay \
+        -framerate 60 \
+        -framedrop \
+        -bufsize 16M -
 ```
 
 ![Screenshot](https://nr1.nu/u/adb_record.gif)
@@ -368,30 +397,16 @@ adb shell screenrecord --bit-rate=16m --Example Output-format=h264 --size 800x60
 FFplay Customized - Stream vin 1080p
 
 ```sh
-adb exec-out screenrecord --bit-rate=16m --Example Output-format=h264 --size 1920x1080 -
-```
-
-#### Stream via VLC
-
-Adding --clock-jitter=0 seems to make the errors less traumatic, but it's still pretty messed up vlc is not recommended for this, use FFplay or Mplayer if possible
-
-Stream via VLC on Windows
-
-```sh
-adb exec-out screenrecord --bit-rate=4m --Example Output-format=h264 --size 800x600 --show-frame-time - \
-    |"c:\Program Files\VideoLAN\VLC\vlc" --demux h264 - vlc://quit
-```
-
-Record your device screen via VLC on Windows
-
-```sh
-adb exec-out screenrecord --bit-rate=4m --Example Output-format=h264 --size 800x600 --show-frame-time - \
-    |"c:\Program Files\VideoLAN\VLC\vlc" --demux h264 --sout file/ts:c:\temp\screenrec.mpg -  vlc://quit
+adb exec-out screenrecord \
+    --bit-rate=16m \
+    --Example Output-format=h264 \
+    --size 1920x1080 -
 ```
 
 #### Network Analyze 
 
 Sniff your device network and SMS traffic via Wireshark on your PC
+
 ```sh
 adb exec-out "tcpdump -i any -U -w - 2>/dev/null" | wireshark -k -S -i -
 ```
@@ -429,12 +444,14 @@ adb shell date MMDDYYYY.XX;am broadcast -a android.intent.action.TIME_SET
 ## ADB <small>cmd</small>
 
 #### Send push notice and message to notification bar
-
-su -lp 2000 -c "cmd notification post -S bigtext -t 'adb pwnz' 'Tag' 'it rly does'"
+```bash
+su -lp 2000 -c "cmd notification post -S bigtext \
+    -t 'adb pwnz' 'Tag' 'it rly does'"
+```
 
 !!! Notice "when lock screen is set, all commands require the --old <CREDENTIAL> argument."
 
-#### cmd lock_settings
+## cmd, lock_settings
 
 ##### Sets the package name for server based resume on reboot service provider.
 ```sh
@@ -481,7 +498,7 @@ adb shell cmd lock_settings set-disabled --old 1234 --user 0  <true|false>
 adb shell cmd lock_settings get-disabled --old 1234 --user 0 
 ```
 
-##### cmd testharness      
+## cmd, testharness      
 ```                                                                                                                                                                                                    
 About:
   Test Harness Mode is a mode that the device can be placed in to prepare
@@ -507,7 +524,7 @@ Test Harness Mode commands:
     settings in a way that are conducive to Instrumentation testing.
 ```
 
-##### cmd stats meminfo
+## cmd, stats meminfo
 
 * Prints the malloc debug information. You need to run the following first: 
    
@@ -526,7 +543,7 @@ start
 adb shell cmd stats print-stats
 ```
 
-#####  Send a broadcast that triggers the subscriber to fetch metrics.
+##### Send a broadcast that triggers the subscriber to fetch metrics.
 ```
  cmd stats send-broadcast [UID] NAME
 
@@ -535,8 +552,6 @@ adb shell cmd stats print-stats
                    calling uid is used.
      NAME          The name of the configuration
 ```
-
-
 
 #####  Flushes all data on memory to disk.
 ```bash
@@ -633,6 +648,8 @@ adb shell cmd uimode car no
 ![Screenshot](https://raw.githubusercontent.com/wuseman/adb-cheatsheet/main/previews/wifi_result.png)
 
 ```bash
+#!/bin/bash
+
 adb shell cmd -w wifi start-scan
 sleep 7
 adb shell cmd -w wifi list-scan-results  
@@ -642,12 +659,12 @@ adb shell cmd -w wifi list-scan-results
 Equivalent to receiving the `TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED` broadcast.
 
 ```bash
-adb shell cmd -w wifi set-emergency-call-state enabled|disabled
+adb shell cmd -w wifi set-emergency-call-state `enabled|disabled`
 ```
 ##### Sets whether Emergency Callback Mode (ECBM) is enabled.
 
 ```bash
-adb shell cmd -w wifi set-emergency-callback-mode enabled|disabled
+adb shell cmd -w wifi set-emergency-callback-mode `enabled|disabled`
 ```
 ##### Lists the suggested networks from the app
 
@@ -659,7 +676,7 @@ adb shell cmd -w wifi list-suggestions-from-app <package name>
 ```bash
 adb shell cmd -w wifi list-all-suggestions
 ```
-##### Note: This only returns whether the app was set via the 'network-requests-set-user-approved' shell command
+!!! Note "This only returns whether the app was set via the 'network-requests-set-user-approved' shell command"
 
 * Queries whether network requests from the app is approved or not.
 
@@ -711,7 +728,7 @@ adb shell cmd -w wifi get-wifi-watchdog
 ##### Sets whether wifi watchdog should trigger recovery
 
 ```bash
-adb shell cmd -w wifi set-wifi-watchdog enabled|disabled
+adb shell cmd -w wifi set-wifi-watchdog `enabled|disabled`
 ```
 ##### Sets country code to <two-letter code> or left for normal value
     
@@ -731,22 +748,26 @@ adb shell cmd -w wifi clear-user-disabled-networks
 ##### Removes all user approved network requests for the app.
 
 ```bash
-adb shell cmd -w wifi network-requests-remove-user-approved-access-points <package name>
+adb shell cmd -w wifi network-requests-remove-user-approved-access-points \
+    <package name>
 ```
 ##### Clear the user choice on Imsi protection exemption for carrier
 
 ```bash
-adb shell cmd -w wifi imsi-protection-exemption-clear-user-approved-for-carrier <carrier id>
+adb shell cmd -w wifi imsi-protection-exemption-clear-user-approved-for-carrier \
+    <carrier id>
 ```
 ##### Queries whether Imsi protection exemption for carrier is approved or not
 
 ```bash
-adb shell cmd -w wifi imsi-protection-exemption-has-user-approved-for-carrier <carrier id>
+adb shell cmd -w wifi imsi-protection-exemption-has-user-approved-for-carrier \
+    <carrier id>
 ```
 ##### Sets whether Imsi protection exemption for carrier is approved or not
 
 ```bash
-adb shell cmd -w wifi imsi-protection-exemption-set-user-approved-for-carrier <carrier id> yes|no
+adb shell cmd -w wifi imsi-protection-exemption-set-user-approved-for-carrier \
+    <carrier id> yes|no
 ```
 ##### Queries whether network suggestions from the app is approved or not.
 
@@ -756,40 +777,41 @@ adb shell cmd -w wifi network-suggestions-has-user-approved <package name>
 ##### Sets whether network suggestions from the app is approved or not.
 
 ```bash
-adb shell cmd -w wifi network-suggestions-set-user-approved <package name> yes|no
+adb shell cmd -w wifi network-suggestions-set-user-approved \
+    <package name> yes|no
 ```
 ##### Sets whether low latency mode is forced or left for normal operation.
 
 ```bash
-adb shell cmd -w wifi force-low-latency-mode enabled|disabled
+adb shell cmd -w wifi force-low-latency-mode `enabled|disabled`
 ```
 ##### Sets whether hi-perf mode is forced or left for normal operation.
 
 ```bash
-adb shell cmd -w wifi force-hi-perf-mode enabled|disabled
+adb shell cmd -w wifi force-hi-perf-mode `enabled|disabled`
 ```
 ##### Gets current interval between RSSI polls, in milliseconds.
 
 ```bash
 adb shell cmd -w wifi get-poll-rssi-interval-msecs
 ```
-##### Sets the interval between RSSI polls to <int> milliseconds.
+##### Sets the interval between RSSI polls to `<int>` milliseconds.
 
 ```bash
-adb shell cmd -w wifi set-poll-rssi-interval-msecs <int>
+adb shell cmd -w wifi set-poll-rssi-interval-msecs `<int>`
 ```
-##### Gets setting of CMD_IP_REACHABILITY_LOST events triggering disconnects.
+##### Gets setting of `CMD_IP_REACHABILITY_LOST` events triggering disconnects.
 
 Equivalent to receiving the `TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED` broadcast,
 sets whether we are in the middle of an emergency call.
 
 ```bash
-adb shell cmd -w wifi set-emergency-call-state enabled|disabled
+adb shell cmd -w wifi set-emergency-call-state `enabled|disabled`
 ```
 ##### Equivalent to receiving the TelephonyManager.ACTION_EMERGENCY_CALLBACK_MODE_CHANGED broadcast.
 
 ```bash
-adb shell cmd -w wifi set-emergency-callback-mode enabled|disabled
+adb shell cmd -w wifi set-emergency-callback-mode `enabled|disabled`
 ```
 ##### Lists the suggested networks from the app
 
@@ -833,7 +855,9 @@ adb shell cmd -w wifi remove-request <ssid>
 ##### Add a network request with provided params
 
 ```bash
-adb shell cmd -w wifi add-request <ssid> open|owe|wpa2|wpa3 [<passphrase>] [-b <bssid>]
+adb shell cmd -w wifi add-request <ssid> \
+    open|owe|wpa2|wpa3 [<passphrase>] \
+    [-b <bssid>]
 ```
 ##### Initiates wifi settings reset
 
@@ -853,7 +877,7 @@ adb shell cmd -w wifi get-wifi-watchdog
 ##### Sets whether wifi watchdog should trigger recovery
 
 ```bash
-adb shell cmd -w wifi set-wifi-watchdog enabled|disabled
+adb shell cmd -w wifi set-wifi-watchdog `enabled|disabled`
 ```
 ##### Sets country code to <two-letter code> or left for normal value
 
@@ -940,6 +964,16 @@ com.facebook.katana/.LoginActivity
 
 ## ADB <small>pm</small>
 
+![Contributed to This Gist](https://gist.github.com/Pulimet/5013acf2cd5b28e55036c82c91bd56d8?permalink_comment_id=4273079#gistcomment-4273079)
+
+##### Disable Autoupdate Application Wise
+
+##### Disable AutoUpdate Package wise
+adb shell pm disable-user –user 0 <package_name>
+
+
+##### Disable AutoUpdate for all apps
+adb shell pm disable-user com.android.vending
 ##### Print all applications in use
 
 ```sh
@@ -1021,9 +1055,9 @@ adb shell pm reset-permissions -p your.app.package
 
 ##### Default options: 
 
-* Examples
+Examples
 
-```ini
+```
 * V — Verbose (lowest priority)
 * D — Debug
 * I — Info (default priority)
@@ -1112,10 +1146,10 @@ adb logcat -c
 ```bash
 adb logcat *:V  
 ```
-##### Dump everything to a file:
+##### Dumps data to specified file
 
 ```bash
-adb logcat -f <filename>    Dumps to specified file
+adb logcat -f <filename>   
 ```
 ##### Display PID with the log info 
 
@@ -1155,28 +1189,244 @@ adb logcat -b main -b radio -b events
 #### Run all at once, no reason for use it like this really
 
 ```bash
-adb logcat -v brief -v long -v process -v raw -v tag -v thread -v threadtime -v time -v color       
+adb logcat \
+    -v brief \ 
+    -v long \ 
+    -v process \ 
+    -v raw \ 
+    -v tag \ 
+    -v thread \
+    -v threadtime \ 
+    -v time \ 
+    -v color       
 ```
 #### Log everything about locksettings (device lock)
 ```bash
-adb logcat |grep  "LockSettingsService|LockPatternUtilsKeyStorage|vold|vold|keystore2|keymaster_tee|LockSettingsService|vold_prepare_subdirs"
+adb logcat \
+    |grep  "LockSettingsService\
+    |LockPatternUtilsKeyStorage\
+    |vold\
+    |vold\
+    |keystore2\
+    |keymaster_tee\
+    |LockSettingsService\
+    |vold_prepare_subdirs"
 ```
 ## ADB <small>dumpsys</small>
+
+##### Dumpsys Package
+```bash
+adb shell dumpsys package com.android.chrome
+```
+
+
+
+
+``
+Activity manager dump options:
+  [-a] [-c] [-p PACKAGE] [-h] [WHAT] ...
+  WHAT may be one of:
+    a[ctivities]: activity stack state
+    r[recents]: recent activities state
+    b[roadcasts] [PACKAGE_NAME] [history [-s]]: broadcast state
+    broadcast-stats [PACKAGE_NAME]: aggregated broadcast statistics
+    i[ntents] [PACKAGE_NAME]: pending intent state
+    p[rocesses] [PACKAGE_NAME]: process state
+    o[om]: out of memory management
+    perm[issions]: URI permission grant state
+    prov[iders] [COMP_SPEC ...]: content provider state
+    provider [COMP_SPEC]: provider client-side state
+    s[ervices] [COMP_SPEC ...]: service state
+    allowed-associations: current package association restrictions
+    as[sociations]: tracked app associations
+    exit-info [PACKAGE_NAME]: historical process exit information
+    lmk: stats on low memory killer
+    lru: raw LRU process list
+    binder-proxies: stats on binder objects and IPCs
+    settings: currently applied config settings
+    service [COMP_SPEC]: service client-side state
+    package [PACKAGE_NAME]: all state related to given package
+    all: dump all activities
+    top: dump the top activity
+  WHAT may also be a COMP_SPEC to dump activities.
+  COMP_SPEC may be a component name (com.foo/.myApp),
+    a partial substring in a component name, a
+    hex object identifier.
+  -a: include all available server state.
+  -c: include client state.
+  -p: limit output to given package.
+  --checkin: output checkin format, resetting data.
+  --C: output checkin format, not resetting data.
+  --proto: output dump in protocol buffer format.
+  --autofill: dump just the autofill-related state of an activity
+```
+##### Dumpsys Activity Help
+```bash
+adb shell dumpsys perm
+```
+
+##### Dumpsys Activity Activities
+```bash
+adb shell dumpsys a
+```
+
+##### Dumpsys Activity Broadcasts
+```bash
+adb shell dumpsys activity broadcast
+```
+
+##### Dumpsys Broadcast Stats
+```bash
+adb shell dumpsys activity broadcast-stats
+```
+
+##### Dumpsys Pending Intent
+```bash
+adb shell dumpsys activity i
+```
+
+##### Dumpsys Activity Processes
+```bash
+adb shell dumpsys activity p
+```
+
+##### Dumpsys Activity Out Of Mem
+```bash
+adb shell dumpsys activity o
+```
+
+##### Dumpsys Activity Services
+```bash
+adb shell dumpsys activity services
+```
+
+##### Dumpsys Activity Asociations
+```bash
+adb shell dumpsys activity as
+```
+
+
+##### Dumpsys Activity LRU Services
+```bash
+adb shell dumpsys activity lru
+```
+
+
+##### Dumpsys Activity LRU Services
+```bash
+adb shell dumpsys activity lru
+```
+
+
+##### Dumpsys Activity binder-proxies stats on binder objects and IPCs
+```bash
+adb shell dumpsys activity binder-proxies
+```
+##### Dumpsys Activity settings currently applied config settings
+```bash
+adb shell dumpsys activity settings
+```
+##### Dumpsys Activity service [COMP_SPEC]: service client-side state
+```bash
+adb shell dumpsys activity service
+```
+##### Dumpsys Activity package [PACKAGE_NAME]: all state related to given package
+```bash
+adb shell dumpsys activity package
+```
+##### Dumpsys Activity all: dump all activities
+```bash
+adb shell dumpsys activity all
+```
+##### Dumpsys Activity top: dump the top activity
+```bash
+adb shell dumpsys activity top
+```
+##### Include all available server state
+```bash
+adb shell dumpsys activity -a
+```
+##### Dumpsys Activity and include client state
+```bash
+adb shell dumpsys activity -c
+```
+##### Dumpsys Activity all limit output to given package
+```bash
+adb shell dumpsys activity -p
+```
+##### Dumpsys Activity all output checkin format, `resetting data`
+```bash
+adb shell dumpsys activity --checkin
+```
+##### Dumpsys Activity output checkin format, not resetting data
+```bash
+adb shell dumpsys activity --C
+
+##### Dumpsys All Activitys data
+```bash
+adb shell dumpsys activity --proto
+```
+##### Dumpsys Activity dump just the autofill-related state of an activity
+```bash
+adb shell dumpsys activity --autofill
+```
+
+
+
+
+
+
+
+##### Dumpsys Activity Help
+```bash
+adb shell dumpsys activity recents
+```
+
+##### Dumpsys Activity Exit Info
+```bash
+adb shell dumpsys activity exit-info
+```
+
+##### Dumpsys Activity LMK KILLS
+```bash
+adb shell dumpsys activity lmk
+```
+ 
+
+
+##### Dumpsys Activity Help
+```bash
+adb shell dumpsys activity recents
+```
+
+
+##### Dumpsys Activity Permissions
+```bash
+adb shell dumpsys activity top
+```
+
+##### Dumpsys Activity
+```bash
+adb shell dumpsys activity top
+```
+
+##### Dumpsys Activity Top
+```bash
+adb shell dumpsys activity top
+```
 
 ##### List all active services:
 ```bash
 adb shell dumpsys -l 
 ```
 
-* List services on older devices via command below 
+List services on older devices via command below 
 
 ```sh
 adb shell dumpsys -l |sed 's/^  /      /g'
 ```
 
-* Example Output
-
-```ini
+```
 Currently running services:
   AAS
   AODManagerService
@@ -1205,9 +1455,7 @@ Currently running services:
 adb shell dumpsys lock_settings
 ```
 
-* Example Output
-
-```ini
+```
 Current lock settings service state:
 
 User State:
@@ -1264,9 +1512,7 @@ adb shell dumpsys dumpsys location
 adb shell dumpsys settings
 ```
 
-* Example Output
-
-```ini
+```
 _id:225 name:lock_screen_show_notifications pkg:com.android.settings value:1 
 _id:6 name:volume_bluetooth_sco pkg:android value:7 default:7
 _id:192 name:ringtone_set pkg:com.google.android.gsf value:1
@@ -1286,9 +1532,7 @@ adb shell dumpsys simphonebook
 ```sh
 adb shell dumpsys hardware_properties
 ```
-* Example Output
-
-```ini
+```
 ****** Dump of HardwarePropertiesManagerService ******
 CPU temperatures: [38.0, 38.0]
 CPU throttling temperatures: [55.0, 76.0]
@@ -1301,9 +1545,7 @@ CPU shutdown temperatures: [115.0, 115.0]
 adb shell dumpsys account|grep -i com.*$ -o|cut -d' ' -f1|cut -d} -f1|grep -v com$
 ```
 
-* Example Output
-
-```ini
+```
 com.microsoft.workaccount
 com.skype.raider
 com.samsung.android.mobileservice
@@ -1317,22 +1559,22 @@ adb shell dumpsys notification
 ```
 ##### List email addresses registerd on different stuff on device:
 ```bash
-adb shell dumpsys | grep -E -o "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b"
+adb shell dumpsys \
+    |egrep -o "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b"
 ```    
 ##### Print version of a specifik package
 
+```bash
 adb shell dumpsys dumpsys package com.lge.signboard | grep versionName
     versionName=6.00.170603-0
 ```
-##### Check state for screen and figoure how device was unlcked last time:
 
+##### Check state for screen and figoure how device was unlcked last time:
 ```sh
 dumpsys  user
 ```
 
-* Example Output
-
-```ini
+```
 State: RUNNING_UNLOCKED
 Last logged in fingerprint
 agree Knox Privacy Policy: false
@@ -1358,9 +1600,7 @@ adb shell dumpsys batterystats --reset
 adb shell dumpsys meminfo
 ```
 
-* Example Output
-
-```ini
+```
 Applications Memory Usage (in Kilobytes):
 Uptime: 29602806 Realtime: 57806941
 
@@ -1398,9 +1638,7 @@ adb shell dumpsys notification | grep NotificationRecord | wc -l
 adb shell dumpstate -v
 ```
 
-* Example Output
-
-```ini
+```
 ========================================================
 == dumpstate: 2019-08-30 19:31:05
 ========================================================
@@ -1450,23 +1688,28 @@ adb shell settings put global sysui_demo_allowed 1
 ```
 ##### Display time 12:00
 ```bash
-adb shell am broadcast -a com.android.systemui.demo -e command clock -e hhmm 1200
+adb shell am broadcast -a com.android.systemui.demo \
+    -e command clock -e hhmm 1200
 ```
 ##### Display full mobile data without type
 ```bash
-adb shell am broadcast -a com.android.systemui.demo -e command network -e mobile show -e level 4 -e datatype false
+adb shell am broadcast -a com.android.systemui.demo \
+    -e command network -e mobile show -e level 4 -e datatype false
 ```
 ##### Hide notifications
 ```bash
-adb shell am broadcast -a com.android.systemui.demo -e command notifications -e visible false
+adb shell am broadcast -a com.android.systemui.demo \
+    -e command notifications -e visible false
 ```
 ##### Show full battery but not in charging state
 ```bash
-adb shell am broadcast -a com.android.systemui.demo -e command battery -e plugged false -e level 100
+adb shell am broadcast -a com.android.systemui.demo  \
+    -e command battery -e plugged false -e level 100
 ```
 ##### Exit Demo Mode
 ```bash
-adb shell am broadcast -a com.android.systemui.demo -e command exit
+adb shell am broadcast -a com.android.systemui.demo 
+    -e command exit
 ```
 ***
 
@@ -1547,17 +1790,21 @@ adb shell am start -a android.intent.action.VIEW \
 
 ##### Open activity to new APN
 ```bash
- am start -a android.intent.action.INSERT  content://telephony/carriers  --ei simId 
+ am start -a android.intent.action.INSERT   \
+    content://telephony/carriers  --ei simId 
 ```
 
 ##### Open hiden menu (require root)
 ```bash
-su -c "am broadcast -a android.provider.Telephony.SECRET_CODE -d android_secret_code://IOTHIDDENMENU"
+su -c "am broadcast -a android.provider.Telephony.SECRET_CODE  \
+    -d android_secret_code://IOTHIDDENMENU"
 ```
 
 ##### Start prefered webbrowser (remove # for wich you wanna use)
 ```bash
-adb shell am start -a android.intent.action.VIEW -d <url> <add any of below here>
+adb shell am start  \
+    -a android.intent.action.VIEW  \
+    -d <url> <add any of below here>
   # Default Browser:        com.android.browser 
   # Gogle Chrome Browser:   com.android.chrome 
   # Samsung Browser:        com.sec.android.sbrowser) 
@@ -1596,12 +1843,14 @@ adb shell am start -a android.intent.action.SET_WALLPAPER
 ##### Open any URL in default browser
 
 ```bash
-adb shell am start -a android.intent.action.VIEW -d https://github.com/wuseman
+adb shell am start -a android.intent.action.VIEW  \
+    -d https://github.com/wuseman
 ```
 
 ##### Open Google Maps with fixed coordinates
 ```bash
-adb shell am start -a android.intent.action.VIEW -d "geo:46.457398,-119.407305"
+adb shell am start -a android.intent.action.VIEW  \
+    -d "geo:46.457398,-119.407305"
 ```
 
 ##### Simulate waking your app using the following commands
@@ -1612,26 +1861,32 @@ adb shell am set-inactive <packageName> false
 
 ##### Enabling Night Mode (If Supported)
 ```bash
-adb shell am start --ez show_night_mode true com.android.systemui/.tuner.TunerActivity
+adb shell am start --ez show_night_mode true  \
+    com.android.systemui/.tuner.TunerActivity
 ```
 
 ##### Start facebook application inbox by using URI
 ```bash
-adb shell am start -a android.intent.action.VIEW -d facebook://facebook.com/inbox
+adb shell am start -a android.intent.action.VIEW  \
+    -d facebook://facebook.com/inbox
 ```
 
 ##### Open a vcard file from sdcard (will open contacts app)
 ```bash
-adb shell am start -a android.intent.action.VIEW -d file:///sdcard/me.vcard -t text/x-vcard
+adb shell am start -a android.intent.action.VIEW  \
+    -d file:///sdcard/me.vcard -t text/x-vcard
 ```
 
-##### Open an application to get content (in this case to get a jpeg picture)
+##### Open an application to get content
 ```bash
-adb shell am start -a android.intent.action.GET_CONTENT -t image/jpeg
+adb shell am start  \
+    -a android.intent.action.GET_CONTENT -t image/jpeg
 ```
 ##### There is several ways to send a SMS via AM, here is just one of several ways:
 ```bash
-adb shell am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
+adb shell am broadcast  \
+    -a com.whereismywifeserver.intent.TEST \
+    --es sms_body "test from adb"
 ```
 
 ##### Simulate waking your app using the following commands:
@@ -1641,27 +1896,37 @@ adb shell am set-inactive <packageName> false
 ```
 
 ##### Start facebook application inbox by using URI
-```bash
-adb shell am start -a android.intent.action.VIEW -d facebook://facebook.com/inbox
+```bash 
+adb shell am start  \
+    -a android.intent.action.VIEW  \
+    -d facebook://facebook.com/inbox
 ```  
 ##### Open a vcard file from sdcard (will open contacts app)
 ```bash
-adb shell am start -a android.intent.action.VIEW -d file:///sdcard/me.vcard -t text/x-vcard  
+adb shell am start  \
+    -a android.intent.action.VIEW  \
+    -d file:///sdcard/me.vcard  \
+    -t text/x-vcard  
 ```
 
 ##### Open an application to get content (in this case to get a jpeg picture)
 ```bash
-adb shell am start -a android.intent.action.GET_CONTENT -t image/jpeg
+adb shell am start  \
+    -a android.intent.action.GET_CONTENT  \
+    -t image/jpeg
 ```
 
 ##### There is several ways to send a SMS via AM, here is one example:
 ```bash
-adb shell am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
+adb shell am broadcast  \
+    -a com.whereismywifeserver.intent.TEST  \
+    --es sms_body "test from adb"
 ```
 
 ##### Open settings for a specifik app
 ```bash
-adb shell am start -a android.settings.APPLICATION_DETAILS_SETTINGS package:<com.package.example>
+adb shell am start  \
+    -a android.settings.APPLICATION_DETAILS_SETTINGS package:<com.package.example>
 ```
 
 
@@ -1804,11 +2069,9 @@ adb shell input keyevent KEYCODE_BRIGHTNESS_UP
 adb shell input keyevent KEYCODE_BUTTON_SELECT
 ```
 
+## Add Contact
 
-
-#### Add Contacts
-
-#### Add a Contact - Example 1
+#### Add a Contact
 ```bash
 adb shell am start -a android.intent.action.INSERT \
     -t vnd.android.cursor.dir/contact \
@@ -1816,14 +2079,33 @@ adb shell am start -a android.intent.action.INSERT \
     -e postal "$(dialog --stdout --inputbox 'Postal Address' 0 0)" \
     -e phone "$(dialog --stdout --inputbox 'Phone Number' 0 0)" \
     -e email "$(dialog --stdout --inputbox 'Email' 0 0)"
-    
-##### Add a Contact - Example 2
+```
+
+##### Add a Contact, fill info and press save on device
 ```bash
 adb shell am start -a android.intent.action.INSERT \
     -t vnd.android.cursor.dir/contact \
     -e name 'wuseman' \
-    -e phone <phone_number>
+    -e phone '+4672777691'  \
+    -e email 'wuseman@nr1.nu' 
+
+### For press save via shell
+
+    adb shell input keyevent 4
+    adb shell input keyevent 4 
 ```
+
+```bash
+
+#### Set alarm
+adb shell dumpsys alarm
+
+```bash
+adb shell am start -a android.intent.action.INSERT \
+    -t vnd.android.cursor.dir/contact \
+    -e name 'wuseman' \
+    -e phone '+4672777691'  \
+    -e email 'wuseman@nr1.nu' 
 
 #### Open dialer
 ```bash
@@ -1837,40 +2119,49 @@ adb shell am start com.sec.android.app.launcher/com.sec.android.app.launcher.act
 
 #### Launch homescreen at first screen
 ```bash
-adb shell am start com.sec.android.app.launcher/com.android.launcher3.uioverrides.QuickstepLauncher  
-adb shell am start com.sec.android.app.launcher/.activities.LauncherActivity
+adb shell am start \
+    com.sec.android.app.launcher/com.android.launcher3.uioverrides.QuickstepLauncher  
+adb shell am start \
+    com.sec.android.app.launcher/.activities.LauncherActivity
 ```
 
 #### Launch all open apps in launcher
 ```bash
-adb shell am start com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity
+adb shell am start  \
+    com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity
 ```
 
 ## Launch messenger default settings
 ```bash
-adb shell am start com.samsung.android.messaging/com.samsung.android.messaging.ui.view.setting.MainSettingActivity
+adb shell am start  \
+    com.samsung.android.messaging/com.samsung.android.messaging.ui.view.setting.MainSettingActivity
 ```
 
 #### Launch messenger converstation composer
 ```bash
-adb shell am start com.samsung.android.messaging/com.android.mms.ui.ConversationComposer
+adb shell am start  \
+    com.samsung.android.messaging/com.android.mms.ui.ConversationComposer
 ```
 #### Launch messenger select contact
 ```bash
-adb shell am start com.samsung.android.messaging/com.samsung.android.messaging.ui.view.recipientspicker.PickerActivity
+adb shell am start  \
+    com.samsung.android.messaging/com.samsung.android.messaging.ui.view.recipientspicker.PickerActivity
 ```
 ##### Launch messenger with latest contacted
 ```bash
-adb shell am start com.samsung.android.dialer/com.samsung.android.dialer.calllog.view.picker.CallLogPickerActivity
+adb shell am start  \
+    com.samsung.android.dialer/com.samsung.android.dialer.calllog.view.picker.CallLogPickerActivity
 ```
 #### Launch Samsung Gallery
 ```bash
-adb shell am start com.sec.android.gallery3d/com.samsung.android.gallery.app.activity.GalleryActivity
+adb shell am start  \
+    com.sec.android.gallery3d/com.samsung.android.gallery.app.activity.GalleryActivity
 ```
 
 #### Samsung Myfiles
 ```bash
-adb shell am start com.sec.android.app.myfiles/com.sec.android.app.myfiles.external.ui.MainActivity
+adb shell am start  \
+    com.sec.android.app.myfiles/com.sec.android.app.myfiles.external.ui.MainActivity
 ```
 
 #### Launs Android Settings, connections
@@ -1879,70 +2170,92 @@ adb shell am start com.android.settings/com.android.settings.SubSettings
 ```
 ##### Open Projectmenu (Huawei only)
 ```bash
-adb shell am start com.huawei.android.projectmenu/com.huawei.android.projectmenu.ProjectMenuActivity
+adb shell am start  \
+    com.huawei.android.projectmenu/com.huawei.android.projectmenu.ProjectMenuActivity
 ```
 
 #### Make Demo Call   
 
-*** Establishes a fake Bluetooth connection to Dialer and must be called first to enable access to all call-related commands.
+Establishes a fake Bluetooth connection to Dialer and 
+must be called first to enable access to all call-related commands.
 
-##### To connect a device
+##### Connect to device 
 
 ```bash
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "connect" 
 ```
 
-##### Place an outgoing call
+##### Place the outgoing call
 
 ```bash
- am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "addCall" --es "id" "4085524874"  
+ am broadcast \
+    -a com.android.car.dialer.intent.action.adb \
+    --es "action" "addCall" \
+    --es "id" "4085524874"  
 ```
 
-##### Receive an incoming call      
+##### Receive the incoming call      
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "rcvCall" --es "id" "4085524874"        
+adb shell am broadcast  \
+    -a com.android.car.dialer.intent.action.adb  \
+    --es "action" "rcvCall" --es "id" "4085524874"        
 ```
 
-##### End a call
+##### End the current call
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "endCall" --es "id" "4085524874"        
+adb shell am broadcast  \
+    -a com.android.car.dialer.intent.action.adb  \
+    --es "action" "endCall"  \
+    --es "id" "4085524874"        
 ```
 
 ##### Hold the current call 
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "holdCall"                     
+adb shell am broadcast  \
+    -a com.android.car.dialer.intent.action.adb  \
+    --es "action" "holdCall"                     
 ```
 
 ##### Unhold the current call
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
+adb shell am broadcast  \
+    -a com.android.car.dialer.intent.action.adb  \
+    --es "action" "unholdCall"                            
 ```
 
 ##### Merge calls
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "unholdCall"                            
+adb shell am broadcast  \
+    -a com.android.car.dialer.intent.action.adb  \
+    --es "action" "unholdCall"                            
 ```
 
 ##### Clear all calls, To remove all calls in the call list:
 
 ```bash
-adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "clearAll"                              
+adb shell am broadcast  \
+    -a com.android.car.dialer.intent.action.adb  \
+    --es "action" "clearAll"                              
 ```
 
 ##### Press home button via intent and print status info
 
 ```bash
-adb shell am start -W -c android.intent.category.HOME -a android.intent.action.MAIN
+adb shell am start  \
+    -W -c android.intent.category.HOME  \
+    -a android.intent.action.MAIN
 ```
 
 ```
-Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] }
-Warning: Activity not started, intent has been delivered to currently running top-most instance.
+Starting: Intent { act=android.intent.action.MAIN 
+    cat=[android.intent.category.HOME] }
+Warning: Activity not started, intent has been 
+delivered to currently running top-most instance.
 Status: ok
 LaunchState: UNKNOWN (0)
 Activity: com.sec.android.app.launcher/com.android.launcher3.uioverrides.QuickstepLauncher
@@ -1979,6 +2292,33 @@ cmd appops set <packagename> READ_CLIPBOARD allow
 ```
 
 
+## ADB <small>clipboard</small>
+
+![Good Resource](https://www.smartspate.com/how-to-copy-text-from-the-clipboard-to-android-devices/)
+
+* Different way to control clipboard, paste/copy mode
+
+##### Paste clipboard
+```bash
+adb shell input kjeyevent PASTE
+```
+##### Paste clipboard
+```bash
+adb shell input keyevent 279
+```
+##### Paste clipboard (OLD DEVICES ONLY)
+```bash
+service call clipboard 1 
+```
+##### Set Application With Read Permissions for Clipboard
+```bash
+adb cmd appops set com.bankid.bus READ_CLIPBOARD allow  
+```
+##### Add Text To Clipboard
+```bash
+am broadcast -a clipper.set -e text "text"
+```
+
 ## ADB <small>acpi</small>## ADB <small>acpi</small>
 
 ##### Print Battery Percentage
@@ -2005,7 +2345,8 @@ adb shell acip -V
 
 ##### Enable Device Admin
 ```bash
-adb shell dpm set-device-owner com.package.name/.DeviceAdminReceiver
+adb shell dpm set-device-owner \
+    com.package.name/.DeviceAdminReceiver
 ```
 ## ADB <small>service</small>
 
@@ -2029,30 +2370,50 @@ adb shell service call statusbar 2
 
 ##### Print IMEI - Example 1
 ```bash
-adb shell service call iphonesubinfo 1| cut -d "'" -f2| grep -Eo '[0-9]'| xargs| sed 's/\ //g'  
+adb shell service call iphonesubinfo 1 \
+    |cut -d "'" -f2 \
+    |grep -Eo '[0-9]'\
+    |xargs| sed 's/\ //g'  
 ```
 ##### Print IMEI - Example 2
 ```bash
-adb shell service call iphonesubinfo 3 i32 1 | grep -oE '[0-9a-f]{8} ' | while read hex; do echo -ne "\u${hex:4:4}\u${hex:0:4}"; done; echo          
+adb shell service call iphonesubinfo 3 i32 1 \
+|grep -oE '[0-9a-f]{8} ' \
+    | while read hex; do 
+         echo -ne "\u${hex:4:4}\u${hex:0:4}"; 
+       done; 
+         echo          
 ```
 ##### Print IMEI - Example 3
 ```bash
-adb shell echo "[device.imei]: [$(service call iphonesubinfo 1 | awk -F "'" '{print $2}' | sed '1 d'| tr -d '\n' | tr -d '.' | tr -d ' ')]"
+adb shell echo "[device.imei]: [$(service call iphonesubinfo 1 \
+    | awk -F "'" '{print $2}' \
+    | sed '1 d' \
+    | tr -d '\n' \
+    | tr -d '.' \
+    | tr -d ' ')]"
 ```
 ##### Print IMEI - Example 4
 
 ```bash
-adb shell service call iphonesubinfo 1 | awk -F"'" 'NR>1 { gsub(/\./,"",$2); imei=imei $2 } END {print imei}' 
+adb shell service call iphonesubinfo 1 \
+    |awk -F"'" 'NR>1 { gsub(/\./,"",$2); imei=imei $2 } END {print imei}' 
 ```
 ##### Print IMEI - Example 5 
 
 ```bash
-adb shell service call iphonesubinfo 1 | cut -c 52-66 | tr -d '.[:space:]'"
+adb shell service call iphonesubinfo 1 \
+    |cut -c 52-66 \
+    |tr -d '.[:space:]'"
 ```
 ##### Print IMEI - Example 6
      
 ```bash
-adb shell service call iphonesubinfo 1 | awk -F "'" '{print }' | sed '1 d' | tr -d '.' | awk '{print}' ORS=
+adb shell service call iphonesubinfo 1 \
+    |awk -F "'" '{print }' \
+    |sed '1 d' \
+    |tr -d '.' \
+    |awk '{print}' ORS=
 ```
 
 #### Slot 2
@@ -2062,14 +2423,23 @@ Some devices has 2 sim card slot, for print the second simcards imei use below:
 * Print IMEI - Slot 2
 
 ```bash
-adbb shell service call iphonesubinfo 3 i32 2 | grep -oE '[0-9a-f]{8} ' | while read hex; do echo -ne "\u${hex:4:4}\u${hex:0:4}"; done; echo       
+adbb shell service call iphonesubinfo 3 i32 2 \ 
+    |grep -oE '[0-9a-f]{8} ' \
+    |while read hex; do 
+        echo -ne "\u${hex:4:4}\u${hex:0:4}"; 
+    done; echo       
 ```    
 ## ADB <small>settings</small>
 
 ##### List how many times we booted device:
 
 ```bash
-adb shell settings list global|grep "boot_count="|cut -d= -f2|head -n 1|xargs echo "Booted:"|sed 's/$/ times/g'
+adb shell settings list global \
+    |grep "boot_count=" \
+    |cut -d= -f2 \
+    |head -n 1 \
+    |xargs echo "Booted:" \
+    |sed 's/$/ times/g'
 ```
 ##### Hide Status bar
 
@@ -2096,10 +2466,12 @@ adb shell settings put global policy_control null*
 * Examples to modify the behavior when Enterprise Browser is in the foreground: 
 
 ```bash
-adb shell settings put global policy_control immersive.full=com.honeywell.enterprisebrowser
+adb shell settings put global policy_control  \
+    immersive.full=com.honeywell.enterprisebrowser
 ```
 ```bash
-adb shell settings put global policy_control immersive.navigation=com.honeywell.enterprisebrowser
+adb shell settings put global policy_control \
+    immersive.navigation=com.honeywell.enterprisebrowser
 ```
 ```bash
 adb shell settings put global policy_control immersive.status=com.honeywell.enterprisebrowser
@@ -2109,157 +2481,212 @@ adb shell settings put global policy_control immersive.status=com.honeywell.ente
 ##### Trick device that setup already has been done (FRP Bypassing)
 
 ```bash
-adb shellcontent insert --uri content://settings/secure \
-    --bind name:s:user_setup_complete --bind value:s:1
+adb shellcontent insert \
+    --uri content://settings/secure \
+    --bind name:s:user_setup_complete \
+    --bind value:s:1
 
-adb shell am start -n com.google.android.gsf.login/
-adb shell am start -n com.google.android.gsf.login.LoginActivity
+adb shell am start \
+    -n com.google.android.gsf.login/
+
+adb shell am start \
+    -n com.google.android.gsf.login.LoginActivity
 ```
 
 ##### Global/Settings/Secure
 
 ```bash
-adb shell content query --uri content://settings/global
+adb shell content query \
+    --uri content://settings/global
 
-adb shell content query --uri content://settings/settings
+adb shell content query \
+    --uri content://settings/settings
 
-adb shell content query --uri content://settings/seure
+adb shell content query \
+    --uri content://settings/seure
 ```
 ##### Print files for all applications
 ```bash
-adb shell content query --uri content://media/external/file --projection _data
+adb shell content query  \
+    --uri content://media/external/file  \
+    --projection _data
 ```
-##### Select "name" and "value" columns from secure settings where "name" is equal to "new_setting" and sort the result by name in ascending order
+##### Query secure settings 
+
+Select "name" and "value" columns from secure settings where "name" is equal to "new_setting" and sort the result by name in ascending order
 ```bash
-adb shell content query --uri content://settings/secure --projection name:value
+adb shell content query  \
+    --uri content://settings/secure  \
+    --projection name:value
 ```
 ##### Remove "new_setting" secure setting.
 ```bash
-adb shell content delete --uri content://settings/secure --where "name='new_setting'"
+adb shell content delete  \
+    --uri content://settings/secure \
+    --where "name='new_setting'"
 ```
 ##### Download current ringtone and play on PC via ffplay: 
 
 ```bash
-content read --uri content://settings/system/ringtone_cache' > a.ogg|xargs ffplay a.ogg
+content read  \
+    --uri content://settings/system/ringtone_cache' > a.ogg  \
+    |xargs ffplay a.ogg
 ```
 
 ##### Various ways to print contacts
 
 ```bash
-adb shell content query --uri content://contacts/phones/  --projection display_name:number:notes 
+adb shell content query  \
+    --uri content://contacts/phones/   \
+    --projection display_name:number:notes 
 ```
 ```bash
-adb shell content query --uri content://com.android.contacts/data --projection display_name:data1:data4:contact_id
+adb shell content query  \
+--uri content://com.android.contacts/data  \
+--projection display_name:data1:data4:contact_id
 ```
 ```bash
-adb shell content query --uri content://contacts/people/
+adb shell content query  \
+    --uri content://contacts/people/
 ```
 ##### Print Contacts Phone Numbers:
 
 ```bash
-adb shell content query --uri content://contacts/phones/
+adb shell content query  \
+    --uri content://contacts/phones/
 ```
 ##### Print Contacts Added In Groups:
 
 ```bash
-adb shell content query --uri content://contacts/groups/
+adb shell content query  \
+    --uri content://contacts/groups/
 ```
 ##### Print Group Mmembership:
 
 ```bash
-adb shell content query --uri content://contacts/groupmembership/
+adb shell content query  \
+    --uri content://contacts/groupmembership/
 ```
 ##### Print organiztations: 
 
 ```bash
-adb shell content query --uri content://contacts/organizations/
+adb shell content query  \
+    --uri content://contacts/organizations/
 ```
 ##### Print Call Logs
 
 ```bash
-adb shell content query --uri content://call_log/calls
+adb shell content query  \ 
+    --uri content://call_log/calls
 ```
 ##### Print text from SMS sections
 
 ```bash
-adb shell content query --uri content://sms/conversations
+adb shell content query  \
+    --uri content://sms/conversations
 ```
 
 ```bash
-adb shell content query --uri content://sms/conversations
+adb shell content query  \
+    --uri content://sms/conversations
 ```
 
 ```bash
-adb shell content query --uri content://sms/draft
+adb shell content query  \
+    --uri content://sms/draft
 ```
 
 ```bash
-adb shell content query --uri content://sms/inbox
+adb shell content query  \
+    --uri content://sms/inbox
 ```
 
 ```bash
-adb shell content query --uri content://sms/outbox
+adb shell content query  \
+    --uri content://sms/outbox
 ```
 
 ```bash
-adb shell content query --uri content://sms/sent
+adb shell content query  \
+    --uri content://sms/sent
 ```
 
 ##### Print text from MMS sections
 
 ```bash
-adb shell content query --uri content://mms
+adb shell content query  \
+    --uri content://mms
 ```
 
 ```bash
-adb shell content query --uri content://mms/inbox
+adb shell content query  \
+    --uri content://mms/inbox
 ```
 
 ```bash
-adb shell content query --uri content://mms/outbox
+adb shell content query  \
+    --uri  content://mms/outbox
 ```
 
 ```bash
-adb shell content query --uri content://mms/part
+adb shell content query  \
+    --uri  content://mms/part
 ```
 
 ```bash
-adb shell content query --uri content://mms/sent
+adb shell content query  \
+    --uri  content://mms/sent
 ```
 
 ```bash
-adb shell content query --uri content://mms-sms/conversations
+adb shell content query  \
+    --uri  content://mms-sms/conversations
 ```
 
 ```bash
-adb shell content query --uri content://mms-sms/draft
+adb shell content query  \
+    --uri  content://mms-sms/draft
 ```
 
 ```bash
-adb shell content query --uri content://mms-sms/locked
+adb shell content query  \
+    --uri  content://mms-sms/locked
 ```
 ```bash
-adb shell content query --uri content://mms-sms/search
+adb shell content query  \
+    --uri  content://mms-sms/search
 ```
 ##### Auto rotation on
 
 ```bash
-adb shell content insert –uri content://settings/system –bind name:s:accelerometer_rotation –bind value:i:1
+adb shell content insert \
+    --uri content://settings/system \
+    --bind name:s:accelerometer_rotation \
+    --bind value:i:1
 ```
 ##### Auto rotation off
     
 ```bash
-adb shell content insert –uri content://settings/system –bind name:s:accelerometer_rotation –bind value:i:0
+adb shell content insert \
+    --uri content://settings/system \
+    --bind name:s:accelerometer_rotation \
+    --bind value:i:0
 ```
 ##### Rotate to landscape
 
 ```bash
-adb shell content insert —uri content://settings/system –bind name:s:user_rotation –bind value:i:1
+adb shell content insert \
+    --uri content://settings/system \  
+    --bind name:s:user_rotation \
+    --bind value:i:1
 ```
 ##### Rotate portrait
 
 ```bash
-adb shell content insert –uri content://settings/system –bind name:s:user_rotation –bind value:i:0
+adb shell content insert \
+    --uri content://settings/system \
+    --bind name:s:user_rotation \
+    --bind value:i:0
 ```
 ## ADB <small>input</small>
      
@@ -2312,7 +2739,7 @@ adb shell getprop ro.product.cpu.abi
 
 ##### Get info if OEM Unlock is Allowed
 
-```ini
+```
 1 = Enabled
 0 = Disabled
 ```
@@ -2390,9 +2817,7 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias your_alias
 monkey -p com.example.myapp -v 10000 
 ```
 
-* Example Output
-
-```ini
+```
 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity
 com.google.android.googlequicksearchbox/.SearchActivity
 com.google.android.apps.docs.editors.docs/com.google.android.apps.docs.app.NewMainProxyActivity
@@ -2407,8 +2832,7 @@ com.android.vending/.AssetBrowserActivity
 ##### All previous commands is stored in
 
 ```sh
-/data/user_de/0/com.android.providers.telephony/Log/FileLog0.log
-z3s:/ # cat /data/user_de/0/com.android.providers.telephony/Log/FileLog0.log                               
+/data/user_de/0/com.android.providers.telephony/Log/FileLog0.log          
 ```
 ```                                                                                                                                
 06-06 18:17:04.084 TP/MSP(27290): u:content://mms-sms/selected-conversations?type=all&multipleThreadIds=0, caller:com.samsung.android.messaging
@@ -2428,7 +2852,9 @@ z3s:/ # cat /data/user_de/0/com.android.providers.telephony/Log/FileLog0.log
 
 #### Carrier info
 
+```bash
 cat /data/user_de/0/com.android.providers.telephony/files/carrierconfig-com.android
+```
 
 ##### Read Lock Settings: 
 
@@ -2455,9 +2881,7 @@ sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephon
 ```sh
 sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select * * from siminfo'
 ```
-
-Example Output
-```ini
+```
 icc_id = 8946209802SSSSSSSSS
 card_id = 8946209802SSSSSSSSS
 display_name = CARD
@@ -2565,12 +2989,13 @@ done
 ##### Print uptime for your device by days + time
 
 ```sh
-TZ=UTC date -d@$(cut -d\  -f1 /proc/uptime) +'%j %T' | awk '{print $1-1"d",$2}'
+TZ=UTC date -d@$(cut -d\  -f1 /proc/uptime) +'%j %T' \
+    |awk '{print $1-1"d",$2}'
 ```
 
 ## Android <small>paths</small>
 
-```ini
+```
 /data/ssh
 /data/adb/magisk
 /data/data/<package>/databases (app databases)
@@ -2703,7 +3128,7 @@ screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
 
 ##### Gentoo Wiki 
 
-* [Gentoo Wiki - ADB](https://wiki.gentoo.org/wiki/Android/adb) (__Maintained by wuseman__)
+* [Gentoo Wiki - ADB](https://wiki.gentoo.org/wiki/Android/adb)
 
 ##### ADB Shell
 
@@ -2735,6 +3160,4 @@ screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
 ## Wiki <small>License</small>
 
 Android Nr1 nu wiki is licensed under the GNU General Public License v3.0 - See the [LICENSE.md](LICENSE.md) file for details
-
-- Happy Hacking!
 
