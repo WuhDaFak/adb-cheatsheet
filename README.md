@@ -35,6 +35,8 @@ All commands that require root will have (Root_Required) in descriptionn.
 
 ## Awesome Aliases For <small>ADB</small>
 
+Copy and paste for add below aliases in ~/.bashrc
+
 ```bash
 cat <<! > ~/.bashrc
 ##### Aliases for ADB
@@ -42,6 +44,7 @@ alias startintent="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X sh
 alias apkinstall="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X install -r $1"
 alias rmapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X uninstall $1"
 alias clearapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell pm clear $1"
+!
 ```
 
 ## Download Android™ <small>Google Account Manager</small>
