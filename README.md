@@ -63,8 +63,8 @@ alias clearapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell
 
 ## Open Android™ <small>Default Applications</small>
   
-You must visit ![https://wuseman.github.io/adb-cheatsheet/](https://wuseman.github.io/adb-cheatsheet/) for clickable buttons
- 
+You must visit [https://wuseman.github.io/adb-cheatsheet/](https://wuseman.github.io/adb-cheatsheet/) to be able to open buttons
+
 * [Click to Open ADB Settings](intent://com.sec.android.app.modemui.activities.USB.settings/#Intent;scheme=android-app;end)
 * [Click to Open - Device Set Screen Lock](intent://com.google.android.gms/#Intent;scheme=promote_smartlock_scheme;end)
 * [Click to Open - Device Settings](intent://com.android.settings/#Intent;scheme=android-app;end)
