@@ -2158,15 +2158,15 @@ adb shell am start -a android.intent.action.INSERT \
     -t vnd.android.cursor.dir/contact \
     -e name 'wuseman' \
     -e phone '+467777701'  \
-    -e email 'wuseman@nr1.nu' 
+    -e email 'wuseman@nr1.nu' \
+    -e postal 'Street 10, New York'
 ```
 ##### For press save via shell
 
-    adb shell input keyevent 4
-    adb shell input keyevent 4 
-```
-
 ```bash
+adb shell input keyevent 4
+adb shell input keyevent 4 
+```
 
 #### Set alarm
 adb shell dumpsys alarm
@@ -2175,7 +2175,7 @@ adb shell dumpsys alarm
 adb shell am start -a android.intent.action.INSERT \
     -t vnd.android.cursor.dir/contact \
     -e name 'wuseman' \
-    -e phone '+4672777691'  \
+    -e phone '+46728999329'  \
     -e email 'wuseman@nr1.nu' 
 
 #### Open dialer
