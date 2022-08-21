@@ -408,10 +408,19 @@ adb exec-out screenrecord \
 
 #### Network Analyze 
 
-Sniff your device network and SMS traffic via Wireshark on your PC
+#### Sniff your device network and SMS traffic via Wireshark on your PC
 
+Via Shell
+```bash
+adb shell su -c tcpdump -nn -i wlan0 -U -s0 -w - \
+    'not port 5555' \
+    |wireshark -k -i -
+```
+
+Via exec-out
 ```sh
-adb exec-out "tcpdump -i any -U -w - 2>/dev/null" | wireshark -k -S -i -
+adb exec-out "su -c tcpdump -i any -U -w - 2>/dev/null" \
+    |wireshark -k -S -i -
 ```
 
 ## ADB <small>reboot</small>
@@ -441,7 +450,8 @@ adb reboot fastboot
 ##### Set date
 
 ```bash
-adb shell date MMDDYYYY.XX;am broadcast -a android.intent.action.TIME_SET
+adb shell date MMDDYYYY.XX;am broadcast \
+    -a android.intent.action.TIME_SET
 ```
 
 ## ADB <small>cmd</small>
@@ -462,47 +472,65 @@ adb shell cmd lock_settings set-resume-on-reboot-provider-package <package_name>
 ```
 ###### Removes cached unified challenge for the managed profile.
 ```sh
-adb shell cmd lock_settings remove-cache --user 0 
+adb shell cmd lock_settings remove-cache \
+    --user 0 
 ```
 ###### Verifies the lock credentials.
 ```sh
-adb shell cmd lock_settings verify --old 1234 --user 0 
+adb shell cmd lock_settings verify \
+    --old 1234 --user 0 
 ```
 ###### Clears the lock credentials.
 ```sh
-adb shell cmd lock_settings clear --old 1234 --user 0 
+adb shell cmd lock_settings clear \
+    --old 1234 --user 0 
 ```
 ###### Enables / disables synthetic password.
 ```sh
-adb shell cmd lock_settings sp --old 1234 --user 0  <1|0>
+adb shell cmd lock_settings sp \
+    --old 1234 \
+    --user 0  <1|0>
 ```
 ###### Gets whether synthetic password is enabled.
 ```sh
-adb shell cmd lock_settings sp --old 1234 --user 0 
+adb shell cmd lock_settings sp \
+    --old 1234 \
+    --user 0 
 ```
 ##### Sets the lock screen as password, using the given PASSOWRD to unlock.
 ```sh
-adb shell cmd lock_settings set-password --old 1234 --user 0  <PASSWORD>
+adb shell cmd lock_settings set-password \
+    --old 1234 \
+    --user 0 'newPassword`
 ```
 ###### Sets the lock screen as PIN, using the given PIN to unlock.
 ```sh
-adb shell cmd lock_settings set-pin --old 1234 --user 0  <PIN>
+adb shell cmd lock_settings set-pin \
+    --old 1234 \
+    --user 0 `newPin`
 ```
 ###### Sets the lock screen as pattern, using the given PATTERN to unlock.
 ```sh
-adb shell cmd lock_settings set-pattern --old 1234 --user 0  <PATTERN>
+adb shell cmd lock_settings set-pattern \
+    --old 1234 \
+    --user 0  `newPattern`
 ```
 ###### When true, disables lock screen.
 ```sh
-adb shell cmd lock_settings set-disabled --old 1234 --user 0  <true|false>
-```
+adb shell cmd lock_settings set-disabled \
+    --old 1234 \
+    --user 0  `true|false`
+    ```
 ###### Checks whether lock screen is disabled.
 ```sh
-adb shell cmd lock_settings get-disabled --old 1234 --user 0 
+adb shell cmd lock_settings get-disabled \
+    --old 1234 \
+    --user 0 
 ```
 
 ## cmd, testharness      
-```                                                                                                                                                                                                    
+
+```    
 About:
   Test Harness Mode is a mode that the device can be placed in to prepare
   the device for running UI tests. The device is placed into this mode by
@@ -538,15 +566,21 @@ adb shell cmd stop
 ```bash
 setprop libc.debug.malloc.program statsd 
 ```
+
 ```bash
 setprop libc.debug.malloc.options backtrace 
 ```
+
 ```bash
 start
 adb shell cmd stats print-stats
 ```
 
 ##### Send a broadcast that triggers the subscriber to fetch metrics.
+```bash
+adb shell cmd stats send-broadcast `uid` `name`
+```
+
 ```
  cmd stats send-broadcast [UID] NAME
 
@@ -1937,15 +1971,11 @@ adb shell am start  \
   # Samsung Browser:        com.sec.android.sbrowser) 
 ```
 
-##### Print Activities:
+##### Open Camera in Photo Mode
 ```bash
-adb shell am start -a com.android.settings/.wifi.CaptivePortalWebViewActivity
+adb shell am start \
+    -a android.media.action.IMAGE_CAPTURE
 ```
-##### Open Camera in Photo mode
-```bash
-adb shell am start -a android.media.action.IMAGE_CAPTURE
-```
-
 ##### Open Camera in Photo mode and take a picture
 ```bash
 adb shell am start -a android.media.action.IMAGE_CAPTURE
@@ -1968,10 +1998,10 @@ adb shell am start -a android.intent.action.SET_WALLPAPER
 ```
 
 ##### Open any URL in default browser
-
 ```bash
-adb shell am start -a android.intent.action.VIEW  \
-    -d https://github.com/wuseman
+adb shell am start \
+    -a android.intent.action.VIEW  \
+    -d https://www.nr1.nu
 ```
 
 ##### Open Google Maps with fixed coordinates
@@ -1988,26 +2018,31 @@ adb shell am set-inactive <packageName> false
 
 ##### Enabling Night Mode (If Supported)
 ```bash
-adb shell am start --ez show_night_mode true  \
+adb shell am start \
+    --ez show_night_mode true  \
     com.android.systemui/.tuner.TunerActivity
 ```
 
 ##### Start facebook application inbox by using URI
 ```bash
-adb shell am start -a android.intent.action.VIEW  \
+adb shell am start \
+    -a android.intent.action.VIEW  \
     -d facebook://facebook.com/inbox
 ```
 
 ##### Open a vcard file from sdcard (will open contacts app)
 ```bash
-adb shell am start -a android.intent.action.VIEW  \
-    -d file:///sdcard/me.vcard -t text/x-vcard
+adb shell am start \
+    -a android.intent.action.VIEW  \
+    -d file:///sdcard/me.vcard \
+    -t text/x-vcard
 ```
 
 ##### Open an application to get content
 ```bash
 adb shell am start  \
-    -a android.intent.action.GET_CONTENT -t image/jpeg
+    -a android.intent.action.GET_CONTENT \
+    -t image/jpeg
 ```
 ##### There is several ways to send a SMS via AM, here is just one of several ways:
 ```bash
@@ -2526,7 +2561,7 @@ Some devices has 2 sim card slot, for print the second simcards imei use below:
 * Print IMEI - Slot 2
 
 ```bash
-adbb shell service call iphonesubinfo 3 i32 2 \ 
+adb shell service call iphonesubinfo 3 i32 2 \ 
     |grep -oE '[0-9a-f]{8} ' \
     |while read hex; do 
         echo -ne "\u${hex:4:4}\u${hex:0:4}"; 
