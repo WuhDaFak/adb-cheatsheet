@@ -2149,15 +2149,12 @@ adb shell am start -a android.intent.action.INSERT \
     -e email 'wuseman@nr1.nu' \
     -e postal 'Street 10, New York'
 ```
-##### For press save via shell
+##### For press save contact via shell from above command 
 
 ```bash
 adb shell input keyevent 4
 adb shell input keyevent 4 
 ```
-
-#### Set alarm
-adb shell dumpsys alarm
 
 ```bash
 adb shell am start -a android.intent.action.INSERT \
@@ -2171,11 +2168,9 @@ adb shell am start -a android.intent.action.INSERT \
 adb shell am start com.samsung.android.dialer/.DialtactsActivity
 ```
 #### Launch Launcher Activitíes
-
 ```bash
 adb shell am start com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity
 ```
-
 #### Launch homescreen at first screen
 ```bash
 adb shell am start \
@@ -2183,13 +2178,11 @@ adb shell am start \
 adb shell am start \
     com.sec.android.app.launcher/.activities.LauncherActivity
 ```
-
 #### Launch all open apps in launcher
 ```bash
 adb shell am start  \
     com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity
 ```
-
 ## Launch messenger default settings
 ```bash
 adb shell am start  \
@@ -2239,7 +2232,6 @@ Establishes a fake Bluetooth connection to Dialer and
 must be called first to enable access to all call-related commands.
 
 ##### Connect to device 
-
 ```bash
 adb shell am broadcast -a com.android.car.dialer.intent.action.adb --es "action" "connect" 
 ```
