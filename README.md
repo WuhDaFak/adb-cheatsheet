@@ -2140,18 +2140,6 @@ adb shell input keyevent KEYCODE_BRIGHTNESS_UP
 adb shell input keyevent KEYCODE_BUTTON_SELECT
 ```
 
-## Add Contact
-
-#### Add a Contact
-```bash
-adb shell am start -a android.intent.action.INSERT \
-    -t vnd.android.cursor.dir/contact \
-    -e name "$(dialog --stdout --inputbox 'wuseman' 0 0)" \
-    -e postal "$(dialog --stdout --inputbox 'Postal Address' 0 0)" \
-    -e phone "$(dialog --stdout --inputbox 'Phone Number' 0 0)" \
-    -e email "$(dialog --stdout --inputbox 'Email' 0 0)"
-```
-
 ##### Add a Contact, fill info and press save on device
 ```bash
 adb shell am start -a android.intent.action.INSERT \
