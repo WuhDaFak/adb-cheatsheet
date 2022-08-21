@@ -2612,7 +2612,8 @@ adb shell settings put global policy_control \
     immersive.navigation=com.honeywell.enterprisebrowser
 ```
 ```bash
-adb shell settings put global policy_control immersive.status=com.honeywell.enterprisebrowser
+adb shell settings put global policy_control \
+    immersive.status=com.honeywell.enterprisebrowser
 ```
 ## ADB <small>content</small>
 
@@ -3164,31 +3165,24 @@ fi
 
 #### Bypass Google Pay Block for Rooted Devices
 
-##### Stop wallnetfcrel
-
 ```bash
-adb shell am force-stop /data/data/com.google.android.apps.walletnfcrel
-```
+adb shell am force-stop \
+    /data/data/com.google.android.apps.walletnfcrel
 
-##### Hide root for Google apps:
-
-```sh     
+## Hide root for Google applications:
 for google_apps in $(cmd package list packages|grep -i com.google |cut -d: -f2); do 
     magiskhide add ${google_apps}; 
 done    
+
+## Change permissions on dg.db to read-and-write:
+su sh -c chmod 0777 /data/data/com.google.android.gms/databases/dg.db
+
+# Now change permissions on dg.db to 0444
+chmod 0444 /data/data/com.google.android.gms/databases/dg.db
 ```
 
-##### Change permissions on dg.db to read-and-write:
-     
-     su sh -c chmod 0777 /data/data/com.google.android.gms/databases/dg.db
 
-##### Now change permissions on dg.db to 0444
-     
-     chmod 0444 /data/data/com.google.android.gms/databases/dg.db
-
-Clear cache for your Google Pay application and have fun! :)
-
-##### Grab all file extensions of a kind and download to PC
+##### Grab all file extensions of a kind and pull them all to your pc
 
 ```sh
 for i in `"su -c find /data /system -name '*.key'"`; do 
@@ -3203,8 +3197,6 @@ Find out happens when we remove below file
 ```sh
 rm /data/misc/bootstat/boot_complete?
 ```
-
-
 ## Android <small>magisk</small> (updated version - zygisk - comming soon)
 
 ..... will be added very soon.
@@ -3225,9 +3217,10 @@ rm /data/misc/bootstat/boot_complete?
     
 ## ADB <small>commands sorted by brand</small>
 
-##### Samsung
+Samsung
 
-##### Bypass Samsung Health block on rooted samsung devices (Old Method, wont work on latest updates from samsung health)
+Bypass Samsung Health block on rooted samsung devices 
+(Old Method, wont work on latest updates from samsung health)
 
 ```bash
 mount -o rw,remount /system/etc/mkshrc
@@ -3243,16 +3236,16 @@ printf '%s\n' \
 ``` 
 ## ADB <small>screencap</small>
 ```bash  
- screencap /storage/emulated/0/Pictures/screenshot.png
-  ```
+adb shell screencap /storage/emulated/0/Pictures/screenshot.png
+```
 
 ## ADB <small>screenrecord</small>
 
-```absh
-screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
+```bash
+adb shell screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
 ```
 
-## Android Wikis <small>FRP Bypass</small>
+## Android FRP BYpass by <small>wuseman</small>
 
 * [wuseman - Samsung Galaxy A10](https://github.com/wuseman/Samsung_Galaxy.A10_FRP.Bypass)
 * [wuseman - Samsung Galaxy A10](https://github.com/wuseman/Samsung_Galaxy.A10_Rooting)
@@ -3264,13 +3257,15 @@ screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
 * [wuseman - Huawei MediaTab T5](https://github.com/wuseman/Huawei_Mediatab-T5-FRP-Bypass_V8.0) 
 * [wuseman - LG G6](https://github.com/wuseman/LG_G6-FRP-Bypass)
 
-## Similiar <small>websites</small>
+## Awesome Resources for <small>ADB</small>
 
-##### Gentoo Wiki 
+For Working with Android devices via commandline 
+
+## Gentoo Wiki 
 
 * [Gentoo Wiki - ADB](https://wiki.gentoo.org/wiki/Android/adb)
 
-##### ADB Shell
+## ADB Shell
 
 * [Android™ Developer - Emulator Console](https://developer.android.com/studio/run/emulator-console)
 * [Android™ Developer - Write your app](https://developer.android.com/studio/write)
@@ -3295,9 +3290,13 @@ screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
 
 ## Wiki <small>author</small>
 
-- wuseman <wuseman@nr1.nu>
+* wuseman [wuseman@nr1.nu](mailto:wuseman@nr1.nu)
 
 ## Wiki <small>License</small>
 
 Android Nr1 nu wiki is licensed under the GNU General Public License v3.0 - See the [LICENSE.md](LICENSE.md) file for details
 
+* Glad you made it until the end of this README, I hope you found something useful here and 
+* now you have taken a step closer to becoming a master in working with androdi debug shell via commandline
+
+// wuseman
