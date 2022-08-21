@@ -967,7 +967,7 @@ com.facebook.katana/.LoginActivity
 
 ## ADB <small>pm</small>
 
-![Contributed to This Gist](https://gist.github.com/Pulimet/5013acf2cd5b28e55036c82c91bd56d8?permalink_comment_id=4273079#gistcomment-4273079)
+[Contributed This Awesome Gist](https://gist.github.com/Pulimet/5013acf2cd5b28e55036c82c91bd56d8?permalink_comment_id=4273079#gistcomment-4273079)
 
 ##### Disable Autoupdate Application Wise
 
@@ -1216,57 +1216,55 @@ adb logcat \
     |vold_prepare_subdirs"
 ```
 
-
-
-
-
-
 ## ADB <small>dumpsys</small>
 
 #### Get a nice output from dumpsys
 ```bash
-adb shell dumpsys -l|sed 's/^ /adb shell dumpsys/g'|sed G
-
+adb shell dumpsys -l \
+    |sed 's/^ /adb shell dumpsys/g;G'
+```
 ##### Get a help cheatsheet fast
-
-adb shell dumpsys -l|sed 's/^ /adb shell dumpsys/g;s/$/ -h/g;G'
-
+```bash
+adb shell dumpsys -l\
+    |sed 's/^ /adb shell dumpsys/g;s/$/ -h/g;G'
+```
 ##### Execute all dumpsys help 
-
-adb shell dumpsys appops  -h|sed 's/--/adb shell --/g'|sed 's/    /### /g'
-
+```bash
+adb shell dumpsys appops  -h \
+    |sed 's/--/adb shell --/g;s/    /### /g' \
+```
 ##### Print this help text
-
+```bash
 adb shell dumpsys appops --op [OP]
-
+```
 ##### Limit output to data associated with the given app op code
-
+```bash
 adb shell dumpsys appops--mode [MODE]
-
+```
 ##### Limit output to data associated with the given app op mode
-
+```bash
 adb shell dumpsys appops--package [PACKAGE]
-
+```
 ##### Limit output to data associated with the given package name
-
+```bash
 adb shell dumpsys appops--attributionTag [attributionTag]
-
+```
 ##### Limit output to data associated with the given attribution tag
-
+```bash
 adb shell dumpsys appops--include-discrete [n]
-
+```
 ##### Include discrete ops limited to n per dimension. Use zero for no limit
-
+```bash
 adb shell dumpsys appops--watchers
-
+```
 ##### Only output the watcher sections
-
+```bash
 adb shell dumpsys appops--history
-
-##### Only output history
+```
+### Only output history
 
 #### Dumpsys Security Stuff stuff
-
+```bash
 adb shell dumpsys android.system.keystore2.IKeystoreService/default 
 adb shell dumpsys android.security.samsungattestation 
 adb shell dumpsys android.security.metrics
@@ -1276,46 +1274,46 @@ adb shell dumpsys android.security.identity
 adb shell dumpsys android.security.compat 
 adb shell dumpsys android.security.authorization 
 adb shell dumpsys android.security.apc 
-
+```
 
 #### Dumpsys powerstats info
-
- adb shell dumpsys powerstats
-
+```bash
+adb shell dumpsys powerstats
+```
 #### Dumpsys power info
-
+```bash
  adb shell dumpsys power
-
+```
 #### Dumpsys Permission Permissions
-
+```bash
 adb shell dumpsys permission
 adb shell dumpsys permission_checker
 adb shell dumpsys permissionmgr
-
-
+```
 #### Dumpsys password policyś
-
+```bash
 adb shell dumpsys password_policy
-
+```
 
 #### Dumpsys Device FeatureS/Perfomance/Tracker/Info etc
-
+```bash
 adb shell dumpsys phone
-
+```
 #### Grep temperatures
-
- adb shell dumpsys thermalservice
-
+```bash
+adb shell dumpsys thermalservice
+```
 #### Dumpsys usagestats for an app
-
+```bash
  adb shell dumpsys usagestats com.bankid.bus
-
+```
 #### Dump current USB state or issue command:
 
 #### Example USB type C port role switch:
 ```bash
 dumpsys usb set-port-roles "default" source device
 ```
+
 #### Example USB type C port simulation with full capabilities:
 ```bash
 dumpsys usb add-port "matrix" dual
@@ -1357,32 +1355,22 @@ dumpsys usb dump-descriptors -dump-tree
 dumpsys usb dump-descriptors -dump-list
 dumpsys usb dump-descriptors -dump-ra
 ```
-
-
-
-
-
 ##### Dumpsys procstats
 ```bash
 adb shell dumpsys procstats
 ```
-
 ##### Dumpsys procstats with full stats
 ```bash
 adb shell dumpsys procstats --full-stats
 ```
-
 ##### Dumpsys procstats csv-mem normal
 ```bash
 adb shell dumpsys procstats --csv-mem norm
 ```
-
-
 ##### Dumpsys Package
 ```bash
 adb shell dumpsys package com.android.chrome
 ```
-
 ##### Dumpsys Activity Help
 ```bash
 adb shell dumpsys perm
@@ -1480,22 +1468,14 @@ adb shell dumpsys activity --proto
 adb shell dumpsys activity --autofill
 ```
 
-
-
-
-
-
-
 ##### Dumpsys Activity Help
 ```bash
 adb shell dumpsys activity recents
 ```
-
 ##### Dumpsys Activity Exit Info
 ```bash
 adb shell dumpsys activity exit-info
 ```
-
 ##### Dumpsys Activity LMK KILLS
 ```bash
 adb shell dumpsys activity lmk
@@ -1507,28 +1487,22 @@ adb shell dumpsys activity lmk
 ```bash
 adb shell dumpsys activity recents
 ```
-
-
 ##### Dumpsys Activity Permissions
 ```bash
 adb shell dumpsys activity top
 ```
-
 ##### Dumpsys Activity
 ```bash
 adb shell dumpsys activity top
 ```
-
 ##### Dumpsys Activity Top
 ```bash
 adb shell dumpsys activity top
 ```
-
 ##### List all active services:
 ```bash
 adb shell dumpsys -l 
 ```
-
 List services on older devices via command below 
 
 ```sh
@@ -1620,7 +1594,6 @@ adb shell dumpsys dumpsys location
 ```sh
 adb shell dumpsys settings
 ```
-
 ```
 _id:225 name:lock_screen_show_notifications pkg:com.android.settings value:1 
 _id:6 name:volume_bluetooth_sco pkg:android value:7 default:7
@@ -1632,12 +1605,10 @@ _id:175 name:call_popup pkg:android value:0 default:0
 _id:59 name:install_non_market_apps pkg:android value:1 default:1
 ```
 ##### Display Contacts On Sim Card
-
 ```bash
 adb shell dumpsys simphonebook
 ```
 ##### Show hardware info as thermal stuff for cpu, gpu and battery
-
 ```sh
 adb shell dumpsys hardware_properties
 ```
@@ -1672,30 +1643,24 @@ adb shell dumpsys \
     |egrep -o "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b"
 ```    
 ##### Print version of a specifik package
-
 ```bash
 adb shell dumpsys dumpsys package com.lge.signboard | grep versionName
     versionName=6.00.170603-0
 ```
-
 ##### Check state for screen and figoure how device was unlcked last time:
 ```sh
 dumpsys  user
 ```
-
 ```
 State: RUNNING_UNLOCKED
 Last logged in fingerprint
 agree Knox Privacy Policy: false
 ```
-
 ##### And for example, you can dump data for all of the running services, dump all data for battery: 
-
 ```bash
 adb shell dumpsys battery
 ```
 ##### Dump stats for your battery:
-
 ```bash
 adb shell dumpsys atterystats 
 ```
@@ -1757,7 +1722,8 @@ Build fingerprint: 'samsung/dreamltexx/dreamlte:9/PPR1.180610.011/G950FXXS5DSF1:
 Bootloader: G950FXXS5DSF1
 Radio: G950FXXS5DSF1
 Network: Comviq
-Linux version 4.4.111-16019454 (dpi@21DHA724) (gcc version 4.9.x 20150123 (prerelease) (GCC) ) #1 SMP PREEMPT Mon Jun 3 20:16:50 KST 2019
+Linux version 4.4.111-16019454 (dpi@21DHA724) (gcc version 4.9.x 20150123 (prerelease) 
+(GCC) ) #1 SMP PREEMPT Mon Jun 3 20:16:50 KST 2019
 Kernel: Command line: (unknown)
 up 0 weeks, 0 days, 16 hours, 21 minutes
 Uptime: Bugreport format version: 2.0
@@ -1769,13 +1735,17 @@ Dumpstate info: id=0 pid=26940 dry_run=0 args=dumpstate -v extra_options=
 
 #### Send simple notification
 ```bash
-adb shell am broadcast -n your.package.name/com.google.firebase.iid.FirebaseInstanceIdReceiver -c your.package.name -a com.google.android.c2dm.intent.RECEIVE"
+adb shell am broadcast \
+    -n your.package.name/com.google.firebase.iid.FirebaseInstanceIdReceiver \
+    -c your.package.name \
+    -a com.google.android.c2dm.intent.RECEIVE"
 ```
 
 #### Send notification
 ```bash
-adb shell am am broadcast -n com.android.google.youtube/com.google.firebase.iid.FirebaseInstanceIdReceiver \
-    -a "com.google.android.c2dm.intent.RECEIVE" --es "title" "Title" --es "body" "Body"
+adb shell am am broadcast \
+    -n com.android.google.youtube/com.google.firebase.iid.FirebaseInstanceIdReceiver \
+    -a "com.google.android.c2dm.intent.RECEIVE" }-es "title" "Title" --es "body" "Body"
 ```
 
 #### How to send push notification locally using ADB without need network connection.
@@ -2038,10 +2008,6 @@ adb shell am start  \
     -a android.settings.APPLICATION_DETAILS_SETTINGS package:<com.package.example>
 ```
 
-
-
-
-
 ## Android™ Input <small>keyevent</small>
 
 ##### Start Calculator via Keyevent
@@ -2114,42 +2080,42 @@ adb shell input keyevent KEYCODE_GRAVE
 ```
 ##### Press Home Button
 ```bash
-adb shell input keyevent  KEYCODE_HOME
+adb shell input keyevent KEYCODE_HOME
 ```
 ##### Press + and - button
 ```bash
-adb shell input keyevent  KEYCODE_MINUS
+adb shell input keyevent KEYCODE_MINUS
 ```
 ```bash
-adb shell input keyevent  KEYCODE_PLUS
+adb shell input keyevent KEYCODE_PLUS
 ```
 ##### Press + in numpad
 ```bash
-adb shell input keyevent  KEYCODE_NUMPAD_ADD
+adb shell input keyevent KEYCODE_NUMPAD_ADD
 ```
 ##### Press * button
 ```bash
-adb shell input keyevent   KEYCODE_NUMPAD_MULTIPLY
+adb shell input keyevent KEYCODE_NUMPAD_MULTIPLY
 ```
 ##### Press serach key
 ```bash
-adb shell input keyevent   KEYCODE_SEARCH
+adb shell input keyevent KEYCODE_SEARCH
 ```
 ##### Open Settings
 ```bash
-adb shell input keyevent   KEYCODE_SETTINGS
+adb shell input keyevent KEYCODE_SETTINGS
 ```
 ##### Press # button
 ```bash
-adb shell input keyevent   KEYCODE_NUMPAD_MULTIPLY
+adb shell input keyevent KEYCODE_NUMPAD_MULTIPLY
 ```
 ##### Start default music app
 ```bash
-adb shell input keyevent  KEYCODE_POUND
+adb shell input keyevent KEYCODE_POUND
 ```
 ##### Mute Volume
 ``` bash
-adb shell input keyevent  KEYCODE_MUTE
+adb shell input keyevent KEYCODE_MUTE
 ```
 ##### Open notification bar and close
 ```bash
@@ -2195,7 +2161,7 @@ adb shell am start -a android.intent.action.INSERT \
 adb shell am start -a android.intent.action.INSERT \
     -t vnd.android.cursor.dir/contact \
     -e name 'wuseman' \
-    -e phone '+4672777691'  \
+    -e phone '+467777701'  \
     -e email 'wuseman@nr1.nu' 
 
 ##### For press save via shell
@@ -2854,12 +2820,12 @@ adb shell getprop ro.product.cpu.abi
 ```
 
 ```sh
-getprop sys.oem_unlock_allowed 
+adb shell getprop sys.oem_unlock_allowed 
 ```
 
 ##### Is System boot completed
 ```bash
-adb shell getprop sys.boot_completed
+adb shell adb shell getprop sys.boot_completed
 ```
 
 ## ADB <small>setprop</small>
