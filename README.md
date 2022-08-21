@@ -1734,7 +1734,7 @@ Dumpstate info: id=0 pid=26940 dry_run=0 args=dumpstate -v extra_options=
 adb shell am broadcast \
     -n your.package.name/com.google.firebase.iid.FirebaseInstanceIdReceiver \
     -c your.package.name \
-    -a com.google.android.c2dm.intent.RECEIVE"
+    -a com.google.android.c2dm.intent.RECEIVE
 ```
 
 #### Send notification
