@@ -1791,52 +1791,83 @@ adb shell am broadcast -a com.android.systemui.demo
 ##### Add a value to default shared preferences.
 
 ```bash
-adb shell am broadcast -a org.example.app.sp.PUT --es key key_name --es value "hello world!"'
+adb shell am broadcast \
+    -a org.example.app.sp.PUT \
+    --es key key_name \
+    --es value "hello world!"'
 ```
 ##### Remove a value to default shared preferences.
 
 ```bash
-adb shell am broadcast -a org.example.app.sp.REMOVE --es key key_name'
+adb shell am broadcast \
+    -a org.example.app.sp.REMOVE \
+    --es key key_name'
 ```
 ##### Clear all default shared preferences.
 
 ```bash
-adb shell am broadcast -a org.example.app.sp.CLEAR --es key key_name'
+adb shell am broadcast \
+    -a org.example.app.sp.CLEAR \
+    --es key key_name'
 ```
 ##### It's also possible to specify shared preferences file.
 
 ```bash
-adb shell am broadcast -a org.example.app.sp.PUT --es name Game --es key level --ei value 10'
+adb shell am broadcast \
+    -a org.example.app.sp.PUT \
+    --es name Game \
+    --es key level \
+    --ei value 10'
 ```
 ##### Play a mp3 track on device
 ```sh
-adb shell am start -a android.intent.action.VIEW -d file:////storage/9A8A-1069/wuseman/ringtones/<mp3_track>.mp3 -t audio/mp3    
+adb shell am start \
+    -a android.intent.action.VIEW \
+    -d file:////storage/9A8A-1069/wuseman/ringtones/<mp3_track>.mp3 
+    -t audio/mp3    
 ```
 ##### Data types
 
 ```bash
-adb shell am broadcast -a org.example.app.sp.PUT --es key string --es value "hello world!"'
+adb shell am broadcast \
+    -a org.example.app.sp.PUT \
+    --es key string \
+    --es value "hello world!"'
 ```
 ```bash
-adb shell am broadcast -a org.example.app.sp.PUT --es key boolean --ez value true'
-```
-
-```bash
-adb shell am broadcast -a org.example.app.sp.PUT --es key float --ef value 3.14159'
-```
-
-```bash
-adb shell am broadcast -a org.example.app.sp.PUT --es key int --ei value 2015'
+adb shell am broadcast \
+    -a org.example.app.sp.PUT \
+    --es key boolean \
+    --ez value true'
 ```
 
 ```bash
-adb shell am broadcast -a org.example.app.sp.PUT --es key long --el value 9223372036854775807'
+adb shell am broadcast \
+    -a org.example.app.sp.PUT \
+    --es key float \
+    --ef value 3.14159'
+```
+
+```bash
+adb shell am broadcast \
+    -a org.example.app.sp.PUT \
+    --es key int \
+    --ei value 2015'
+```
+
+```bash
+adb shell am broadcast \
+    -a org.example.app.sp.PUT \
+    --es key long \
+    --el value 9223372036854775807'
 ```
 
 ##### Restart application process after making changes
 
 ```bash
-aam broadcast -a org.example.app.sp.CLEAR --ez restart true'
+aam broadcast \
+    -a org.example.app.sp.CLEAR \
+    --ez restart true'
 ```
 
 ##### Open Google Camera (Pixel 4)
@@ -1845,36 +1876,57 @@ adb shell am start com.google.android.GoogleCamera
 ```
 ##### Set default preferences for an app:
 ```bash
-adb shell am broadcast -a org.example.app.sp.CLEAR --es key key_name
+adb shell am broadcast \
+    -a org.example.app.sp.CLEAR \
+    --es key key_name
 ```
 
-##### WARNING!! Factory Reset
+##### WARNING!! This will Factory Resetet your device after next reoboot
 ```bash
-adb shell am broadcast -a android.intent.action.MASTER_CLEAR
+adb shell am broadcast \
+    -a android.intent.action.MASTER_CLEAR
+    # reboot # < uncomment this for reboot your device, 
+    # otherwise u will need to reboot manually later
+    # and then it will do a factory reset, you have been warned!
 ```
 
 ##### Open Special Menu
 ```bash
-adb shell am start -a android.intent.action.VIEW \
+adb shell am start \
+    -a android.intent.action.VIEW \
 ```
 
 ##### Open settings:
 ```bash
- am start -n com.android.settings/com.android.settings.Settings
+ am start \
+    -n com.android.settings/com.android.settings.Settings
 ```
 
 ##### Open activity to new APN
 ```bash
  am start -a android.intent.action.INSERT   \
-    content://telephony/carriers  --ei simId 
+    content://telephony/carriers  \
+    --ei simId 
 ```
 
 ##### Open hiden menu (require root)
 ```bash
-su -c "am broadcast -a android.provider.Telephony.SECRET_CODE  \
+adb shell su -c "am broadcast -a android.provider.Telephony.SECRET_CODE  \
     -d android_secret_code://IOTHIDDENMENU"
 ```
 
+##### Open Hidden menu screen: select the entry and select "enable"
+```bash
+adb shell "su -c am broadcast -a android.provider.Telephony.SECRET_CODE -d android_secret_code://HIDDENMENUENABLE"
+```
+### Open internal operation test menu which lets you look at all sorts of interesting and possibly dangerous goodies
+```bash
+adb shell "su -c am broadcast -a android.provider.Telephony.SECRET_CODE -d android_secret_code://IOTHIDDENMENU"
+```
+#### Opens a dialog box followed by another dialog asking for the unlock key code
+```bash
+adb shell "su -c am broadcast -a android.provider.Telephony.SECRET_CODE -d android_secret_code://UNLOCKKERNEL"
+```
 ##### Start prefered webbrowser (remove # for wich you wanna use)
 ```bash
 adb shell am start  \
