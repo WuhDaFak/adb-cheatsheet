@@ -1212,112 +1212,218 @@ adb logcat \
     |LockSettingsService\
     |vold_prepare_subdirs"
 ```
+
+
+
+
+
+
 ## ADB <small>dumpsys</small>
+
+#### Get a nice output from dumpsys
+```bash
+adb shell dumpsys -l|sed 's/^ /adb shell dumpsys/g'|sed G
+
+##### Get a help cheatsheet fast
+
+adb shell dumpsys -l|sed 's/^ /adb shell dumpsys/g;s/$/ -h/g;G'
+
+##### Execute all dumpsys help 
+
+adb shell dumpsys appops  -h|sed 's/--/adb shell --/g'|sed 's/    /### /g'
+
+##### Print this help text
+
+adb shell dumpsys appops --op [OP]
+
+##### Limit output to data associated with the given app op code
+
+adb shell dumpsys appops--mode [MODE]
+
+##### Limit output to data associated with the given app op mode
+
+adb shell dumpsys appops--package [PACKAGE]
+
+##### Limit output to data associated with the given package name
+
+adb shell dumpsys appops--attributionTag [attributionTag]
+
+##### Limit output to data associated with the given attribution tag
+
+adb shell dumpsys appops--include-discrete [n]
+
+##### Include discrete ops limited to n per dimension. Use zero for no limit
+
+adb shell dumpsys appops--watchers
+
+##### Only output the watcher sections
+
+adb shell dumpsys appops--history
+
+##### Only output history
+
+#### Dumpsys Security Stuff stuff
+
+adb shell dumpsys android.system.keystore2.IKeystoreService/default 
+adb shell dumpsys android.security.samsungattestation 
+adb shell dumpsys android.security.metrics
+adb shell dumpsys android.security.maintenance 
+adb shell dumpsys android.security.legacykeystore
+adb shell dumpsys android.security.identity 
+adb shell dumpsys android.security.compat 
+adb shell dumpsys android.security.authorization 
+adb shell dumpsys android.security.apc 
+
+
+#### Dumpsys powerstats info
+
+ adb shell dumpsys powerstats
+
+#### Dumpsys power info
+
+ adb shell dumpsys power
+
+#### Dumpsys Permission Permissions
+
+adb shell dumpsys permission
+adb shell dumpsys permission_checker
+adb shell dumpsys permissionmgr
+
+
+#### Dumpsys password policyś
+
+adb shell dumpsys password_policy
+
+
+#### Dumpsys Device FeatureS/Perfomance/Tracker/Info etc
+
+adb shell dumpsys phone
+
+#### Grep temperatures
+
+ adb shell dumpsys thermalservice
+
+#### Dumpsys usagestats for an app
+
+ adb shell dumpsys usagestats com.bankid.bus
+
+#### Dump current USB state or issue command:
+
+#### Example USB type C port role switch:
+```bash
+dumpsys usb set-port-roles "default" source device
+```
+#### Example USB type C port simulation with full capabilities:
+```bash
+dumpsys usb add-port "matrix" dual
+dumpsys usb connect-port "matrix" ufp? sink? device?
+dumpsys usb ports
+dumpsys usb disconnect-port "matrix"
+dumpsys usb remove-port "matrix"
+dumpsys usb reset
+```
+#### Example USB type C port where only power role can be changed:
+```bash
+dumpsys usb add-port "matrix" dual
+dumpsys usb connect-port "matrix" dfp source? host
+dumpsys usb reset
+```
+#### Example USB OTG port where id pin determines function:
+```bash
+dumpsys usb add-port "matrix" dual
+dumpsys usb connect-port "matrix" dfp source host
+dumpsys usb reset
+```
+#### Example USB device-only port:
+```bash
+dumpsys usb add-port "matrix" ufp
+dumpsys usb connect-port "matrix" ufp sink device
+dumpsys usb reset
+```
+
+#### Example simulate contaminant status:
+```bash
+dumpsys usb add-port "matrix" ufp
+dumpsys usb set-contaminant-status "matrix" true
+dumpsys usb set-contaminant-status "matrix" false
+```
+#### Example USB device descriptors:
+```bash
+dumpsys usb dump-descriptors -dump-short
+dumpsys usb dump-descriptors -dump-tree
+dumpsys usb dump-descriptors -dump-list
+dumpsys usb dump-descriptors -dump-ra
+```
+
+
+
+
+
+##### Dumpsys procstats
+```bash
+adb shell dumpsys procstats
+```
+
+##### Dumpsys procstats with full stats
+```bash
+adb shell dumpsys procstats --full-stats
+```
+
+##### Dumpsys procstats csv-mem normal
+```bash
+adb shell dumpsys procstats --csv-mem norm
+```
+
 
 ##### Dumpsys Package
 ```bash
 adb shell dumpsys package com.android.chrome
 ```
 
-
-
-
-``
-Activity manager dump options:
-  [-a] [-c] [-p PACKAGE] [-h] [WHAT] ...
-  WHAT may be one of:
-    a[ctivities]: activity stack state
-    r[recents]: recent activities state
-    b[roadcasts] [PACKAGE_NAME] [history [-s]]: broadcast state
-    broadcast-stats [PACKAGE_NAME]: aggregated broadcast statistics
-    i[ntents] [PACKAGE_NAME]: pending intent state
-    p[rocesses] [PACKAGE_NAME]: process state
-    o[om]: out of memory management
-    perm[issions]: URI permission grant state
-    prov[iders] [COMP_SPEC ...]: content provider state
-    provider [COMP_SPEC]: provider client-side state
-    s[ervices] [COMP_SPEC ...]: service state
-    allowed-associations: current package association restrictions
-    as[sociations]: tracked app associations
-    exit-info [PACKAGE_NAME]: historical process exit information
-    lmk: stats on low memory killer
-    lru: raw LRU process list
-    binder-proxies: stats on binder objects and IPCs
-    settings: currently applied config settings
-    service [COMP_SPEC]: service client-side state
-    package [PACKAGE_NAME]: all state related to given package
-    all: dump all activities
-    top: dump the top activity
-  WHAT may also be a COMP_SPEC to dump activities.
-  COMP_SPEC may be a component name (com.foo/.myApp),
-    a partial substring in a component name, a
-    hex object identifier.
-  -a: include all available server state.
-  -c: include client state.
-  -p: limit output to given package.
-  --checkin: output checkin format, resetting data.
-  --C: output checkin format, not resetting data.
-  --proto: output dump in protocol buffer format.
-  --autofill: dump just the autofill-related state of an activity
-```
 ##### Dumpsys Activity Help
 ```bash
 adb shell dumpsys perm
 ```
-
 ##### Dumpsys Activity Activities
 ```bash
 adb shell dumpsys a
 ```
-
 ##### Dumpsys Activity Broadcasts
 ```bash
 adb shell dumpsys activity broadcast
 ```
-
 ##### Dumpsys Broadcast Stats
 ```bash
 adb shell dumpsys activity broadcast-stats
 ```
-
 ##### Dumpsys Pending Intent
 ```bash
 adb shell dumpsys activity i
 ```
-
 ##### Dumpsys Activity Processes
 ```bash
 adb shell dumpsys activity p
 ```
-
 ##### Dumpsys Activity Out Of Mem
 ```bash
 adb shell dumpsys activity o
 ```
-
 ##### Dumpsys Activity Services
 ```bash
 adb shell dumpsys activity services
 ```
-
 ##### Dumpsys Activity Asociations
 ```bash
 adb shell dumpsys activity as
 ```
-
-
 ##### Dumpsys Activity LRU Services
 ```bash
 adb shell dumpsys activity lru
 ```
-
-
 ##### Dumpsys Activity LRU Services
 ```bash
 adb shell dumpsys activity lru
 ```
-
-
 ##### Dumpsys Activity binder-proxies stats on binder objects and IPCs
 ```bash
 adb shell dumpsys activity binder-proxies
@@ -2089,7 +2195,7 @@ adb shell am start -a android.intent.action.INSERT \
     -e phone '+4672777691'  \
     -e email 'wuseman@nr1.nu' 
 
-### For press save via shell
+##### For press save via shell
 
     adb shell input keyevent 4
     adb shell input keyevent 4 
