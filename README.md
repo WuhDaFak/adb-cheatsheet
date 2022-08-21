@@ -446,9 +446,9 @@ adb shell date MMDDYYYY.XX;am broadcast -a android.intent.action.TIME_SET
 
 ## ADB <small>cmd</small>
 
-#### Send push notice and message to notification bar
+#### Send notify and push notice to notification bar
 ```bash
-su -lp 2000 -c "cmd notification post -S bigtext \
+adb shell su -lp 2000 -c "cmd notification post -S bigtext \
     -t 'adb pwnz' 'Tag' 'it rly does'"
 ```
 
@@ -672,7 +672,7 @@ adb shell cmd -w wifi set-emergency-callback-mode `enabled|disabled`
 ##### Lists the suggested networks from the app
 
 ```bash
-adb shell cmd -w wifi list-suggestions-from-app <package name>
+adb shell cmd -w wifi list-suggestions-from-app `com.app.example`
 ```
 ##### Lists all suggested networks on this device
  
@@ -684,14 +684,14 @@ adb shell cmd -w wifi list-all-suggestions
 * Queries whether network requests from the app is approved or not.
 
 ```bash
-adb shell cmd -w wifi network-requests-has-user-approved <package name>
+adb shell cmd -w wifi network-requests-has-user-approved `com.app.example`
 ```
 ##### Note: Only 1 such app can be approved from the shell at a time
 
 * Sets whether network requests from the app is approved or not.
 
 ```bash
-adb shell cmd -w wifi network-requests-set-user-approved <package name> yes|no
+adb shell cmd -w wifi network-requests-set-user-approved `com.app.example` yes|no
 ```
 #####  Lists the requested networks added via shell
 
@@ -752,7 +752,7 @@ adb shell cmd -w wifi clear-user-disabled-networks
 
 ```bash
 adb shell cmd -w wifi network-requests-remove-user-approved-access-points \
-    <package name>
+    `com.app.example`
 ```
 ##### Clear the user choice on Imsi protection exemption for carrier
 
@@ -775,13 +775,13 @@ adb shell cmd -w wifi imsi-protection-exemption-set-user-approved-for-carrier \
 ##### Queries whether network suggestions from the app is approved or not.
 
 ```bash
-adb shell cmd -w wifi network-suggestions-has-user-approved <package name>
+adb shell cmd -w wifi network-suggestions-has-user-approved `com.app.example`
 ```
 ##### Sets whether network suggestions from the app is approved or not.
 
 ```bash
 adb shell cmd -w wifi network-suggestions-set-user-approved \
-    <package name> yes|no
+    `com.app.example` yes|no
 ```
 ##### Sets whether low latency mode is forced or left for normal operation.
 
@@ -819,7 +819,7 @@ adb shell cmd -w wifi set-emergency-callback-mode `enabled|disabled`
 ##### Lists the suggested networks from the app
 
 ```bash
-adb shell cmd -w wifi list-suggestions-from-app <package name>
+adb shell cmd -w wifi list-suggestions-from-app `com.app.example`
 ```
 ##### Lists all suggested networks on this device
 
@@ -831,14 +831,14 @@ adb shell cmd -w wifi list-all-suggestions
 Queries whether network requests from the app is approved or not
 
 ```bash
-adb shell cmd -w wifi network-requests-has-user-approved <package name>
+adb shell cmd -w wifi network-requests-has-user-approved `com.app.example`
 ```
 ##### Note: Only 1 such app can be approved from the shell at a time
 
 Sets whether network requests from the app is approved or not.
 
 ```bash
-adb shell cmd -w wifi network-requests-set-user-approved <package name> yes|no
+adb shell cmd -w wifi network-requests-set-user-approved `com.app.example` yes|no
 ```
 ##### Lists the requested networks added via shell
 
@@ -905,7 +905,7 @@ adb shell cmd -w wifi clear-user-disabled-networks
 ##### Removes all user approved network requests for the app.
  
 ```bash
-adb shell cmd -w wifi network-requests-remove-user-approved-access-points <package name>
+adb shell cmd -w wifi network-requests-remove-user-approved-access-points `com.app.example`
 ```
 ##### Clear the user choice on Imsi protection exemption for carrier
  
