@@ -1458,7 +1458,7 @@ adb shell dumpsys activity --checkin
 ##### Dumpsys Activity output checkin format, not resetting data
 ```bash
 adb shell dumpsys activity --C
-
+```
 ##### Dumpsys All Activitys data
 ```bash
 adb shell dumpsys activity --proto
@@ -1467,7 +1467,6 @@ adb shell dumpsys activity --proto
 ```bash
 adb shell dumpsys activity --autofill
 ```
-
 ##### Dumpsys Activity Help
 ```bash
 adb shell dumpsys activity recents
@@ -1480,9 +1479,6 @@ adb shell dumpsys activity exit-info
 ```bash
 adb shell dumpsys activity lmk
 ```
- 
-
-
 ##### Dumpsys Activity Help
 ```bash
 adb shell dumpsys activity recents
@@ -2163,7 +2159,7 @@ adb shell am start -a android.intent.action.INSERT \
     -e name 'wuseman' \
     -e phone '+467777701'  \
     -e email 'wuseman@nr1.nu' 
-
+```
 ##### For press save via shell
 
     adb shell input keyevent 4
