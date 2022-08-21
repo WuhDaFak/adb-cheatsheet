@@ -1909,23 +1909,23 @@ adb shell am start \
     --ei simId 
 ```
 
-##### Open hiden menu (require root)
-```bash
-adb shell su -c "am broadcast -a android.provider.Telephony.SECRET_CODE  \
-    -d android_secret_code://IOTHIDDENMENU"
-```
-
 ##### Open Hidden menu screen: select the entry and select "enable"
 ```bash
-adb shell "su -c am broadcast -a android.provider.Telephony.SECRET_CODE -d android_secret_code://HIDDENMENUENABLE"
+adb shell "su -c am broadcast \
+    -a android.provider.Telephony.SECRET_CODE \
+    -d android_secret_code://HIDDENMENUENABLE"
 ```
 ### Open internal operation test menu which lets you look at all sorts of interesting and possibly dangerous goodies
 ```bash
-adb shell "su -c am broadcast -a android.provider.Telephony.SECRET_CODE -d android_secret_code://IOTHIDDENMENU"
+adb shell "su -c am broadcast \
+    -a android.provider.Telephony.SECRET_CODE 
+    -d android_secret_code://IOTHIDDENMENU"
 ```
 #### Opens a dialog box followed by another dialog asking for the unlock key code
 ```bash
-adb shell "su -c am broadcast -a android.provider.Telephony.SECRET_CODE -d android_secret_code://UNLOCKKERNEL"
+adb shell "su -c am broadcast \
+    -a android.provider.Telephony.SECRET_CODE \
+    -d android_secret_code://UNLOCKKERNEL"
 ```
 ##### Start prefered webbrowser (remove # for wich you wanna use)
 ```bash
