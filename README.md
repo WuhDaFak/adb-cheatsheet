@@ -3,6 +3,7 @@
   <h2 align="center"># Android™ Debug Bridge (adb)</h2>
   <h3 align="center">Your journey to master <i>Android™ Shell</i> begins here</h3>
 </p>
+
 ***
 
 _Time flies really_, now its the the sixth time that I update this topic because now many new commands have been added that are adapted for the latest version of `Android v13`. I didnt find any good help page for several years and the ones that have existed since before are obsolete and on the ones that existed before, there are a lot of commands that has been removed and there have also been added other commands in recent times.
