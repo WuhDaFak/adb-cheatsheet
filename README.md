@@ -2651,7 +2651,9 @@ adb shell content query  \
 ```
 ##### Query secure settings 
 
-Select "name" and "value" columns from secure settings where "name" is equal to "new_setting" and sort the result by name in ascending order
+Select "name" and `value` columns from secure settings where 
+`name` is equal to `new_setting` and sort the result by name in ascending order
+
 ```bash
 adb shell content query  \
     --uri content://settings/secure  \
