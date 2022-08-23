@@ -1697,12 +1697,6 @@ Total PSS by process:
 ```bash
 adb shell dumpsys battery unplug
 ```
-#### See current used app:
-```bash
-adb shell dumpsys window windows \
-    |grep -E 'mCurrentFocus\
-    |mFocusedApp'|grep '/'|awk -F'u0' '{print $2}'|awk '{print $1}'
-```
 #### Print how many notifications you have: 
 ```bash
 adb shell dumpsys notification | grep NotificationRecord | wc -l 
