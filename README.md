@@ -1334,7 +1334,7 @@ dumpsys usb reset
 #### Example USB type C port where only power role can be changed:
 ```bash
 dumpsys usb add-port "matrix" dual
-dumpsys usb connect-port "matrix" dfp source? host
+dumpsys usb connect-port "matrDumpsysix" dfp source? host
 dumpsys usb reset
 ```
 #### Example USB OTG port where id pin determines function:
@@ -1378,6 +1378,10 @@ adb shell dumpsys procstats --csv-mem norm
 #### Dumpsys Package
 ```bash
 adb shell dumpsys package com.android.chrome
+```
+#### Print current application in use (Android 12/13)   
+```bash
+dumpsys activity|grep -i mCurrentFocus|awk 'NR==1{print $3}'|cut -d'}' -f1
 ```
 #### Dumpsys Activity Help
 ```bash
