@@ -35,7 +35,7 @@ This wiki is up to date and we also cover new commands on `Android 13` - Release
 Copy and paste for add below aliases in ~/.bashrc
 
 ```bash
-cat <<! > ~/.bashrc
+cat <<! >> ~/.bashrc
 #### Aliases for ADB
 alias startintent="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell am start $1"
 alias apkinstall="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X install -r $1"
