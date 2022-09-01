@@ -1,7 +1,7 @@
 title: Android™ Shell
 description: Your journey to master Android™ Shell begins here
-baseurl: "/adb-cheatsheet" # the subpath of your site, e.g. /blog
-url: "https://wuseman.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+#baseurl: "/adb-cheatsheet" # the subpath of your site, e.g. /blog
+url: "https://android.nr1.nu" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"]
