@@ -240,7 +240,14 @@ adb tcpip <port>
 adb connect <device_ip>
 ```
 
+#### Enable adb over wifi and autoconnect
+```bash
+adb shell ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'
+```
+
 #### Auto connect to adb over wifi 
+
+This requires that the usb cable is connected until you connect.
 
 ```bash
 interface=$(adb shell ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'; )
