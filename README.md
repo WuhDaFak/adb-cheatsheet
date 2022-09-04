@@ -1,98 +1,3 @@
-<p align="right">
-    <a href="https://badge.fury.io/rb/just-the-docs"><img src="https://badge.fury.io/rb/just-the-docs.svg" alt="Gem version"></a> <a href="https://github.com/just-the-docs/just-the-docs/actions/workflows/ci.yml"><img src="https://github.com/just-the-docs/just-the-docs/actions/workflows/ci.yml/badge.svg" alt="CI Build status"></a> <a href="https://app.netlify.com/sites/just-the-docs/deploys"><img src="https://api.netlify.com/api/v1/badges/9dc0386d-c2a4-4077-ad83-f02c33a6c0ca/deploy-status" alt="Netlify Status"></a>
-</p>
-<br><br>
-<p align="center">
-    <h1 align="center">Just the Docs</h1>
-    <p align="center">A modern, highly customizable, and responsive Jekyll theme for documentation with built-in search.<br>Easily hosted on GitHub Pages with few dependencies.</p>
-    <p align="center"><strong><a href="https://just-the-docs.github.io/just-the-docs/">See it in action!</a></strong></p>
-    <br><br><br>
-</p>
-
-![jtd](https://user-images.githubusercontent.com/896475/47384541-89053c80-d6d5-11e8-98dc-dba16e192de9.gif)
-
-## Installation
-
-### via GitHub Pages remote theme
-
-The quickiest way to use Just The Docs is to use GitHub pages [remote theme](https://blog.github.com/2017-11-29-use-any-theme-with-github-pages/) feature in your `_config.yml` file:
-
-```yaml
-remote_theme: just-the-docs/just-the-docs
-```
-### via RubyGems:
-
-Alternatively you can install it as a Ruby Gem.
-
-Add this line to your Jekyll site's Gemfile:
-
-```ruby
-gem "just-the-docs"
-```
-
-And add this line to your Jekyll site's `_config.yml`:
-
-```yaml
-theme: just-the-docs
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install just-the-docs
-
-Alternatively, you can run it inside Docker while developing your site
-
-    $ docker-compose up
-
-## Usage
-
-[View the documentation](https://just-the-docs.github.io/just-the-docs/) for usage information.
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/just-the-docs/just-the-docs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-### Submitting code changes:
-
-- Open a [Pull Request](https://github.com/just-the-docs/just-the-docs/pulls)
-- Ensure all CI tests pass
-- Await code review
-- Bump the version number in `just-the-docs.gemspec` and `package.json` according to [semantic versioning](https://semver.org/).
-
-### Design and development principles of this theme:
-
-1. As few dependencies as possible
-2. No build script needed
-3. First class mobile experience
-4. Make the content shine
-
-## Development
-
-To set up your environment to develop this theme, run `bundle install`.
-
-A modern [devcontainer configuration](https://code.visualstudio.com/docs/remote/containers) for VSCode is included.
-
-Your theme is set up just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
-
-When the theme is released, only the files in `_layouts`, `_includes`, and `_sass` tracked with Git will be released.
-
-## License
-
-The theme is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
----
-layout: default
-title: Home
-nav_order: 1
-description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
-permalink: /
----
-
-
-
 <p align="center">
   <img width="120px" src="https://i.imgur.com/o2WZgcl.png" />
   <h2 align="center"># Android™ Debug Bridge (adb)</h2>
@@ -334,6 +239,28 @@ adb tcpip <port>
 ```bash
 adb connect <device_ip>
 ```
+
+#### Enable adb over wifi and autoconnect
+```bash
+adb shell ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'
+```
+
+#### Auto connect to adb over wifi 
+
+This requires that the usb cable is connected until you connect.
+
+```bash
+interface=$(adb shell ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'; )
+ip=$(adb shell ifconfig ${interface} \
+    |egrep  -o '(\<([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\>\.){3}\<([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\>' \
+    |head -n 1)
+port="5555"
+
+adb tcpip ${port};sleep 0.5
+adb connect $ip:${port}; sleep 0.5
+adb shell
+```
+
 #### Restarts the adbd daemon listening on USB
 
 ```bash
@@ -1487,7 +1414,23 @@ adb shell dumpsys procstats --csv-mem norm
 ```bash
 adb shell dumpsys package com.android.chrome
 ```
+#### Print available activitys per package
+```bash
+dumpsys package \
+    |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+com.whatsapp/[^[:space:]]+" \
+    |grep -oE "[^[:space:]]+$"
+```
+
+#### Print available activitys on device
+
+```bash
+dumpsys package \
+    |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+.*/[^[:space:]]+" 
+    | grep -oE "[^[:space:]]+$"
+```
+
 #### Print current application in use (Android 12/13)   
+
 ```bash
 dumpsys activity|grep -i mCurrentFocus|awk 'NR==1{print $3}'|cut -d'}' -f1
 ```
@@ -2692,6 +2635,54 @@ adb shell settings put global policy_control \
     immersive.status=com.honeywell.enterprisebrowser
 ```
 ## ADB Shell <small>content</small>
+
+
+
+### Get google contacts with full info
+```bash
+adb shell content query \
+    --uri content://com.android.contacts/data \
+    --projection display_name:data1:data4:contact_id
+```
+### Get google contacts and print notes for every contact
+```bash
+adb shell content query \
+    --uri content://contacts/phones/  \
+    --projection display_name:number:notes
+```
+### Contact list
+```bash
+adb shell content query \
+    --uri content://contacts/people/
+```
+### Count people in contact list
+
+```bash
+adb shell bash content query \
+    --uri content://contacts/people/ \
+    |wc -l
+```
+### List the phone numbers
+```bash
+adb shell content query \
+    --uri content://contacts/phones/
+```
+
+### List the groups
+```bash
+adb shell content query \
+    --uri content://contacts/groups/
+```
+### List group membership
+```bash
+adb shell content query \
+    --uri content://contacts/groupmembership/
+```
+### List organizations
+```bash
+adb shell content query \
+    --uri content://contacts/organizations/
+```
 
 #### Trick device that setup already has been done (FRP Bypassing)
 
