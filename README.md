@@ -2897,6 +2897,33 @@ adb shell content insert \
     --bind value:i:0
 ```
 ## ADB Shell <small>input</small>
+
+####  Swipe from top and down 
+```bash
+adb shell input swipe 0 0 0 1000
+```
+####  Swipe from bottom and up
+```bash
+adb shell input swipe 0 1000 0 0
+adb shell input swipe 100 4000 200 400
+```
+#### Swipe slowwer up to top 
+```bash
+adb shell input swipe 500 1000 0 0
+```
+####  Pinch out slow
+```bash
+adb shell input swipe 100 100 20 20
+```
+####  Pinch out harder
+```bash
+adb shell input swipe 100 100 20 1000
+```
+#### Swipe your finger  up and move window down 
+```bash
+adb shell input swipe 100 1000 20 100
+```
+
      
 #### Simulate a swipe down for notification bar:
 ```bash
