@@ -2859,6 +2859,15 @@ adb shell settings put global policy_control \
 ```
 ## ADB Shell <small>content</small>
 
+### Find contents in sdk map and create samples for this cheatsheet
+```bash
+rg . 'content://.*"' -o \
+    |cut -d '"' -f1 \
+    |sed 's/^/adb shell content query --uri /g' \
+    |sed 'i### Print\' \
+    |sed G
+```
+
 ### All available options for content
 ```bash
 adb shell content insert       --uri
@@ -2879,6 +2888,38 @@ adb shell content --method     --uri
 adb shell content --arg        --uri
 adb shell content --extra      --uri
 ```
+### Print calls
+
+adb shell content query --uri content://call_log/calls
+
+### Print shadow calls
+
+adb shell content query --uri content://call_log_shadow/calls
+
+### Print call filters
+
+adb shell content query --uri content://call_log/calls/filter
+
+### Print call log
+
+adb shell content query --uri content://call_log/calls
+
+
+### Print downloads
+
+adb shell content query --uri content://downloads/my_downloads
+
+### Print all downloads
+
+adb shell content query --uri content://downloads/all_downloads
+
+### Print current downloads
+
+adb shell content query --uri content://downloads/
+
+### Print my all live
+
+adb shell content query --uri content://my.app/live
 
 
 ### Available querys for all devices
