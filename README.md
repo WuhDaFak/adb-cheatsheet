@@ -960,11 +960,22 @@ adb shell cmd -w wifi imsi-protection-exemption-has-user-approved-for-carrier <c
 ```bash
 adb shell cmd -w wifi imsi-protection-exemption-set-user-approved-for-carrier <carrier id> yes|no
 ```
+
+#### Print all availble apps that can be manually started from activity manager
+```bash
+adb shell cmd package dump com.android.com |grep "Activity filter"|awk '{print $2}'
+```
+
 #### List uid owner of a package
 
 ```bash
 adb shell cmd package list packages -U                
 ```
+
+#### Print all application sorted by alpha
+
+ adb shell cmd package list packages|awk -F: '{print $2}'|sort
+
 #### List packages a.k.a: pm list packages
 
 ```bash
@@ -1462,76 +1473,10 @@ adb shell dumpsys package \
 com.samsung.android.app.telephonyui.esimclient/.OdaWebViewActivity
 ```
 
-#### Print available activitys for a default app, full example
+#### Print available receivers for an an default app
 
 ```bash
-adb shell dumpsys package     |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+com.samsung.android.app.telephonyui/[^[:space:]]+"     |grep -oE "[^[:space:]]+$"
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
-com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
-com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
-com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.QrTransferActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.preference.CallSettingsActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.imagepreview.ImagePreviewPortActivity
-com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.NetSettingsActivity
-com.samsung.android.app.telephonyui/.carrierui.dcm.VoicemailDialAlertDialog
-com.samsung.android.app.telephonyui/.carrierui.networkui.controller.MobileDataSuspended
-com.samsung.android.app.telephonyui/.netsettings.ui.multisim.DsaMainParser
-com.samsung.android.app.telephonyui/.netsettings.ui.multisim.DsaMain
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NoticeDataConnectionDialogActivity
-com.samsung.android.app.telephonyui/.carrierui.iccnetwork.view.IccNetworkLockDialogActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.multisim.DsaPhoneNumber
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.TmoDataRoamDialogActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.imagepreview.ImagePreviewActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.roamingautodial.RoamingAutoDialMainActivity
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.AllowDataConnectionDialogActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.ResetEsimActivity
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.AutoTimeSetDialogActivity
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.TmoDataRoamDialogActivity
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NoticeDataConnectionDialogActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.ManagementDataConnectionDialog
-com.samsung.android.app.telephonyui/.carrierui.iccnetwork.view.IccNetworkLockDialogActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.preference.CallSettingsActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbarring.CbCdmaInputPasswordActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.tty.UseExternalTtyKeyboardActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.LuiActivity
-com.samsung.android.app.telephonyui/.carrierui.iccnetwork.view.IccNetworkLockDialogActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.preference.CallSettingsActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.NetSettingsActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.quickdeclinemessages.QuickDeclineMessagesEditActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.SimCardMgrActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.roamingautodial.RoamingAutoDialSettingsActivity
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.AllowDataConnectionDialogActivity
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.AutoTimeSetDialogActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.videopreview.VideoPreviewPortActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.roamingautodial.RoamingAutoDialSubActivity
-com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundBaseActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundBasePortActivity
-com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyMedicalInfoActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.SimCardMgrActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.tty.TtyModeDialogActivity
-com.samsung.android.app.telephonyui/.carrierui.photoring.ui.PhotoringScreenActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.LuiActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.LuiActivity
-com.samsung.android.app.telephonyui/.carrierui.groupcall.view.GroupCallActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.SmartCallPrivacyNoticeActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.videopreview.VideoPreviewActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.aboutphone.AboutPhoneBaseActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.callingaccounts.MakeCallsWithDialogActivity
-com.samsung.android.app.telephonyui/.hiddennetworksetting.MainActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.SimCardMgrActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.LuiActivity
-com.samsung.android.app.telephonyui/.callsettings.ui.phonenumberlocator.PhoneNumberLocatorLegalInfoActivity
-com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.LuiActivity
-com.samsung.android.app.telephonyui/.netsettings.ui.multisim.DsaSelectSimCard
-com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
+adb shell dumpsys package     |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+com.samsung.android.app.telephonyui/[^[:space:]]+"     |grep -oE "[^[:space:]]+Receiver"
 com.samsung.android.app.telephonyui/com.android.voicemail.impl.sync.VoicemailProviderChangeReceiver
 com.samsung.android.app.telephonyui/com.android.voicemail.impl.fetch.FetchVoicemailReceiver
 com.samsung.android.app.telephonyui/com.android.voicemail.impl.sync.VoicemailProviderChangeReceiver
@@ -1546,110 +1491,43 @@ com.samsung.android.app.telephonyui/.callsettings.ui.tty.TtyNotificationReceiver
 com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
 com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
 com.samsung.android.app.telephonyui/.callsettings.ui.blocknumbers.BlockNumbersReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.phonenumberlocator.PhoneNumberLocatorNotificationReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.answeringmessages.AnsweringMessageReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.emergencymode.EmergencyModeReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.SmartCallNotificationReceiver
-com.samsung.android.app.telephonyui/com.android.voicemail.impl.DefaultPhoneChangedReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.blocknumbers.BlockNumbersReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.carrierui.photoring.model.PhotoringReceiver
-com.samsung.android.app.telephonyui/.carrierui.phonenumberlocator.PnlUpdateReceiver
-com.samsung.android.app.telephonyui/.samsungAnalytics.SamsungAnalyticsStatusLogReceiver
-com.samsung.android.app.telephonyui/.carrierui.kor.KorEventReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.QuickpanelNetworkReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.SmartCallNotificationReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.RoamingGuardReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.SmartCallNotificationReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiSecurityReceiver
-com.samsung.android.app.telephonyui/.callsettings.model.reset.SoftResetReceiver
-com.samsung.android.app.telephonyui/com.android.voicemail.impl.CarrierVvmPackageInstalledReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.oda.receiver.OdaBroadcastReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.receiver.LockBootCompleteReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.MDMReceiver
-com.samsung.android.app.telephonyui/com.android.voicemail.impl.VoicemailClientReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.accessibility.AccessibilityReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.SmartCallNotificationReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.oda.receiver.OdaBroadcastReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.multisim.MultiSimMainReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.restriction.RestrictionReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.QuickpanelNetworkReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/com.android.voicemail.impl.sync.OmtpVvmSyncReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiSecurityReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.SmartCallNotificationReceiver
-com.samsung.android.app.telephonyui/.bnr.CallSettingsSmartSwitchReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.aboutphone.AboutPhoneReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.emergencymode.EmergencyModeReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.phonenumberlocator.PhoneNumberLocatorNotificationReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.tty.TtyNotificationReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.callsettingsreceiver.CallSettingsReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.SmartCallNotificationReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.RoamingGuardReceiver
-com.samsung.android.app.telephonyui/.callsettings.model.reset.RetailModeSoftResetReceiver
-com.samsung.android.app.telephonyui/.carrierui.phonenumberlocator.PnlUpdateReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.SmartCallNotificationReceiver
-com.samsung.android.app.telephonyui/.bnr.CallSettingsSmartSwitchReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.ProfileStatusReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.answeringmessages.AnsweringMessageReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.esim.oda.receiver.OdaBroadcastReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.WhoWhoServiceReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.tty.TtyNotificationReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiSecurityReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.callsettingsreceiver.CallSettingsReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.callsettingsreceiver.CallSettingsReceiver
-com.samsung.android.app.telephonyui/.hiddennetworksetting.receiver.NetSettingReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.WhoWhoServiceReceiver
-com.samsung.android.app.telephonyui/.carrierui.dcm.CancelBlockModeNotification
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/com.android.voicemail.impl.sms.OmtpMessageReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiSecurityReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.answeringmessages.AnsweringMessageReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.restriction.RestrictionReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.restriction.RestrictionReceiver
-com.samsung.android.app.telephonyui/.carrierui.dcm.CancelBlockModeNotification
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.receiver.MobileNetworksReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.tty.TtyNotificationReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.SmartCallNotificationReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.callsettings.ui.readcallernamesaloud.ReadCallerNamesAloudReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
-com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/.carrierui.dcm.CancelBlockModeNotification
-com.samsung.android.app.telephonyui/.callsettings.ui.phoneprocesscreated.PhoneProcessCreateReceiver
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.NetworkStatusReceiver
-com.samsung.android.app.telephonyui/com.android.voicemail.impl.fetch.FetchVoicemailReceiver
-com.samsung.android.app.telephonyui/com.android.voicemail.impl.sync.VoicemailProviderChangeReceiver
-com.samsung.android.app.telephonyui/.carrierui.tile.TurnOn5gTileService
-com.samsung.android.app.telephonyui/.carrierui.tile.VoLteTileService
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.service.SimCardManagerProcessService
-com.samsung.android.app.telephonyui/com.android.voicemail.impl.OmtpService
-com.samsung.android.app.telephonyui/com.samsung.android.sdk.command.provider.CommandProvider
-com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.settingsearch.SimCardManagerSettingSearchProvider
-com.samsung.android.app.telephonyui/.netsettings.ui.preference.SettingSearchProvider
-com.samsung.android.app.telephonyui/.callsettings.ui.preference.CallSettingsSearchProvider
+....
 ```
+#### Print available activitys for an an default app
+```bash
+adb shell dumpsys package     |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+com.samsung.android.app.telephonyui/[^[:space:]]+"     |grep -oE "[^[:space:]]+.*Activity"
+979e24b com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
+979e24b com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
+979e24b com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
+979e24b com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
+82531b8 com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
+82531b8 com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
+82531b8 com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
+5438970 com.samsung.android.app.telephonyui/.netsettings.ui.esim.QrTransferActivity
+b46c261 com.samsung.android.app.telephonyui/.callsettings.ui.preference.CallSettingsActivity
+4743337 com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.imagepreview.ImagePreviewPortActivity
+82531b8 com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
+ee0c0be com.samsung.android.app.telephonyui/.netsettings.ui.NetSettingsActivity
+6af1334 com.samsung.android.app.telephonyui/.carrierui.networkui.app.NoticeDataConnectionDialogActivity
+b4d94cc com.samsung.android.app.telephonyui/.carrierui.iccnetwork.view.IccNetworkLockDialogActivity
+6b62446 com.samsung.android.app.telephonyui/.carrierui.networkui.app.TmoDataRoamDialogActivity
+3b405d1 com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.imagepreview.ImagePreviewActivity
+14c5c99 com.samsung.android.app.telephonyui/.callsettings.ui.roamingautodial.RoamingAutoDialMainActiv
+```
+
+#### Print available services for an an default app
+```bash
+ adb shell dumpsys package     |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+com.samsung.android.app.telephonyui/[^[:space:]]+"     |grep -oE "[^[:space:]]+.*Service"
+76f5ff5 com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.WhoWhoService
+76f5ff5 com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.WhoWhoService
+76f5ff5 com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.WhoWhoService
+1b863a1 com.samsung.android.app.telephonyui/.carrierui.tile.TurnOn5gTileService
+766c1ab com.samsung.android.app.telephonyui/.carrierui.tile.VoLteTileService
+61bfb8f com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.service.SimCardManagerProcessService
+9284a25 com.samsung.android.app.telephonyui/com.android.voicemail.impl.OmtpService
+```
+
+
 #### Print available activitys on device
 
 ```bash
@@ -2060,6 +1938,45 @@ adb shell enable-virtual-display `true|false`
 ```
 ## ADB Shell <small>am</small>
 
+#### Find all available modes we can launch in GUI
+```bash
+adb shell cmd package dump com.samsung.android.app.telephonyui|grep "Activity filter"|awk '{print $2}'|awk '!seen[$0]++' 
+
+com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
+com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
+com.samsung.android.app.telephonyui/.netsettings.ui.esim.QrTransferActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.preference.CallSettingsActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.imagepreview.ImagePreviewPortActivity
+com.samsung.android.app.telephonyui/.netsettings.ui.NetSettingsActivity
+com.samsung.android.app.telephonyui/.carrierui.networkui.app.NoticeDataConnectionDialogActivity
+com.samsung.android.app.telephonyui/.carrierui.iccnetwork.view.IccNetworkLockDialogActivity
+com.samsung.android.app.telephonyui/.carrierui.networkui.app.TmoDataRoamDialogActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.imagepreview.ImagePreviewActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.roamingautodial.RoamingAutoDialMainActivity
+com.samsung.android.app.telephonyui/.netsettings.ui.esim.ResetEsimActivity
+com.samsung.android.app.telephonyui/.carrierui.networkui.app.AllowDataConnectionDialogActivity
+com.samsung.android.app.telephonyui/.carrierui.networkui.app.AutoTimeSetDialogActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.callbarring.CbCdmaInputPasswordActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.tty.UseExternalTtyKeyboardActivity
+com.samsung.android.app.telephonyui/.netsettings.ui.esim.LuiActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.quickdeclinemessages.QuickDeclineMessagesEditActivity
+com.samsung.android.app.telephonyui/.netsettings.ui.simcardmanager.SimCardMgrActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.roamingautodial.RoamingAutoDialSettingsActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.videopreview.VideoPreviewPortActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.roamingautodial.RoamingAutoDialSubActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundBaseActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundBasePortActivity
+com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyMedicalInfoActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.tty.TtyModeDialogActivity
+com.samsung.android.app.telephonyui/.carrierui.photoring.ui.PhotoringScreenActivity
+com.samsung.android.app.telephonyui/.carrierui.groupcall.view.GroupCallActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.SmartCallPrivacyNoticeActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.videopreview.VideoPreviewActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.aboutphone.AboutPhoneBaseActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.callingaccounts.MakeCallsWithDialogActivity
+com.samsung.android.app.telephonyui/.hiddennetworksetting.MainActivity
+com.samsung.android.app.telephonyui/.callsettings.ui.phonenumberlocator.PhoneNumberLocatorLegalInfoActivity
+```
 
 #### Send simple notification
 ```bash
