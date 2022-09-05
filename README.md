@@ -1080,7 +1080,7 @@ adb shell log -t wuuuuuuuuuuuuuuuuuuuuuuseman "message"
 ```
 ### Write logs with a priority
 ```bash
-adb shell log -t wuuuuuuuuuuuuuuuuuuuuuuseman "message"
+adb shell log -t wuuuuuuuuuuuuuuuuuuuuuuseman "message" -p INFO
 ```
 
 Available Options:
