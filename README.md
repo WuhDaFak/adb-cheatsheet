@@ -3024,6 +3024,76 @@ adb shell content query --uri content://carrier_id/all
 adb shell content query --uri content://telephony/siminfo
 ```
 
+### Print all contact settings available
+```bash
+adb shell content query --uri content://contacts/settings
+```
+
+#### Contact list
+```bash
+adb shell content query --uri content://contacts/people
+```
+#### Print contacts by filter
+```bash
+adb shell content query --uri content://contacts/people/filter
+```
+#### Print deleted contacts
+```bash
+adb shell content query --uri content://contacts/deleted_people
+```
+#### Print contacts that has an email of im id added
+```bash
+adb shell content query --uri content://contacts/people/with_email_or_im_filter
+```
+#### Print contact group
+```bash
+adb shell content query --uri content://contacts/groups
+```
+#### Print deleted contact groups
+```bash
+adb shell content query --uri content://contacts/deleted_groups
+```
+#### Print all phone numbers
+```bash
+adb shell content query --uri content://contacts/phones
+```
+#### Print all phone number filters
+```bash
+adb shell content query --uri content://contacts/phones/filter
+```
+#### Print all groupmemberships
+```bash
+adb shell content query --uri content://contacts/groupmembership
+```
+#### Print all contacts groupmemberships in raw format
+```bash
+adb shell content query --uri content://contacts/groupmembershipraw
+```
+#### Print contact methods
+```bash
+adb shell content query --uri content://contacts/contact_methods
+```
+#### Print contacts email address
+```bash
+adb shell content query --uri content://contacts/contact_methods/email
+```
+#### Print contacxts presence
+```bash
+adb shell content query --uri content://contacts/presence
+```
+#### Print contacts organizations
+```bash
+adb shell content query --uri content://contacts/organizations
+```
+#### Print contacts photo path
+```bash
+adb shell content query --uri content://contacts/photos
+```
+#### Print fcontacts extensions
+```bash
+adb shell content query --uri content://contacts/extensions
+```
+
 ### Get google contacts with full info
 ```bash
 adb shell content query \
@@ -3036,7 +3106,7 @@ adb shell content query \
     --uri content://contacts/phones/  \
     --projection display_name:number:notes
 ```
-#### Contact list
+
 ```bash
 adb shell content query \
     --uri content://contacts/people/
@@ -3126,128 +3196,6 @@ content read  \
     |xargs ffplay a.ogg
 ```
 
-#### Various ways to print contacts
-
-```bash
-adb shell content query  \
-    --uri content://contacts/phones/   \
-    --projection display_name:number:notes 
-```
-```bash
-adb shell content query  \
---uri content://com.android.contacts/data  \
---projection display_name:data1:data4:contact_id
-```
-```bash
-adb shell content query  \
-    --uri content://contacts/people/
-```
-#### Print Contacts Phone Numbers:
-
-```bash
-adb shell content query  \
-    --uri content://contacts/phones/
-```
-#### Print Contacts Added In Groups:
-
-```bash
-adb shell content query  \
-    --uri content://contacts/groups/
-```
-#### Print Group Mmembership:
-
-```bash
-adb shell content query  \
-    --uri content://contacts/groupmembership/
-```
-#### Print organiztations: 
-
-```bash
-adb shell content query  \
-    --uri content://contacts/organizations/
-```
-#### Print Call Logs
-
-```bash
-adb shell content query  \ 
-    --uri content://call_log/calls
-```
-#### Print text from SMS sections
-
-```bash
-adb shell content query  \
-    --uri content://sms/conversations
-```
-
-```bash
-adb shell content query  \
-    --uri content://sms/conversations
-```
-
-```bash
-adb shell content query  \
-    --uri content://sms/draft
-```
-
-```bash
-adb shell content query  \
-    --uri content://sms/inbox
-```
-
-```bash
-adb shell content query  \
-    --uri content://sms/outbox
-```
-
-```bash
-adb shell content query  \
-    --uri content://sms/sent
-```
-
-#### Print text from MMS sections
-
-```bash
-adb shell content query  \
-    --uri content://mms
-```
-
-```bash
-adb shell content query  \
-    --uri content://mms/inbox
-```
-
-```bash
-adb shell content query  \
-    --uri  content://mms/outbox
-```
-
-```bash
-adb shell content query  \
-    --uri  content://mms/part
-```
-
-```bash
-adb shell content query  \
-    --uri  content://mms/sent
-```
-
-```bash
-adb shell content query  \
-    --uri  content://mms-sms/conversations
-```
-
-```bash
-adb shell content query  \
-    --uri  content://mms-sms/draft
-```
-
-```bash
-adb shell content query  \
-    --uri  content://mms-sms/locked
-```
-```bash
-adb shell content query  \
-    --uri  content://mms-sms/search
 ```
 #### Auto rotation on
 
