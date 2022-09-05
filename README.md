@@ -252,13 +252,8 @@ This requires that the usb cable is connected until you connect.
 ```bash
 interface=$(adb shell ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'; )
 ip=$(adb shell ifconfig ${interface} \
-<<<<<<< HEAD
     |egrep  -o '(\<([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\>\.){3}\<([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\>' \
     |head -n 1)
-=======
-	|egrep  -o '(\<([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\>\.){3}\<([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\>' \
-	|head -n 1)
->>>>>>> e3150aa4b7addcd3e3d7c7b2c25094b7fab33c58
 port="5555"
 
 adb tcpip ${port};sleep 0.5
