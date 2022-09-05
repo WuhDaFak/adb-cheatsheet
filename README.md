@@ -459,7 +459,6 @@ adb reboot bootloader
 ```
 
 #### Fastboot (some brands)
-
 ```bash
 adb reboot fastboot
 ```
@@ -544,33 +543,6 @@ adb shell cmd lock_settings set-disabled \
 adb shell cmd lock_settings get-disabled \
     --old 1234 \
     --user 0 
-```
-
-## ADB Shell cmd <small>testharness</small>
-
-```    
-About:
-  Test Harness Mode is a mode that the device can be placed in to prepare
-  the device for running UI tests. The device is placed into this mode by
-  first wiping all data from the device, preserving ADB keys.
-
-  By default, the following settings are configured:
-    * Package Verifier is disabled
-    * Stay Awake While Charging is enabled
-    * OTA Updates are disabled
-    * Auto-Sync for accounts is disabled
-
-  Other apps may configure themselves differently in Test Harness Mode by
-  checking ActivityManager.isRunningInUserTestHarness()
-
-Test Harness Mode commands:
-  help
-    Print this help text.
-
-  enable|restore
-    Erase all data from this device and enable Test Harness Mode,
-    preserving the stored ADB keys currently on the device and toggling
-    settings in a way that are conducive to Instrumentation testing.
 ```
 
 ## ADB Shell cmd <small>stats</small>
@@ -1476,7 +1448,12 @@ com.samsung.android.app.telephonyui.esimclient/.OdaWebViewActivity
 #### Print available receivers for an an default app
 
 ```bash
-adb shell dumpsys package     |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+com.samsung.android.app.telephonyui/[^[:space:]]+"     |grep -oE "[^[:space:]]+Receiver"
+adb shell dumpsys package \
+    |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+com.samsung.android.app.telephonyui/[^[:space:]]+"
+    |grep -oE "[^[:space:]]+Receiver"
+```
+
+```
 com.samsung.android.app.telephonyui/com.android.voicemail.impl.sync.VoicemailProviderChangeReceiver
 com.samsung.android.app.telephonyui/com.android.voicemail.impl.fetch.FetchVoicemailReceiver
 com.samsung.android.app.telephonyui/com.android.voicemail.impl.sync.VoicemailProviderChangeReceiver
@@ -1491,8 +1468,8 @@ com.samsung.android.app.telephonyui/.callsettings.ui.tty.TtyNotificationReceiver
 com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
 com.samsung.android.app.telephonyui/.carrierui.networkui.app.NetworkUiReceiver
 com.samsung.android.app.telephonyui/.callsettings.ui.blocknumbers.BlockNumbersReceiver
-....
 ```
+
 #### Print available activitys for an an default app
 ```bash
 adb shell dumpsys package     |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+com.samsung.android.app.telephonyui/[^[:space:]]+"     |grep -oE "[^[:space:]]+.*Activity"
@@ -1517,7 +1494,12 @@ b4d94cc com.samsung.android.app.telephonyui/.carrierui.iccnetwork.view.IccNetwor
 
 #### Print available services for an an default app
 ```bash
- adb shell dumpsys package     |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+com.samsung.android.app.telephonyui/[^[:space:]]+"     |grep -oE "[^[:space:]]+.*Service"
+ adb shell dumpsys package \
+    |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+com.samsung.android.app.telephonyui/[^[:space:]]+" \
+    |grep -oE "[^[:space:]]+.*Service"
+```
+
+```
 76f5ff5 com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.WhoWhoService
 76f5ff5 com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.WhoWhoService
 76f5ff5 com.samsung.android.app.telephonyui/.callsettings.ui.spamprotection.WhoWhoService
@@ -1527,13 +1509,12 @@ b4d94cc com.samsung.android.app.telephonyui/.carrierui.iccnetwork.view.IccNetwor
 9284a25 com.samsung.android.app.telephonyui/com.android.voicemail.impl.OmtpService
 ```
 
-
 #### Print available activitys on device
 
 ```bash
 dumpsys package \
     |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+.*/[^[:space:]]+" 
-    | grep -oE "[^[:space:]]+$"
+    |grep -oE "[^[:space:]]+$"
 ```
 
 #### Print current application in use (Android 12/13)   
@@ -1669,7 +1650,8 @@ adb shell dumpsys activity top
 ```bash
 adb shell dumpsys -l 
 ```
-List services on older devices via command below 
+
+### List services on older devices via command below 
 
 ```sh
 adb shell dumpsys -l |sed 's/^  /      /g'
@@ -2482,6 +2464,7 @@ adb shell am start com.sec.android.app.launcher/com.sec.android.app.launcher.act
 ```bash
 adb shell am start \
     com.sec.android.app.launcher/com.android.launcher3.uioverrides.QuickstepLauncher  
+
 adb shell am start \
     com.sec.android.app.launcher/.activities.LauncherActivity
 ```
@@ -3631,33 +3614,23 @@ com.android.vending/.AssetBrowserActivity
 
 
 #### Carrier info
-
 ```bash
 cat /data/user_de/0/com.android.providers.telephony/files/carrierconfig-com.android
 ```
-
 #### Read Lock Settings: 
-
 ```sh
 sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select * from locksettings;'
 ```
-
 #### Read SIM Card info
-
-
 ```sh
 sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select * from android_metadata'
 ```
-
 ```sh
 sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select *  from carrier'
 ```
-
-
 ```sh
 sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select *  from original'
 ```
-
 ```sh
 sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select * * from siminfo'
 ```
@@ -3677,13 +3650,10 @@ mnc = 7
 ```
 
 #### Print ICCID
-
 ```sh
 sqlite3 /data/vendor/radio/qcril.db 'select ICCID from qcril_manual_prov_table'
 ```
-
 #### Print Carrier Name, ICC ID, MCC, Card ID and everything that is stored from sim:
-
 ```bash
 sqlite3 -line /data/user_de/0/com.android.providers.telephony/databases/telephony.db 'select * from siminfo'  
 ```
@@ -3750,7 +3720,6 @@ allowed_network_types_for_reasons = user=xxxxxxx
 ```
 
 #### Print data in .db files, clean:
-
 ```bash
 grep -vx -f <(sqlite3 Main.db .dump) <(sqlite3 ${DB} .schema) 
 ```
@@ -3759,13 +3728,11 @@ grep -vx -f <(sqlite3 Main.db .dump) <(sqlite3 ${DB} .schema)
 sqlite3 /data/data/com.google.android.gms/databases/dg.db "update main set c='0' where a like '%attest%';" 
 ```
 #### Grab all file extensions of a kind and download to PC
-
 ```bash
 for i in `"su -c find /data /system -name '*.key'"`; do 
    mkdir -p ".`dirname $i`";"su -c cat $i" > ".$i";
 done
 ```
-
 #### Print uptime for your device by days + time
 
 ```sh
