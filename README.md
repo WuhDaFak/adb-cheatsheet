@@ -2467,6 +2467,7 @@ adb shell am start -a android.intent.action.INSERT \
     -e name 'wuseman' \
     -e phone '+46728999329'  \
     -e email 'wuseman@nr1.nu' 
+```
 
 #### Open dialer
 
