@@ -3107,7 +3107,7 @@ adb shell content query --uri content://sms/conversations
 ```
 ### Print carrier information
 ```bash
-adb sh```ell content query --uri content://carrier_information/carrier
+adb shell content query --uri content://carrier_information/carrier
 ```
 ### Print mms ids
 ```bash
@@ -3168,7 +3168,9 @@ adb shell su -c content query --uri content://telephony/carriers
 ```
 ### Print device carriers apn list for simcard
 ```bash
-adb shell su -c content query --uri content://telephony/carriers/sim_apn_list --projection name:mmsproxy
+adb shell su -c content query \
+    --uri content://telephony/carriers/sim_apn_list \
+    --projection name:mmsproxy
 ```
 ### Print  device carriers dpc 
 ```bash
