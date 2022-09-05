@@ -1089,8 +1089,33 @@ adb shell pm revoke com.application android.permission.READ_LOGS
 adb shell pm reset-permissions -p your.app.package
 ```
 
-## ADB Shell <small>logcat</small>
+## ADB Shell <small>log</small>
 
+### Write logs to logcat
+```bash
+adb shell log -t wuuuuuuuuuuuuuuuuuuuuuuseman "message"
+```
+### Write logs with a priority
+```bash
+adb shell log -t wuuuuuuuuuuuuuuuuuuuuuuseman "message"
+```
+
+Available Options:
+
+`i: INFO`
+`d: DEBUG`
+`e: ERROR`
+`f: FATAL`
+`i: INFO`
+`v: VERBOSE`
+`: WARN`
+`s: SILENT`
+
+
+### Grep  your tag
+```bash
+adb shell logcat|grep wuuuuuuuuuuuuuuuuuuuuuuseman
+```
 
 ## ADB Shell <small>logcat</small>
 
@@ -2854,6 +2879,151 @@ adb shell content --method     --uri
 adb shell content --arg        --uri
 adb shell content --extra      --uri
 ```
+
+
+### Available querys for all devices
+
+### Print sms changes
+```bash
+adb shell content query --uri content://sms-changes
+```
+### Print sms 
+```bash
+adb shell content query --uri content://sms
+```
+### Print sms inbox
+```bash
+adb shell content query --uri content://sms/inbox
+```
+### Print sms sent
+```bash
+adb shell content query --uri content://sms/sent
+```
+### Print sms draft messages
+```bash
+adb shell content query --uri content://sms/draft
+```
+### Print sms outbox
+```bash
+adb shell content query --uri content://sms/outbox
+```
+### Print sms convertations
+```bash
+adb shell content query --uri content://sms/conversations
+```
+### Print carrier information
+```bash
+adb sh```ell content query --uri content://carrier_information/carrier
+```
+### Print mms ids
+```bash
+adb shell content query --uri content://mms-sms/threadID
+```
+### Print mms
+```bash
+adb shell content query --uri content://mms
+```
+### Print mms inbox 
+```bash
+adb shell content query --uri content://mms/inbox
+```
+### Print sent mms
+```bash
+adb shell content query --uri content://mms/sent
+```
+### Print mms drafts
+```bash
+adb shell content query --uri content://mms/drafts
+```
+### Print mms outbox
+```bash
+adb shell content query --uri content://mms/outbox
+```
+### Print mms via sms
+```bash
+adb shell content query --uri content://mms-sms/
+```
+### Print mms via sms convertation
+```bash
+adb shell content query --uri content://mms-sms/conversations
+```
+### Print mms via sms byphone
+```bash
+adb shell content query --uri content://mms-sms/messages/byphone
+```
+### Print  undelivered mms via sms 
+```bash
+adb shell content query --uri content://mms-sms/undelivered
+```
+### Print drafted mms via sms 
+```bash
+adb shell content query --uri content://mms-sms/draft
+```
+### Print locked mms via sms 
+```bash
+adb shell content query --uri content://mms-sms/locked
+```
+### Priint serach results for mms via sms 
+```bash
+adb shell content query --uri content://mms-sms/search
+```
+### Print device carriers
+```bash
+adb shell content query --uri content://telephony/carriers
+```
+### Print device carriers apn list for simcard
+```bash
+adb shell content query --uri content://telephony/carriers/sim_apn_list
+```
+### Print  device carriers dpc 
+```bash
+adb shell content query --uri content://telephony/carriers/dpc
+```
+### Print device carriers filtered
+```bash
+adb shell content query --uri content://telephony/carriers/filtered
+```
+### Print device carriers enforce manage
+```bash
+adb shell content query --uri content://telephony/carriers/enforce_managed
+```
+### Print device preferapnset subids
+```bash
+adb shell content query --uri content://telephony/carriers/preferapn/subId
+```
+### Print  device preferapnset subid
+```bash
+adb shell content query --uri content://telephony/carriers/preferapnset/subId
+```
+### Print cellbroadcastas
+```bash
+adb shell content query --uri content://cellbroadcasts
+```
+### Print cellbroadcasts history
+```bash
+adb shell content query --uri content://cellbroadcasts/history
+```
+### Print cellbroadcasts öegacy
+```bash
+adb shell content query --uri content://cellbroadcast-legacy
+```
+### Print cellbroadcasts service state
+```bash
+adb shell content query --uri content://service-state/
+```
+### Print cellbroadcasts carrier-id
+```bash
+adb shell content query --uri content://carrier_id
+```
+### Print cellbroadcasts all info about carrier-id
+```bash
+adb shell content query --uri content://carrier_id/all
+```
+### Print cellbroadcasts simcard info
+```bash
+adb shell content query --uri content://telephony/siminfo
+```
+
 ### Get google contacts with full info
 ```bash
 adb shell content query \
