@@ -1091,6 +1091,9 @@ adb shell pm reset-permissions -p your.app.package
 
 ## ADB Shell <small>logcat</small>
 
+
+## ADB Shell <small>logcat</small>
+
 ```
 * V — Verbose (lowest priority)
 * D — Debug
@@ -1101,6 +1104,18 @@ adb shell pm reset-permissions -p your.app.package
 * S — Silent (highest priority, on which nothing is ever printed)
 ```
 
+####    Print the most recent lines since the specified time. This option does not include include -d functionality. See the -P option for information about quoting parameters with embedded spaces.
+```bash
+adb logcat -t '01-26 20:52:41.820'
+```
+#### Dump the logs prior to the last reboot.
+```bash
+adb logcat -L  
+```
+#### The following example specifies an allowlist with PID 32676 and UID 675, and a denylist with PID 32677 and UID 897. PID 32677 on the denylist is weighted for faster pruning.
+```bash
+adb logcat -P '"/32676 675 ~/32677 897"'
+```
 #### Log buffer containing all buffer logs
 ```bash
 adb logcat -b all -c color 
@@ -2819,7 +2834,26 @@ adb shell settings put global policy_control \
 ```
 ## ADB Shell <small>content</small>
 
-
+### All available options for content
+```bash
+adb shell content insert       --uri
+adb shell content delete       --uri
+adb shell content update       --uri
+adb shell content query        --uri
+adb shell content call         --uri
+adb shell content read         --uri
+adb shell content write        --uri
+adb shell content gettype      --uri
+adb shell content --where      --uri
+adb shell content --bind       --uri
+adb shell content --uri        --uri
+adb shell content --user       --uri
+adb shell content --projection --uri
+adb shell content --sort       --uri
+adb shell content --method     --uri
+adb shell content --arg        --uri
+adb shell content --extra      --uri
+```
 ### Get google contacts with full info
 ```bash
 adb shell content query \
