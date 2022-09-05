@@ -1923,7 +1923,14 @@ aam broadcast \
     --ez restart true'
 ```
 
+#### Open default Android Camera app and take a picture, works on mostly devices
+```bash
+am start com.sec.android.app.camera/.Camera
+am start -a android.media.action.STILL_IMAGE_CAMERA_SECURE
+```
+
 #### Open Google Camera (Pixel 4)
+
 ```bash
 adb shell am start com.google.android.GoogleCamera 
 ```
@@ -2924,7 +2931,7 @@ adb shell input swipe 100 100 20 1000
 adb shell input swipe 100 1000 20 100
 ```
 
-     
+
 #### Simulate a swipe down for notification bar:
 ```bash
 adb shell input swipe 0 0 0 300 
