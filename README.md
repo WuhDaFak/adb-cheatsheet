@@ -1714,6 +1714,38 @@ State: RUNNING_UNLOCKED
 Last logged in fingerprint
 agree Knox Privacy Policy: false
 ```
+
+#### Simulate battery parameters Simulate battery parameters
+
+Do you have any idea about how to discharge the AVD battery yet? 🔋 
+Probably not if it is a virtual device with no real battery. 
+But fortunately we can use the following command to simulate any scenario we want, 
+like setting the level to 1% only
+
+#### Simulate we got 1% Battery
+```bash
+adb shell dumpsys battery set level 1
+```
+#### Connect AC charger
+```bash
+adb shell dumpsys battery set ac 1
+```
+#### Disconnect AC charger
+```bash
+adb shell dumpsys battery set ac 0
+```
+#### Connect USB cable
+```bash
+adb shell dumpsys battery set usb 1
+```
+#### Disconnect USB cable
+```bash
+adb shell dumpsys battery set usb 0
+```
+#### After running each of those commands you can reset the battery options using:
+```bash
+adb shell dumpsys battery reset
+```
 #### And for example, you can dump data for all of the running services, dump all data for battery: 
 ```bash
 adb shell dumpsys battery
@@ -1782,7 +1814,21 @@ up 0 weeks, 0 days, 16 hours, 21 minutes
 Uptime: Bugreport format version: 2.0
 Dumpstate info: id=0 pid=26940 dry_run=0 args=dumpstate -v extra_options=
 ```
-     
+  
+## ADB Shell <small>vr</small>
+
+#### Set Persistent VR mode enabled/disabled
+```bash
+adb shell set-persistent-vr-mode-enabled `true|false`
+```
+#### Set Display Properties for VR
+```bash
+adb shell set-display-props `width` `height` `dpi`
+```
+#### Enable or Disable Virtual display for vr 
+```bash
+adb shell enable-virtual-display `true|false`
+```
 ## ADB Shell <small>am</small>
 
 
