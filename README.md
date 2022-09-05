@@ -2021,7 +2021,7 @@ adb shell "su -c am broadcast \
     -a android.provider.Telephony.SECRET_CODE \
     -d android_secret_code://HIDDENMENUENABLE"
 ```
-### Open internal operation test menu which lets you look at all sorts of interesting and possibly dangerous goodies
+#### Open internal operation test menu which lets you look at all sorts of interesting and possibly dangerous goodies
 ```bash
 adb shell "su -c am broadcast \
     -a android.provider.Telephony.SECRET_CODE 
@@ -2323,6 +2323,7 @@ adb shell am start -a android.intent.action.INSERT \
     -e email 'wuseman@nr1.nu' 
 
 #### Open dialer
+
 ```bash
 adb shell am start com.samsung.android.dialer/.DialtactsActivity
 ```
@@ -2472,6 +2473,135 @@ Activity: com.sec.android.app.launcher/com.android.launcher3.uioverrides.Quickst
 TotalTime: 0
 WaitTime: 17
 Complete
+```
+
+## ADB Shell <small>telecom</small>
+
+### Get default application for system dialer
+```bash
+telecom get-system-dialer
+telecom get-default-dialer
+```
+### Print how many sim card device can handle
+```bash
+telecom get-max-phones
+```
+### Set the override system dialer to the given component. To remove the override, send "default"
+```bash
+telecom set-system-dialer
+```
+### Get sim config
+```bash
+telecom get-sim-config
+```
+### Set phone accouint enable 
+```bash
+adb shell telecom set-phone-account-enabled <COMPONENT> <ID> <USER_SN>
+```
+### Set phone account disable
+```bash
+adb shell telecom set-phone-account-disabled <COMPONENT> <ID> <USER_SN>
+```
+### Register phone account
+```bash
+adb shell telecom register-phone-account <COMPONENT> <ID> <USER_SN> <LABEL>
+```
+### Register sim phone account
+```bash
+adb shell telecom register-sim-phone-account [-e] <COMPONENT> <ID> <USER_SN> <LABEL>: registers a PhoneAccount with CAPABILITY_SIM_SUBSCRIPTION and optionally CAPABILITY_PLACE_EMERGENCY_CALLS if "-e" is provided
+```
+### Set user select phone account
+```bash
+adb shell telecom set-user-selected-outgoing-phone-account [-e] <COMPONENT> <ID> <USER_SN>
+```
+### Set test call app
+```bash
+adb shell telecom set-test-call-redirection-app <PACKAGE>
+```
+### Test screening app
+```bash
+adb shell telecom set-test-call-screening-app <PACKAGE>
+```
+### Set phone acct suggestion component
+```bash
+adb shell telecom set-phone-acct-suggestion-component <COMPONENT>
+```
+### Remove call companion app
+```bash
+adb shell telecom add-or-remove-call-companion-app <PACKAGE> <1/0>
+```
+### Regiustert sime phone account
+```bash
+adb shell telecom register-sim-phone-account <COMPONENT> <ID> <USER_SN> <LABEL> <ADDRESS>
+```
+###  Unregister phone account
+```bash
+adb shell telecom unregister-phone-account <COMPONENT> <ID> <USER_SN>
+```
+###  Set call diagnostic service
+```bash
+adb shell telecom set-call-diagnostic-service <PACKAGE>
+```
+###  Wait on handlers call
+```bash
+adb shell telecom wait-on-handlers
+```
+###  Change sim slot on your device
+```bash
+adb shell telecom set-sim-count <COUNT>
+```
+###   Stop suppressing the blocked number provider after a call to emergency services.
+```bash
+adb shell telecom stop-block-suppression
+```
+### Clear any disconnected calls that have gotten wedged in Telecom.
+```bash
+adb shell telecom cleanup-stuck-calls: 
+```
+### Set emer phone account fitler
+```bash
+adb shell telecom set-emer-phone-account-filter <PACKAGE>
+```
+### Enables the given phone account, if it has already been registered with Telecom.
+```bash
+telecom set-phone-account-enabled: 
+```
+### Disables the given phone account, if it has already been registered with telecom.
+```bash
+telecom set-phone-account-disabled: 
+```
+### Overrides call diagnostic service
+```bash
+telecom set-call-diagnostic-service: 
+```
+### Sets the override default dialer to the given component; 
+### this will override whatever the dialer role is set to.
+```bash
+telecom set-default-dialer: 
+```
+### Displays the current default dialer
+```bash
+telecom get-default-dialer
+```
+###  Wait until all handlers finish their work
+```bash
+telecom wait-on-handlers:
+```
+### Set num SIMs (2 for DSDS, 1 for single SIM. This may restart the device
+```bash
+telecom set-sim-count: 
+```
+### Get the mSIM config string. "DSDS" for DSDS mode, or "" for single SIM
+```bash
+telecom get-sim-config: 
+```
+### Get the max supported phones from the modem
+```bash
+telecom get-max-phones: 
+```
+### Sets a package name that will be used for test emergency calls. To clear, send an emp
+```bash
+telecom set-test-emergency-phone-account-package-filter <PACKAGE>: 
 ```
 
 ## ADB Shell <small>appopos</small>
@@ -2690,25 +2820,24 @@ adb shell settings put global policy_control \
 ## ADB Shell <small>content</small>
 
 
-
 ### Get google contacts with full info
 ```bash
 adb shell content query \
     --uri content://com.android.contacts/data \
     --projection display_name:data1:data4:contact_id
 ```
-### Get google contacts and print notes for every contact
+#### Get google contacts and print notes for every contact
 ```bash
 adb shell content query \
     --uri content://contacts/phones/  \
     --projection display_name:number:notes
 ```
-### Contact list
+#### Contact list
 ```bash
 adb shell content query \
     --uri content://contacts/people/
 ```
-### Count people in contact list
+#### Count people in contact list
 
 ```bash
 adb shell bash content query \
@@ -2721,21 +2850,20 @@ adb shell content query \
     --uri content://contacts/phones/
 ```
 
-### List the groups
+#### List the groups
 ```bash
 adb shell content query \
     --uri content://contacts/groups/
 ```
-### List group membership
+#### List group membership
 ```bash
 adb shell content query \
     --uri content://contacts/groupmembership/
 ```
-### List organizations
+#### List organizations
 ```bash
 adb shell content query \
     --uri content://contacts/organizations/
-```
 
 #### Trick device that setup already has been done (FRP Bypassing)
 
