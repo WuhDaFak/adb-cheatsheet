@@ -2293,6 +2293,14 @@ adb shell am start  \
 
 ## Android™ Input <small>keyevent</small>
 
+#### Erase all text
+
+```bash
+adb shell input keyevent KEYCODE_MOVE_END
+adb shell input keyevent \
+    --longpress $(printf 'KEYCODE_DEL %.0s' {1..250})
+```
+
 #### Start Calculator via Keyevent
 ```bash
 adb shell input keyevent KEYCODE_CALCULATOR
@@ -2951,32 +2959,28 @@ adb shell settings put global policy_control \
 
 ### Find contents in sdk map and create samples for this cheatsheet
 ```bash
-rg .|rg 'content://.*"' -o     |cut -d '"' -f1     |sed 's/^/adb shell content query --uri /g'     |sed 'i### Print\'    
-
+rg .|rg 'content://.*"' -o     \
+    |cut -d '"' -f1     \
+    |sed 's/^/adb shell content query --uri /g'     \
+    |sed 'i### Print\'    
 ```
 
 
+### Find contents in sdk map and create samples for this cheatsheet
+```bash
+adb shell "su -c content query --uri content://com.samsung.rcs.autoconfigurationprovider/root/* \
+    |tr ' ' '\n'"
+```
 
-
-
-
-package:com.android.providers.telephony
-package:com.samsung.android.app.telephonyui
-package:com.samsung.android.app.telephonyui.esimclient
-
-
-
-
-
-
-
-
-
-
+##### Print device number 
+```bash
+adb shell "su -c content query \
+    --uri content://com.samsung.rcs.autoconfigurationprovider/root/application/1/im/fthttpcsuser"
+```
 
 ### All available options for content with examples
 
-#### Delete a setting 
+#### Delete a certain setting 
 ```bash
 adb shell content delete --uri content://settings/secure --where "name='new_setting'"
 ```
