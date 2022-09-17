@@ -26,9 +26,10 @@ This wiki is up to date and we also cover new commands on `Android 13` - Release
 | *#0228#            |  Battery status  | com.sec.android.app.factorykeystring/com.sec.android.app.status.BatteryStatus
 | *#0*#              |  HW Module Test  | com.sec.android.app.hwmoduletest/com.sec.android.app.hwmoduletest.HwModuleTest
 | *#2222#            |  Service Mode    | com.sec.android.RilServiceModeApp/com.sec.android.RilServiceModeApp.ServiceModeApp
+| *#2222#            |  WiFi Info       | com.sec.android.app.servicemodeapp/com.sec.android.app.servicemodeapp.WifiInfoActivity
 | *#2663             |  Touch FIrmware  | com.sec.android.app.factorykeystring/com.sec.android.app.status.touch_firmware
 | *#1234             |  FIrmware info   | com.sec.android.app.factorykeystring/com.sec.android.app.version.SimpleVersion
-| ?                  |  WiFi Info       | com.sec.android.app.servicemodeapp/com.sec.android.app.servicemodeapp.WifiInfoActivity
+
 
 ## Awesome Aliases For <small>ADB</small>
 
