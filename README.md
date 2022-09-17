@@ -37,10 +37,21 @@ Copy and paste for add below aliases in ~/.bashrc
 
 ```bash
 cat <<! >> ~/.bashrc
-#### Aliases for ADB
-alias startintent="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell am start $1"
+
+### StartIntent
+
+alias startintent="adb devices| tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell am start $1"
+
+### APK Install
+
 alias apkinstall="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X install -r $1"
+
+### Remove App
+
 alias rmapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X uninstall $1"
+
+### Clear Application
+
 alias clearapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell pm clear $1"
 !
 ```
@@ -2203,6 +2214,13 @@ adb shell am start -a android.intent.action.SET_WALLPAPER
 adb shell am start \
     -a android.intent.action.VIEW  \
     -d https://www.nr1.nu
+```
+
+#### Launch video player and play a movie
+```bash
+am start -a android.intent.action.VIEW \
+    -d file:///sdcard/video.mkv \
+    -t video/mkv
 ```
 
 #### Open Google Maps with fixed coordinates
