@@ -2216,6 +2216,13 @@ adb shell am start \
     -d https://www.nr1.nu
 ```
 
+#### Launch video player and play sound
+```bash
+ am start -a android.intent.action.VIEW \
+    -d file:///sdcard/sound.ogg 
+    -t audio/ogg
+```
+
 #### Launch video player and play a movie
 ```bash
 am start -a android.intent.action.VIEW \
