@@ -945,9 +945,9 @@ adb shell cmd package list packages -U
 ```
 
 #### Print all application sorted by alpha
-
- adb shell cmd package list packages|awk -F: '{print $2}'|sort
-
+```bash
+adb shell cmd package list packages|awk -F: '{print $2}'|sort
+```
 #### List packages a.k.a: pm list packages
 
 ```bash
