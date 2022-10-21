@@ -484,16 +484,17 @@ adb shell su -lp 2000 -c "cmd notification post -S bigtext \
 ## ADB Shell cmd <small>lock_settings</small>
 
 #### Sets the package name for server based resume on reboot service provider.
-```sh
+```bash
 adb shell cmd lock_settings set-resume-on-reboot-provider-package <package_name>
 ```
+
 ##### Removes cached unified challenge for the managed profile.
-```sh
+```bash
 adb shell cmd lock_settings remove-cache \
     --user 0 
 ```
 ##### Verifies the lock credentials.
-```sh
+```bash
 adb shell cmd lock_settings verify \
     --old 1234 --user 0 
 ```
