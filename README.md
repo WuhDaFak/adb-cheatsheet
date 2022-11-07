@@ -2880,7 +2880,7 @@ adb cmd appops set com.bankid.bus READ_CLIPBOARD allow
 am broadcast -a clipper.set -e text "text"
 ```
 
-## ADB Shell <small>acpi</small>## ADB Shell <small>acpi</small>
+## ADB Shell <small>acpi</small>
 
 #### Print Battery Percentage
 ```bash
