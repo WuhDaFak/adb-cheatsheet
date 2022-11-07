@@ -3336,7 +3336,7 @@ adb shell content query \
 ```bash
 adb shell content query \
     --uri content://contacts/organizations/
-
+```
 #### Trick device that setup already has been done (FRP Bypassing)
 
 ```bash
@@ -3344,10 +3344,13 @@ adb shellcontent insert \
     --uri content://settings/secure \
     --bind name:s:user_setup_complete \
     --bind value:s:1
-
+```
+                                                                                   
+```bash
 adb shell am start \
     -n com.google.android.gsf.login/
-
+```
+```bash
 adb shell am start \
     -n com.google.android.gsf.login.LoginActivity
 ```
