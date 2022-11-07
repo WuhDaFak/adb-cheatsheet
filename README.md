@@ -363,6 +363,27 @@ adb pull /storage/on/device /path/on/pc
 ```bash
 adb pull /storage/on/device/ /path/on/pc # Notice the trial slash
 ```
+## ADB Shell <small>uiautomator</small>
+
+* Read screen via uiautomor and print IMEI for all active esim/sim cards on device
+
+```bash
+am start \
+    com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI \
+    uiautomator dump /sdcard/read_screen.txt \
+    cat /sdcard/read_screen.txt \
+    |tr ' ' '\n'\
+    |awk -F'"' '{print $2}'\
+    |grep "^[0-9]\{15\}$"\
+    |nl -w 1 -s':'\
+    |sed 's/^/IMEI/g'
+```
+Output:
+```
+IMEI1:351800000000008
+IMEI2:351820000000006
+```
+
 ## ADB Shell <small>exec-out</small>
 
 Stream Device Screen on your PC
@@ -2852,12 +2873,7 @@ cmd appops set <package_name> INSTANT_APP_START_FOREGROUND ignore
 cmd appops set <packagename> READ_CLIPBOARD allow
 ```
 
-
 ## ADB Shell <small>clipboard</small>
-
-![Good Resource](https://www.smartspate.com/how-to-copy-text-from-the-clipboard-to-android-devices/)
-
-* Different way to control clipboard, paste/copy mode
 
 #### Paste clipboard
 ```bash
@@ -3971,10 +3987,11 @@ For Working with Android devices via commandline
 * [Tjtech - Analyze OEM Unlocking Under Android](http://tjtech.me/analyze-oem-unlocking-under-android.html)
 * [U'Smile - How to change the IMEI on Android devices](https://usmile.at/blog/how-to-change-imei-on-android-devices)
 * [Android™ Q Navigation - Gesture Controls](https://www.xda-developers.com/android-q-navigation-gesture-controls/#fitvid892986)
-
-## Wannabes that stole this wiki and claim they wrote this wiki, go f*ck yourself!
+* [Good review for clipboard control](https://www.smartspate.com/how-to-copy-text-from-the-clipboard-to-android-devices/)
       
-1) WANNABE:  https://github.com/Srinoid/ADB_COMMANDS
+#### Wannabes that stole this wiki and claim they wrote this wiki, go f*ck yourself!
+      
+1) Srinoib is a noob:  https://github.com/Srinoid/ADB_COMMANDS
       
 ## Wiki <small>author</small>
 
