@@ -368,10 +368,18 @@ adb pull /storage/on/device/ /path/on/pc # Notice the trial slash
 * Read screen via uiautomor and print IMEI for all active esim/sim cards on device
 
 ```bash
+#!/bin/bash
+# Author: wuseman
+
+### Launch IMEI screen:
+
 am start \
     com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI \
-    uiautomator dump /sdcard/read_screen.txt \
-    cat /sdcard/read_screen.txt \
+    uiautomator dump /sdcard/read_screen.txt;
+
+### Read and parse data from screen
+
+cat /sdcard/read_screen.txt \
     |tr ' ' '\n'\
     |awk -F'"' '{print $2}'\
     |grep "^[0-9]\{15\}$"\
