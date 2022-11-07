@@ -1922,9 +1922,90 @@ adb shell enable-virtual-display `true|false`
 ```
 ## ADB Shell <small>am</small>
 
+### Launch Sysdump Menu
+```bash
+am start com.sec.android.app.servicemodeapp/.SysDump
+
+### Launch RAMDUMP settings
+
+```bash
+am start com.sec.android.app.servicemodeapp/.CPDebugLevel
+
+### Launch RTN settings
+```bash
+am start com.sec.android.app.servicemodeapp/.RTN_View
+
+###  Reset Total Call Time
+```bash
+am start com.sec.android.app.servicemodeapp/.ResetTotalCallTime
+
+### Print total call time in its own window
+```bash
+am start com.sec.android.app.servicemodeapp/.TotalCallTime
+
+### Print wifi info Activity
+```bash
+am start com.sec.android.app.servicemodeapp/.WifiInfoActivity
+
+### Print Nand Unique Flash Number
+```bash
+am start com.sec.android.app.servicemodeapp/.NandFlashHeaderRead
+
+### Open Phoneutil
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil
+```
+### Launch UART USB MSM8960 Port
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.SetPortUartUsbMSM8960
+```
+### Launch MDM 9x15 settings
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_MDM9x15
+```
+### USB/UART Control
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_ESC
+```
+### USB-C/UART Control
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.SetPortUartUSBCTCModel
+
+### Set Band Settings (Auto/SGLTE/CSFB)
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_SGLTE
+```
+### Launch UART Test Mode
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_TD
+```
+### USB/Uart (VIA/PDA)
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_MarvellVIA
+```
+### USB Serioal Port Settings
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_Bcom
+```
+### Show IMEI screen
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI
+```
+### Set USB Settings
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.USBSettings
+```
+### Launch settings for auto answer without device
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.AutoAnswer
+```
+
 #### Find all available modes we can launch in GUI
 ```bash
-adb shell cmd package dump com.samsung.android.app.telephonyui|grep "Activity filter"|awk '{print $2}'|awk '!seen[$0]++' 
+adb shell cmd package dump com.samsung.android.app.telephonyui\
+      |grep "Activity filter"\
+      |awk '{print $2}'\
+      |awk '!seen[$0]++' 
 
 com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
 com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
