@@ -15,6 +15,7 @@ I have probably spent more then `1000`h working with android devices in cli and 
 This wiki is up to date and we also cover new commands on `Android 13` - Release date for Android v13: `15 August 2022`. 
 
 
+
 ## Android 12 FRP Bypass for <small>All Samsung devices</small>
 <li><a href="https://github.com/wuseman/Android_12_FRPBypass">Samsung Android 12 FRPBypass - All models</a></li>
 
@@ -3899,6 +3900,10 @@ For Working with Android devices via commandline
 * [U'Smile - How to change the IMEI on Android devices](https://usmile.at/blog/how-to-change-imei-on-android-devices)
 * [Android™ Q Navigation - Gesture Controls](https://www.xda-developers.com/android-q-navigation-gesture-controls/#fitvid892986)
 
+## Wannabes that stole this wiki and claim they wrote this wiki, go f*ck yourself!
+      
+1) WANNABE:  https://github.com/Srinoid/ADB_COMMANDS
+      
 ## Wiki <small>author</small>
 
 * wuseman [wuseman@nr1.nu](mailto:wuseman@nr1.nu)
