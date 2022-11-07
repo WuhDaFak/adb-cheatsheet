@@ -3036,13 +3036,6 @@ Row: 2 name=Tele2 Services, mmsproxy=mmsproxy.tele2.se
 Row: 3 name=Tele2 IMS, mmsproxy=
 ```
 
-adb shell content --sort       --uri
-adb shell content --method     --uri
-adb shell content --arg        --uri
-adb shell content --extra      --uri
-```
-
-
 ### Print heapdump
 ```bash
 adb shell content query --uri content://com.android.shell.heapdump/
