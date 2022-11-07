@@ -538,7 +538,7 @@ adb shell cmd lock_settings set-pattern \
 adb shell cmd lock_settings set-disabled \
     --old 1234 \
     --user 0  `true|false`
-    ```
+```
 ##### Checks whether lock screen is disabled.
 ```sh
 adb shell cmd lock_settings get-disabled \
@@ -3043,45 +3043,41 @@ adb shell content --extra      --uri
 
 
 ### Print heapdump
-
+```bash
 adb shell content query --uri content://com.android.shell.heapdump/
-
-
+```
 ### Print calls
-
+```bash
 adb shell content query --uri content://call_log/calls
-
+```
 ### Print shadow calls
-
+```bash
 adb shell content query --uri content://call_log_shadow/calls
-
+```
 ### Print call filters
-
+```bash
 adb shell content query --uri content://call_log/calls/filter
-
+```
 ### Print call log
-
+```bash
 adb shell content query --uri content://call_log/calls
-
-
+```
 ### Print downloads
-
+```bash
 adb shell content query --uri content://downloads/my_downloads
-
+```
 ### Print all downloads
-
+```bash
 adb shell content query --uri content://downloads/all_downloads
-
+```
 ### Print current downloads
-
+```bash
 adb shell content query --uri content://downloads/
-
+```
 ### Print my all live
-
+```bash
 adb shell content query --uri content://my.app/live
-
-### Available querys for all devices
-
+```
 ### Print sms changes
 ```bash
 adb shell content query --uri content://sms-changes
