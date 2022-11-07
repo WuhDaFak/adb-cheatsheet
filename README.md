@@ -3391,39 +3391,37 @@ content read  \
     |xargs ffplay a.ogg
 ```
 
-```
 #### Auto rotation on
-
 ```bash
 adb shell content insert \
     --uri content://settings/system \
     --bind name:s:accelerometer_rotation \
     --bind value:i:1
 ```
+
 #### Auto rotation off
-    
-```bash
+    ```bash
 adb shell content insert \
     --uri content://settings/system \
     --bind name:s:accelerometer_rotation \
     --bind value:i:0
 ```
 #### Rotate to landscape
-
 ```bash
 adb shell content insert \
     --uri content://settings/system \  
     --bind name:s:user_rotation \
     --bind value:i:1
 ```
-#### Rotate portrait
 
+#### Rotate portrait
 ```bash
 adb shell content insert \
     --uri content://settings/system \
     --bind name:s:user_rotation \
     --bind value:i:0
 ```
+
 ## ADB Shell <small>input</small>
 
 ####  Swipe from top and down 
