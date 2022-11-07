@@ -1925,32 +1925,32 @@ adb shell enable-virtual-display `true|false`
 ### Launch Sysdump Menu
 ```bash
 am start com.sec.android.app.servicemodeapp/.SysDump
-
+```
 ### Launch RAMDUMP settings
 
 ```bash
 am start com.sec.android.app.servicemodeapp/.CPDebugLevel
-
+```
 ### Launch RTN settings
 ```bash
 am start com.sec.android.app.servicemodeapp/.RTN_View
-
+```
 ###  Reset Total Call Time
 ```bash
 am start com.sec.android.app.servicemodeapp/.ResetTotalCallTime
-
+```
 ### Print total call time in its own window
 ```bash
 am start com.sec.android.app.servicemodeapp/.TotalCallTime
-
+```
 ### Print wifi info Activity
 ```bash
 am start com.sec.android.app.servicemodeapp/.WifiInfoActivity
-
+```
 ### Print Nand Unique Flash Number
 ```bash
 am start com.sec.android.app.servicemodeapp/.NandFlashHeaderRead
-
+```
 ### Open Phoneutil
 ```bash
 am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil
