@@ -378,9 +378,12 @@ adb pull /storage/on/device/ /path/on/pc # Notice the trial slash
 
 ### Grab all activities that is available via `activity manager` - `am start`
 
-
-https://user-images.githubusercontent.com/26827453/201458541-f47c04f0-cb65-4512-88df-9ea2227d7ccd.mp4
-
+<details><summary>expand me for video preview</summary>
+<p>
+<video src="https://user-images.githubusercontent.com/26827453/201458541-f47c04f0-cb65-4512-88df-9ea2227d7ccd.mp4"></video>
+</p>
+</details>
+  
 ```bash
 #!/bin/bash
 # Author: wuseman
@@ -404,7 +407,7 @@ done > /tmp/full_activity_package_list.txt
 ### Launch IMEI (same result if you type in caller app: *#06#) 
 #### and dump screen to /tmp/read_screen.txt via uiautomator and parse esim IMEI:
 
-input keyevent KEYCODE_CALL;
+adb shell input keyevent KEYCODE_CALL;
 sleep 1;
 input text '*#06#'; 
 uiautomator dump --compressed /dev/stdout\
