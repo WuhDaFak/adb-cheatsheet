@@ -1985,7 +1985,7 @@ su -c am start com.google.android.gms/.accountsettings.mg.ui.main.MainActivity
 ### Launch hidden settings for sms verification codes
 ```bash
 su -c am start com.google.android.gms/.auth.api.phone.ui.AutofillSettingsCollapsingActivity
-``
+```
 ### Launch Sysdump Menu
 ```bash
 am start com.sec.android.app.servicemodeapp/.SysDump
