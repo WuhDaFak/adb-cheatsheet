@@ -1972,112 +1972,114 @@ adb shell enable-virtual-display `true|false`
 
 ### Launch Find my device settings
 ```bash
-am start com.google.android.gms/.mdm.settings.FindMyDeviceSettingsActivity
+adb shell am start com.google.android.gms/.mdm.settings.FindMyDeviceSettingsActivity
 ```
 ### Launch nearby sharing settings
 ```bash
-com.google.android.gms/.nearby.sharing.ReceiveSurfaceActivity
+adb shell am start com.google.android.gms/.nearby.sharing.ReceiveSurfaceActivity
 ```
 #### Launch Personal Google Setup (require root)
 ```bash
-su -c am start com.google.android.gms/.accountsettings.mg.ui.main.MainActivity  
+adb shell su -c am start com.google.android.gms/.accountsettings.mg.ui.main.MainActivity  
 ```
 ### Launch hidden settings for sms verification codes
 ```bash
-su -c am start com.google.android.gms/.auth.api.phone.ui.AutofillSettingsCollapsingActivity
+adb shell su -c am start com.google.android.gms/.auth.api.phone.ui.AutofillSettingsCollapsingActivity
 ```
 ### Launch Sysdump Menu
 ```bash
-am start com.sec.android.app.servicemodeapp/.SysDump
+adb shell am start com.sec.android.app.servicemodeapp/.SysDump
 ```
 ### Launch RAMDUMP settings
 
 ```bash
-am start com.sec.android.app.servicemodeapp/.CPDebugLevel
+adb shell am start com.sec.android.app.servicemodeapp/.CPDebugLevel
 ```
 ### Launch RTN settings
 ```bash
-am start com.sec.android.app.servicemodeapp/.RTN_View
+adb shell am start com.sec.android.app.servicemodeapp/.RTN_View
 ```
 ###  Reset Total Call Time
 ```bash
-am start com.sec.android.app.servicemodeapp/.ResetTotalCallTime
+adb shell am start com.sec.android.app.servicemodeapp/.ResetTotalCallTime
 ```
 ### Print total call time in its own window
 ```bash
-am start com.sec.android.app.servicemodeapp/.TotalCallTime
+adb shell am start com.sec.android.app.servicemodeapp/.TotalCallTime
 ```
 ### Print wifi info Activity
 ```bash
-am start com.sec.android.app.servicemodeapp/.WifiInfoActivity
+adb shell am start com.sec.android.app.servicemodeapp/.WifiInfoActivity
 ```
 ### Print Nand Unique Flash Number
 ```bash
-am start com.sec.android.app.servicemodeapp/.NandFlashHeaderRead
+adb shell am start com.sec.android.app.servicemodeapp/.NandFlashHeaderRead
 ```
 ### Open Phoneutil
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil
 ```
 ### Launch UART USB MSM8960 Port
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.SetPortUartUsbMSM8960
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.SetPortUartUsbMSM8960
 ```
 ### Launch MDM 9x15 settings
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_MDM9x15
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_MDM9x15
 ```
 ### USB/UART Control
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_ESC
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_ESC
 ```
 ### USB-C/UART Control
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.SetPortUartUSBCTCModel
-
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.SetPortUartUSBCTCModel
+```
+      
 ### Set Band Settings (Auto/SGLTE/CSFB)
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_SGLTE
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_SGLTE
 ```
 ### Launch UART Test Mode
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_TD
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_TD
 ```
 ### USB/Uart (VIA/PDA)
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_MarvellVIA
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_MarvellVIA
 ```
 ### USB Serioal Port Settings
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_Bcom
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_Bcom
 ```
 ### Show IMEI screen
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI
 ```
 ### Set USB Settings
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.USBSettings
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.USBSettings
 ```
 ### Launch settings for auto answer without device
 ```bash
-am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.AutoAnswer
+adb shell am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.AutoAnswer
 ```
 
 #### Find all available modes we can launch in GUI
 ```bash
-<<<<<<< HEAD
 adb shell cmd package dump com.samsung.android.app.telephonyui \
     |grep "Activity filter" \
     |awk '{print $2}'\
     |awk '!seen[$0]++' 
-=======
+```
+```bash
 adb shell cmd package dump com.samsung.android.app.telephonyui\
       |grep "Activity filter"\
       |awk '{print $2}'\
-      |awk '!seen[$0]++' 
->>>>>>> b05dc9657293b3058880093a448711ad129f7e53
+      |awk '!seen[$0]++'
+```
 
+      ```
 com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
 com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
 com.samsung.android.app.telephonyui/.netsettings.ui.esim.QrTransferActivity
