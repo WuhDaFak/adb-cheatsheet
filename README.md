@@ -377,6 +377,10 @@ adb pull /storage/on/device/ /path/on/pc # Notice the trial slash
 ```
 
 ### Grab all activities that is available via `activity manager` - `am start`
+
+
+https://user-images.githubusercontent.com/26827453/201458541-f47c04f0-cb65-4512-88df-9ea2227d7ccd.mp4
+
 ```bash
 #!/bin/bash
 # Author: wuseman
