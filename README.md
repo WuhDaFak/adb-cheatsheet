@@ -1970,6 +1970,22 @@ adb shell enable-virtual-display `true|false`
 ```
 ## ADB Shell <small>am</small>
 
+### Launch Find my device settings
+```bash
+am start com.google.android.gms/.mdm.settings.FindMyDeviceSettingsActivity
+```
+### Launch nearby sharing settings
+```bash
+com.google.android.gms/.nearby.sharing.ReceiveSurfaceActivity
+```
+#### Launch Personal Google Setup (require root)
+```bash
+su -c am start com.google.android.gms/.accountsettings.mg.ui.main.MainActivity  
+```
+### Launch hidden settings for sms verification codes
+```bash
+su -c am start com.google.android.gms/.auth.api.phone.ui.AutofillSettingsCollapsingActivity
+``
 ### Launch Sysdump Menu
 ```bash
 am start com.sec.android.app.servicemodeapp/.SysDump
