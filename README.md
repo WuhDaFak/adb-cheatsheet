@@ -1,7 +1,7 @@
 <p align="center">
   <img width="120px" src="https://i.imgur.com/o2WZgcl.png" />
   <h2 align="center"># Android™ Debug Bridge (adb)</h2>
-  <h3 align="center">Your journey to master <i>Android™ Shell</i> begins here</h3>
+  <h3 align="center">Your journey to mastering <i>Android™ Shell</i> begins here</h3>
 </p>
 
 ***
