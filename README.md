@@ -383,13 +383,17 @@ adb pull /storage/on/device/ /path/on/pc # Notice the trial slash
 #!/bin/bash
 # Author: wuseman
 
-### Launch IMEI screen:
+### Launch IMEI (same result if you type in caller app: *#06#)
 
 am start \
     com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI \
-    uiautomator dump /sdcard/read_screen.txt;
+ 
+ 
+### Dump screen to /tmp/read_screen.tdt
 
-### Read and parse data from screen
+uiautomator dump /sdcard/read_screen.txt;
+
+### Extract and parse data from screen as you was uber pro ;-)
 
 cat /sdcard/read_screen.txt \
     |tr ' ' '\n'\
@@ -397,8 +401,11 @@ cat /sdcard/read_screen.txt \
     |grep "^[0-9]\{15\}$"\
     |nl -w 1 -s':'\
     |sed 's/^/IMEI/g'
+    
 ```
+
 Output:
+
 ```
 IMEI1:351800000000008
 IMEI2:351820000000006
