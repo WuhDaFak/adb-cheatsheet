@@ -401,25 +401,17 @@ done > /tmp/full_activity_package_list.txt
 #!/bin/bash
 # Author: wuseman
 
-### Launch IMEI (same result if you type in caller app: *#06#)
+### Launch IMEI (same result if you type in caller app: *#06#) 
+#### and dump screen to /tmp/read_screen.txt via uiautomator and parse esim IMEI:
 
-am start \
-    com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI
- 
- 
-### Dump screen to /tmp/read_screen.txt
-
-uiautomator dump /sdcard/read_screen.txt;
-
-### Parse data from screen of your android as a pro
-
-cat /sdcard/read_screen.txt \
+input keyevent KEYCODE_CALL;
+sleep 1;
+input text '*#06#'; 
+uiautomator dump --compressed /dev/stdout\
     |tr ' ' '\n'\
-    |awk -F'"' '{print $2}'\
-    |grep "^[0-9]\{15\}$"\
+    |awk -F'"' '{print $2}'|grep "^[0-9]\{15\}$" \
     |nl -w 1 -s':'\
-    |sed 's/^/IMEI/g'
-    
+    |sed 's/^/IMEI/g'    
 ```
 
 Output:
