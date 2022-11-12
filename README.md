@@ -375,6 +375,20 @@ adb pull /storage/on/device /path/on/pc
 ```bash
 adb pull /storage/on/device/ /path/on/pc # Notice the trial slash
 ```
+
+### Grab all activities that is available via `activity manager` - `am start`
+```bash
+#!/bin/bash
+# Author: wuseman
+
+for package in $(cmd package list packages|cut -d: -f2); do 
+    cmd package dump $package \
+        |grep -i "activ" \
+        |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+.*/[^[:space:]]+" \
+        |grep -oE "[^[:space:]]+$"; 
+done > /tmp/full_activity_package_list.txt
+```
+
 ## ADB Shell <small>uiautomator</small>
 
 * Read screen via uiautomor and print IMEI for all active esim/sim cards on device
