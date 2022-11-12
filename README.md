@@ -188,7 +188,6 @@ pacman -S android-tools
 ```bash
 emerge --ask dev-util/android-sdk-update-manager dev-util/android-tools
 ```
-
 #### Fedora
 ```bash
 dnf install adb
@@ -260,7 +259,8 @@ adb shell ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'
 
 #### Auto connect to adb over wifi 
 
-This requires that the usb cable is connected until you connect.
+This requires that the usb cable is connected until you connect, 
+once connected via usb copy and paste:
 
 ```bash
 interface=$(adb shell ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'; )
