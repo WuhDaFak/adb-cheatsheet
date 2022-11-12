@@ -404,14 +404,14 @@ done > /tmp/full_activity_package_list.txt
 ### Launch IMEI (same result if you type in caller app: *#06#)
 
 am start \
-    com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI \
+    com.sec.android.app.servicemodeapp/com.sec.android.app.modemui.activities.ShowIMEI
  
  
-### Dump screen to /tmp/read_screen.tdt
+### Dump screen to /tmp/read_screen.txt
 
 uiautomator dump /sdcard/read_screen.txt;
 
-### Extract and parse data from screen as you was uber pro ;-)
+### Parse data from screen of your android as a pro
 
 cat /sdcard/read_screen.txt \
     |tr ' ' '\n'\
