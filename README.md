@@ -1934,7 +1934,10 @@ adb shell enable-virtual-display `true|false`
 
 #### Find all available modes we can launch in GUI
 ```bash
-adb shell cmd package dump com.samsung.android.app.telephonyui|grep "Activity filter"|awk '{print $2}'|awk '!seen[$0]++' 
+adb shell cmd package dump com.samsung.android.app.telephonyui \
+    |grep "Activity filter" \
+    |awk '{print $2}'\
+    |awk '!seen[$0]++' 
 
 com.samsung.android.app.telephonyui/.callsettings.ui.callbackground.CallBackgroundExternalActivity
 com.samsung.android.app.telephonyui/.emergencydialer.view.EmergencyDialerActivity
