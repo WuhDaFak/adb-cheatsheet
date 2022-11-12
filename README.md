@@ -535,6 +535,18 @@ adb shell date MMDDYYYY.XX;am broadcast \
 
 ## ADB Shell <small>cmd</small>
 
+#### Get airplane mode 
+```bash
+ cmd connectivity airplane-mode                                                  
+disabled
+```
+
+#### Turn airplane mode enable/disable
+```bash
+adb shell cmd connectivity airplane-mode enable                     
+adb shell  cmd connectivity airplane-mode disable 
+```
+
 #### Send notify and push notice to notification bar
 ```bash
 adb shell su -lp 2000 -c "cmd notification post -S bigtext \
