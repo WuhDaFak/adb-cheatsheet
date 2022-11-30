@@ -4155,10 +4155,6 @@ For Working with Android devices via commandline
 * [Android™ Q Navigation - Gesture Controls](https://www.xda-developers.com/android-q-navigation-gesture-controls/#fitvid892986)
 * [Good review for clipboard control](https://www.smartspate.com/how-to-copy-text-from-the-clipboard-to-android-devices/)
       
-#### Wannabes that stole this wiki and claim they wrote this wiki, go f*ck yourself!
-      
-1) Srinoib is a noob:  https://github.com/Srinoid/ADB_COMMANDS
-      
 ## Wiki <small>author</small>
 
 * wuseman [wuseman@nr1.nu](mailto:wuseman@nr1.nu)
