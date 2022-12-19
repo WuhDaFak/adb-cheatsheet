@@ -822,13 +822,15 @@ adb wait-for[-TRANSPORT]-STATE...
 ```bash
 adb get-state                
 ```
+### Print device serial number
 
 ```bash
 adb get-serialno             print <serial-number>
 ```
+### Print dev path
 
 ```bash
-adb get-devpath              print <device-path>
+adb get-devpath 
 ```
 
 ### Remount partitions read-write
@@ -838,7 +840,6 @@ adb remount -R
 ```
 
 ## am 
-
 
 ## adb shell am start
 
