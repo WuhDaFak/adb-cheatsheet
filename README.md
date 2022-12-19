@@ -363,7 +363,31 @@ else
 fi
 ```
 
-## How reboot works on Android 
+# How reboot works on Android 
+
+## Reboot Commands
+
+### Reboot to Bootloader 
+
+```bash
+adb reboot bootloader
+```
+
+### Reboot to Fastboot 
+```bash
+adb reboot fastboot
+```
+
+### Reboot to Recovery
+
+```bash
+adb reboot recovery
+```
+
+### Reboot to System
+```bash
+adb reboot
+```
 
 ### What is hot and warm reboot
 
@@ -390,6 +414,7 @@ Linux kernel also supports another form of warm reboot: kexec. Kernel can termin
 Stock Android doesn't provide soft reboot functionality but some custom ROMs implement this feature by triggering restart method of activity service. This kills zygote and its associated processes including wificond, netd, mediaserver, cameraserver, audioserver and some vendor daemons. However init itself and other core daemons like ueventd, vold, installd, surfaceflinger, logd, servicemanager, healthd and a long list of vendor daemons aren't restarted.
 
 ActivityManagerService.restart requires android.permission.SET_ACTIVITY_WATCHER and calls ActivityManagerService.shutdown which requires android.permission.SHUTDOWN. Both permissions have Protection Level signature, so third party apps can't have them. adb shell also doesn't have the SHUTDOWN permission, so root is required.
+
 
 ### On Android 9 code for restart method is `179`
 
@@ -437,7 +462,6 @@ adb shell acpi -V
 
 
 ## adb
-
 
 # Environment variables
 
@@ -761,30 +785,6 @@ adb mdns check
 
 ```bash
 adb mdns services            
-```
-
-# Reboot Commands
-
-### Reboot to Bootloader 
-
-```bash
-adb reboot bootloader
-```
-
-### Reboot to Fastboot 
-```bash
-adb reboot fastboot
-```
-
-### Reboot to Recovery
-
-```bash
-adb reboot recovery
-```
-
-### Reboot to System
-```bash
-adb reboot
 ```
 
 # Security Commands
