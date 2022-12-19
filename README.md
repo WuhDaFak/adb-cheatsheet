@@ -1,10 +1,11 @@
 <p align="center">
   <img width="120px" src="https://i.imgur.com/o2WZgcl.png" />
   <h2 align="center"># Android™ Debug Bridge (adb)</h2>
-  <h3 align="center">Your journey to mastering <i>Android™ Shell</i> begins here</h3>
+  <h3 align="center">Your journey to mastering <i>adb shell</i> begins here</h3>
+  <h3 align="center">This wiki is up to date and we also cover new commands on `Android v13` /h3>
 </p>
 
-This wiki is up to date and we also cover new commands on `Android v13` 
+***
 
 ## Android 12 FRP Bypasses for <small>All Samsung devices</small>
 
