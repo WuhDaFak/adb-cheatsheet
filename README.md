@@ -189,7 +189,7 @@ emerge --ask dev-util/android-sdk-update-manager dev-util/android-tools
 
 ```bash
 dnf install adb
-``
+```
 
 ### GNU/Linux (source)
 ```bash
@@ -225,7 +225,6 @@ dnf install adb
 ```
 
 ***
-
 
 ### Awesome Aliases For <small>ADB</small>
 
@@ -286,7 +285,6 @@ adb tcpip ${port};sleep 0.5
 adb connect $ip:${port}; sleep 1.0
 adb devices; adb shell
 ```
-
 
 ### Grab all activities that is available via <small>am start</small>
 
