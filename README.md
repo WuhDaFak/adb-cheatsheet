@@ -4,21 +4,6 @@
   <h3 align="center">Your journey to mastering <i>Android™ Shell</i> begins here</h3>
 </p>
 
-
-
-_Time flies really_, now its the the sixth time that I update this topic because now many new commands
- have been added that are adapted for the latest version of `Android v13`. I didnt find any good help 
- page for several years and the ones that have existed since before are obsolete and on the ones that existed before, 
- there are a lot of commands that has been removed and there have also been added other commands in recent times.
-
-Android is used in all kind of devices, tv, android boxes, media centers, routers, switches, smartphones, 
-tabs, it's even used in your car and alot of more devices we can find android and if if we get hold of 
-root and shell and can master android via cli then you probably understand what an incredible benefit you 
-can get by learning adb, you don't have to become a master, it's enough that you know a little more than most 
-people and you suddenly have incredible experience on your CV in 2022 and above all, you will have more fun with your devices:) 
-
-I have probably spent more then `1000`h working with android devices in cli and i still learning new things everyday
-
 This wiki is up to date and we also cover new commands on `Android 13` - Release date for Android v13: `15 August 2022`. 
 
 ## Android 12 FRP Bypass for <small>All Samsung devices</small>
@@ -1489,8 +1474,9 @@ adb shell am broadcast \
     --es key key_name
 ```
 
-:::danger This will Factory Resetet your device after next reoboot
-``bash
+**This will Factory Resetet your device after next reoboot**
+
+```bash
 adb shell am broadcast \
     -a android.intent.action.MASTER_CLEAR
 reboot
@@ -1593,7 +1579,6 @@ adb shell am broadcast  \
     -a com.android.car.dialer.intent.action.adb  \
     --es "action" "holdCall"                     
 ```
-
 ### Unhold call
 
 ```bash
@@ -1717,7 +1702,6 @@ adb shell am start  \
     com.samsung.android.messaging/com.samsung.android.messaging.ui.view.setting.MainSettingActivity
 ```
 
-
 ### Launch samsung messenger converstation composer
 
 ```bash
@@ -1745,8 +1729,6 @@ adb shell am start  \
 adb shell am start  \
     com.sec.android.gallery3d/com.samsung.android.gallery.app.activity.GalleryActivity
 ```
-
-
 
 ## Huawei Only
 
