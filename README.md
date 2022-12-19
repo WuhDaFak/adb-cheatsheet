@@ -4,13 +4,13 @@
   <h3 align="center">Your journey to mastering <i>Android™ Shell</i> begins here</h3>
 </p>
 
-This wiki is up to date and we also cover new commands on `Android 13` - Release date for Android v13: `15 August 2022`. 
+This wiki is up to date and we also cover new commands on `Android v13` 
 
-## Android 12 FRP Bypass for <small>All Samsung devices</small>
+## Android 12 FRP Bypasses for <small>All Samsung devices</small>
 
 <li><a href="https://github.com/wuseman/Android_12_FRPBypass">Samsung Android 12 FRPBypass - All models</a></li>
 
-## Android™ FRP Bypass by <small>wuseman</small>
+## Android™ FRP Bypasses by <small>wuseman</small>
 
 * [wuseman - Samsung Galaxy A10 (FRP Bypss)](https://github.com/wuseman/Samsung_Galaxy.A10_FRP.Bypass)
 * [wuseman - Samsung Galaxy A10 (Root)](https://github.com/wuseman/Samsung_Galaxy.A10_Rooting)
@@ -150,6 +150,43 @@ This wiki is up to date and we also cover new commands on `Android 13` - Release
 | `/mmt/emmc`                                   | Default storage for `internal` storage    | 
 | `/mmt/sdcard`                                 | Default storage for `externa`l mmc/sdcard |
 
+## Android Versions
+
+| Version                  | API/SDK      | Version Code                   | Codename             | Release Year |
+|--------------------------|--------------|--------------------------------|----------------------|--------------|
+| `Android 13`             | Level 33     | TIRAMISU                       | Tiramisu 2           | 2022         |
+| `Android 12`             | Level 32     | S _V2                          | Snow Cone 2          | 2022         |
+| `Android 12`             | Level 31     | S                              | Snow Cone            | 2021         |
+| `Android 11`             | Level 30     | R                              | Red Velvet Cake      | 2020         |
+| `Android 10`             | Level 29     | Q                              | Quince Tart          | 2019         |
+| `Android 9`              | Level 28     | P                              | Pie                  | 2018         |
+| `Android 8.1`            | Level 27     | O_MR1                          | Oreo                 | 2017         |
+| `Android 8.0`            | Level 26     | O                              | Oreo                 | 2017         |
+| `Android 7.1`            | Level 25     | N_MR1                          | Nougat               | 2016         |
+| `Android 7.0`            | Level 24     | N                              | Nougat               | 2016         |
+| `Android 6`              | Level 23     | M                              | Marshmallow          | 2015         |
+| `Android 5.1`            | Level 22     | LOLLIPOP_MR1                   | LOLLIPOP             | 2015         |
+| `Android 5.0`            | Level 21     | LOLLIPOP, L                    | LOLLIPOP             | 2014         |
+| `Android 4.4W`           | Level 20     | KITKAT_WATCH                   | KitKat               | 2014         |
+| `Android 4.4`            | Level 19     | KITKAT                         | KitKat               | 2013         |
+| `Android 4.3`            | Level 18     | JELLY_BEAN_MR2                 | Jelly Bean           | 2012         |
+| `Android 4.2`            | Level 17     | JELLY_BEAN_MR1                 | Jelly Bean           | 2012         |
+| `Android 4.1`            | Level 16     | JELLY_BEAN                     | Jelly Bean           | 2012         |
+| `Android 4.0.3 –> 4.0.4` | Level 15     | ICE_CREAM_SANDWICH_MR1         | Ice Cream Sandwich   | 2011         |
+| `Android 4.0.1 –> 4.0.2` | Level 14     | ICE_CREAM_SANDWICH             | Ice Cream Sandwich   | 2011         |
+| `Android 3.2`            | Level 13     | HONEYCOMB_MR2 Honeycomb        | Honeycomb            | 2011         |
+| `Android 3.1`            | Level 12     | HONEYCOMB_MR1                  | Honeycomb            | 2011         |
+| `Android 3.0`            | Level 11     | HONEYCOMB                      | Honeycomb            | 2011         |
+| `Android 2.3.3 –> 2.3.7` | Level 10     | GINGERBREAD_MR1                | Gingerbread          | 2011         |
+| `Android 2.3.0 –> 2.3.2` | Level 9      | GINGERBREAD                    | Gingerbread          | 2010         |
+| `Android 2.2`            | Level 8      | FROYO                          | Froyo                | 2010         |
+| `Android 2.1`            | Level 7      | ECLAIR_MR1                     | Eclair               | 2010         |
+| `Android 2.0.1`          | Level 6      | ECLAIR_0_1                     | Eclair               | 2010         |
+| `Android 2.0`            | Level 5      | ECLAIR                         | Eclair               | 2010         |
+| `Android 1.6`            | Level 4      | DONUT Donut                    | Donut                | 2009         |
+| `Android 1.5`            | Level 3      | CUPCAKE Cupcake                | Cupcake              | 2009         |
+| `Android 1.1`            | Level 2      | BASE_1_1                       | Petit Four           | 2009         |
+| `Android 1.0`            | Level 1      | BASE                           | N/A                  | 2008         |
 
 ## ADB Shell / Fastboot <small>install</small>
 
