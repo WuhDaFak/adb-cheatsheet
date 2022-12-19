@@ -472,7 +472,7 @@ adb shell acpi -V
 ### Create `bugreport.zip` in /sdcard path
 
 ```bash
-adb bugreport /sdcard(
+adb bugreport /sdcard
 ```
 
 ### List pids of processes hosting a JDWP transport
