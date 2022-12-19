@@ -497,7 +497,6 @@ adb shell acpi -t 2> /dev/null
 adb shell acpi -V
 ```
 
-
 ## adb
 
 # Environment variables
@@ -506,7 +505,7 @@ adb shell acpi -V
 |---------------------------------|:--------------------------------------------------------------|
 | `$ADB_TRACE`                    | List of debug info to log                                     |
 | `$ADB_VENDOR_KEYS`              | Colon Separated list of keys                                  |
-| `$ANDROID_SERIA`L               | Serial number to connect to                                   |
+| `$ANDROID_SERIAL`               | Serial number to connect to                                   |
 | `$ANDROID_LOG_TAGS`             | Tags to be used by logcat                                     |
 | `$ADB_LOCAL_TRANSPORT_MAX_PORT` | Max emulator scan port                                        |
 | `$ADB_MDNS_AUTO_CONNECT`        | Comma Separated list of mdns services to allow auto-connect   |
