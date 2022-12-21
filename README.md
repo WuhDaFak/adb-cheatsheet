@@ -4456,8 +4456,9 @@ adb shell settings put global device_idle_constants inactive_to=2592000000,motio
 adb shell settings delete global device_idle_constants
 ```
 
-!!! Source "for Doze/Device idle section"
-    * <https://github.com/easz/doze-tweak>
+#### Source "for Doze/Device idle section"
+
+* [doze-tweaks](https://github.com/easz/doze-tweak)
 
 
 ### List how many times device has started
@@ -4506,8 +4507,6 @@ adb shell settings put global policy_control \
 adb shell settings put global policy_control \
     immersive.status=com.honeywell.enterprisebrowser
 ```
-
-
 ## sm
 
 ### Adopting USB-Drive
