@@ -2,7 +2,7 @@
   <img width="120px" src="https://i.imgur.com/o2WZgcl.png" />
   <h2 align="center"># Android™ Debug Bridge (adb)</h2>
   <h3 align="center">Your journey to mastering <i>adb shell</i> begins here</h3>
-  <h3 align="center">This wiki is up to date and we also cover new commands on `Android v13` /h3>
+  <h3 align="center">This wiki is up to date and we also cover new commands on Android v13 </h3>
 </p>
 
 ***
@@ -4404,7 +4404,63 @@ adb shell setprop persist.sys.tel.autoanswer.ms 0
 
 ## settings
 
-### List how many times we booted device:
+
+## Doze Device Idle State Transition
+
+* Actually there are two state machines running in parallel
+* In any IDLE state the Doze mode is active and battery usaage gets reduced.
+
+![deep-doze](https://user-images.githubusercontent.com/26827453/209005431-5ee1a4f1-1077-4bfc-8db8-ab0dce68a707.svg)
+![deep-doze](https://user-images.githubusercontent.com/26827453/209005445-3cbd0f24-16cf-479f-8890-d9143ca71e23.svg)
+
+### Inspect any customized Doze settings. It returns null if none has been set.
+```bash
+adb shell settings get global device_idle_constants
+```
+### Configure customized Doze settings.
+
+To ignore Deep Doze and discard any motion by increasing inactive_to (and motion_inactive_to) 
+timeout to a very large number (e.g. 30 days) so that Deep Doze never goes into its 
+IDLE state and only Light Doze can manage to its IDLE state.
+
+```bash
+adb shell settings put global device_idle_constants inactive_to=2592000000,motion_inactive_to=2592000000
+```
+
+### To ignore Deep Doze and use Light Doze mimic Deep Doze timing.
+
+```bash
+adb shell settings put global device_idle_constants inactive_to=2592000000,motion_inactive_to=2592000000,light_after_inactive_to=3000000,light_max_idle_to=21600000,light_idle_to=3600000,light_idle_maintenance_max_budget=600000,min_light_maintenance_time=30000
+```
+
+To idle causaully at the begining and increasingly keep idle as much as possible without taking motion into account by 
+ignoring the real Deep Doze and tuning Light Doze so that it will begin idle less than one minute after phone 
+inactive and stay idle from 30 minutes to 24 hours with increasing factor 1.5; Maintenance task would be performed for 
+maximal 30 seconds and any alarm allowed to wake up Doze from idle would take less effect.
+
+```bash
+adb shell settings put global device_idle_constants inactive_to=2592000000,motion_inactive_to=2592000000,light_after_inactive_to=20000,light_pre_idle_to=30000,light_max_idle_to=86400000,light_idle_to=1800000,light_idle_factor=1.5,light_idle_maintenance_max_budget=30000,light_idle_maintenance_min_budget=10000,min_time_to_alarm=60000
+```
+
+To idle as much as possible without taking motion into account by ignoring the real Deep Doze and tuning Light Doze 
+so that it will be trapped in IDLE state as long as possible. Maintenance task would be performed about twice a day for 
+maximal 30 seconds and any alarm allowed to wake up Doze from idle would take less effect.
+
+```bash
+adb shell settings put global device_idle_constants inactive_to=2592000000,motion_inactive_to=2592000000,light_after_inactive_to=15000,light_pre_idle_to=30000,light_max_idle_to=86400000,light_idle_to=43200000,light_idle_maintenance_max_budget=30000,light_idle_maintenance_min_budget=10000,min_time_to_alarm=60000
+```
+
+### Reset customized Doze settings to default.
+
+```bash
+adb shell settings delete global device_idle_constants
+```
+
+!!! Source "for Doze/Device idle section"
+    * <https://github.com/easz/doze-tweak>
+
+
+### List how many times device has started
 
 ```bash
 adb shell settings list global \
