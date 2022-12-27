@@ -1394,7 +1394,7 @@ su -c am start -n 'com.sec.android.app.SecSetupWizard/.UI.LanguageSelectionActiv
 ## adb shell am broadcast
 
 
-### Send simple notification
+### Send a simple notification
 
 ```bash
 adb shell am broadcast \
@@ -1518,7 +1518,7 @@ adb shell am broadcast \
 reboot
 ```
 
-### Launch Hidden menu screen
+### Open hidden menu 
 
 * Select the entry and select "enable"
 
@@ -1544,7 +1544,7 @@ adb shell "su -c am broadcast \
 ```
 
 
-### Send sms by broadcast
+### Send sms 
 
 ```bash
 adb shell am broadcast  \
@@ -1553,7 +1553,27 @@ adb shell am broadcast  \
 ```
 
 
-# adb shell am set-inactive
+### Receiver used for testing emergency cell broadcasts
+
+ * Example 1, trigger test GSM cell broadcasts
+
+```bash
+adb shell am broadcast -a com.android.internal.telephony.gsm.TEST_TRIGGER_CELL_BROADCAST \
+--es pdu_string  0000110011010D0A5BAE57CE770C531790E85C716CBF3044573065B9306757309707767 \
+A751F30025F37304463FA308C306B5099304830664E0B30553044FF086C178C615E81FF09000000000000000 \
+0000000000000
+```
+
+* Example 2, trigger test GSM cell broadcasts
+
+```bash
+adb shell am broadcast -a com.android.internal.telephony.gsm.TEST_TRIGGER_CELL_BROADCAST \
+--es pdu_string  0000110011010D0A5BAE57CE770C531790E85C716CBF3044573065B9306757309707767 \
+A751F30025F37304463FA308C306B5099304830664E0B30553044FF086C178C615E81FF09000000000000000 \
+0000000000000 --ei phone_id 0
+```
+
+## adb shell am set-inactive
 
 
 ### Simulate wake mode
