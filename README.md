@@ -364,6 +364,7 @@ else
   resize
   cd "$HOME"
   exec "$SHELL" -l
+fi
 ```
 
 ## Print esim via <small>uiautomator</small>
