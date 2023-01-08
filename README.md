@@ -3391,133 +3391,196 @@ adb shell dumpsys package \
 ### Print current application in use (Android 12/13)   
 
 ```bash
-dumpsys activity|grep -i mCurrentFocus|awk 'NR==1{print $3}'|cut -d'}' -f1
+adb shell dumpsys activity|grep -i mCurrentFocus|awk 'NR==1{print $3}'|cut -d'}' -f1
 ```
+
 ### Dumpsys Activity Help
+
 ```bash
 adb shell dumpsys perm
 ```
+
 ### Dumpsys Activity Activities
+
 ```bash
 adb shell dumpsys a
 ```
+
 ### Dumpsys Activity Broadcasts
+
 ```bash
 adb shell dumpsys activity broadcast
 ```
+
 ### Dumpsys Broadcast Stats
+
 ```bash
 adb shell dumpsys activity broadcast-stats
 ```
+
 ### Dumpsys Pending Intent
+
 ```bash
 adb shell dumpsys activity i
 ```
+
 ### Dumpsys Activity Processes
+
 ```bash
 adb shell dumpsys activity p
 ```
+
 ### Dumpsys Activity Out Of Mem
+
 ```bash
 adb shell dumpsys activity o
 ```
+
 ### Dumpsys Activity Services
+
 ```bash
 adb shell dumpsys activity services
 ```
+
 ### Dumpsys Activity Asociations
+
 ```bash
 adb shell dumpsys activity as
 ```
+
 ### Dumpsys Activity LRU Services
+
 ```bash
 adb shell dumpsys activity lru
 ```
+
 ### Dumpsys Activity LRU Services
+
 ```bash
 adb shell dumpsys activity lru
 ```
+
 ### Dumpsys Activity binder-proxies stats on binder objects and IPCs
+
 ```bash
 adb shell dumpsys activity binder-proxies
 ```
+
 ### Dumpsys Activity settings currently applied config settings
+
 ```bash
 adb shell dumpsys activity settings
 ```
+
 ### Dumpsys Activity service client-side state
+
 ```bash
 adb shell dumpsys activity service
 ```
-### Dumpsys Activity package [PACKAGE_NAME]: all state related to given package
+
+### Dump  all state related to given package
+
 ```bash
 adb shell dumpsys activity package
 ```
+
 ### Dumpsys Activity all: dump all activities
+
 ```bash
 adb shell dumpsys activity all
 ```
+
 ### Dumpsys Activity top: dump the top activity
+
 ```bash
 adb shell dumpsys activity top
 ```
-### Include all available server state
+
+### Include all available server state in dump
+
 ```bash
 adb shell dumpsys activity -a
 ```
+
 ### Dumpsys Activity and include client state
+
 ```bash
 adb shell dumpsys activity -c
 ```
+
 ### Dumpsys Activity all limit output to given package
+
 ```bash
 adb shell dumpsys activity -p
 ```
+
 ### Dumpsys Activity all output checkin format, `resetting data`
+
 ```bash
 adb shell dumpsys activity --checkin
 ```
+
 ### Dumpsys Activity output checkin format, not resetting data
+
 ```bash
-adb shell dumpsys activity --C
+adb shell dumpsys activity -C
 ```
+
 ### Dumpsys All Activitys data
 ```bash
 adb shell dumpsys activity --proto
 ```
+
 ### Dumpsys Activity dump just the autofill-related state of an activity
+
 ```bash
 adb shell dumpsys activity --autofill
 ```
+
 ### Dumpsys Activity Help
+
 ```bash
 adb shell dumpsys activity recents
 ```
+
 ### Dumpsys Activity Exit Info
+
 ```bash
 adb shell dumpsys activity exit-info
 ```
-### Dumpsys Activity LMK KILLS
+
+### Dumpsys Activity `LMK KILLS`
+
 ```bash
 adb shell dumpsys activity lmk
 ```
+
 ### Dumpsys Activity Help
+
 ```bash
 adb shell dumpsys activity recents
 ```
+
 ### Dumpsys Activity Permissions
+
 ```bash
 adb shell dumpsys activity top
 ```
+
 ### Dumpsys Activity
+
 ```bash
 adb shell dumpsys activity top
 ```
+
 ### Dumpsys Activity Top
+
 ```bash
 adb shell dumpsys activity top
 ```
+
 ### List all active services:
+
 ```bash
 adb shell dumpsys -l 
 ```
@@ -3528,83 +3591,37 @@ adb shell dumpsys -l
 adb shell dumpsys -l |sed 's/^  /      /g'
 ```
 
-```
-Currently running services:
-  AAS
-  AODManagerService
-  CCM
-  CocktailBarService
-  CodecSolution
-  CustomFrequencyManagerService
-  DeviceRootKeyService
-  DirEncryptService
-  DisplaySolution
-  DockObserver
-  EngineeringModeService
-  HqmManagerService
-  ImsBase
-  OcfKeyService
-  ReactiveService
-  SEAMService
-  SamsungKeyProvisioningManagerService
-  SatsService
-  SecExternalDisplayService
-```
 ### Dumpsys lock_settings 
+
 ```bash
 adb shell dumpsys lock_settings
 ```
-```
-Current lock settings service state:
-
-User State:
- User 0
- SP Handle: 5f0ef3437a85f55
-Last changed: 2021-07-28 20:22:36 (b8212446331f2358)
-  SID: 3fffcda35ee6c180
-  Quality: 0
- CredentialType: Pin
- SeparateChallenge: true
- Metrics: known
-  
-Storage:
-User 0 [/data/system_de/0/spblob]:
-5 2021-07-28 20:22:36 05f0ef3437a85f55.weaver
-   31 2021-07-28 20:22:36 05f0ef3437a85f55.pwd
-   72 2021-07-28 20:22:36 05f0ef3437a85f55.metrics
-  186 2021-07-28 20:22:36 05f0ef3437a85f55.spblob
-   58 2021-07-28 20:22:36 0000000000000000.handle
-  
-StrongAuth:
-PrimaryAuthFlags state:
- userId=0, primaryAuthFlags=0
-
- NonStrongBiometricAllowed state:
-
-  
-RebootEscrow:
-mRebootEscrowWanted=false
-mRebootEscrowReady=false
-mRebootEscrowListener=com.android.server.recoverysystem.RecoverySystemService@bc1c4d8
-mPendingRebootEscrowKey is not set
-```
 
 ### Print codecs for bluetooth headphones
+
 ```bash
-adb shell dumpsys media.audio_flinger | grep -A3 Input 
+adb shell dumpsys media.audio_flinger \
+  |grep -A3 Input 
 ```
+
 ### Show bluetooth macaddr, bluetooth name and such things
+
 ```bash
 adb shell dumpsys bluetooth_manager
 ```
+
 ### Dump phone registry
+
 ```bash
 adb shell dumpsys telephony.registry
 ```
-### Dump GPS Data:
+### Dump GPS Data
+
 ```bash
 adb shell dumpsys dumpsys location
 ```
+
+
 ### Dump Settings
 
 ```bash
