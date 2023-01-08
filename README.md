@@ -3700,13 +3700,17 @@ adb shell dumpsys battery reset
 adb shell dumpsys battery
 ```
 ### Dump stats for your battery
+
 ```bash
 adb shell dumpsys atterystats 
 ```
+
 ### Erase old stats for battery
+
 ```bash
 adb shell dumpsys batterystats --reset 
 ```
+
 ### Sort Applications By Ram Usag
 
 ```bash
@@ -4787,17 +4791,165 @@ Gets current USB Hal Version possible values of Hal version are any of
 * `V1_3`
 
 ```bash 
-svc usb getUsbHalVersion
+adb shell svc usb getUsbHalVersion
 ```
 
 ### Reset the specified connected usb port
+
 ```bash
 adb shell svc usb resetUsbPort [port number]
 ```
 
-## sys
+## Find - Example how to use find on android devices
 
-### Set Brightness Off
+### Find files with folder depth: 1
+
+```bash
+find / -maxdepth 1
+```
+
+### Search for all files that contains `codec` but do NOT search in `/proc`, `/sys` and `/dev` folder
+
+
+
+## sysfs - /sys/class/leds
+
+### Dump everything that will trigger led, section 1
+
+```bash
+cat /sys/class/leds/leds-sec1/trigger                                                                                                                                                                                           
+[none] rfkill-any rfkill-none rfkill0 mmc0 max77705-fuelgauge-online max77705-charger-online otg-online mfc-charger-online pca9468-charger-online sec-direct-charger-online ps-online usb-online ac-online battery-charging-or-full battery-charging battery-full battery-charging-blink-full-solid wireless-online rfkill1 rfkill2
+```
+
+## sysfs - /sys/class/camera
+
+### Dump all readable values for all available cameras
+
+```bash
+grep . /sys/class/camera/*/* \
+  |grep '^/'  
+```
+
+## sysfs - /sys/class/android_usb
+
+### Drop/Kill current connection to connected usb devices
+
+* Reconnect usb and its OK again
+
+```bash
+echo 0 >  /sys/class/android_usb/android0/enable
+```
+
+### Dump state for configuration status
+
+```bash
+cat /sys/class/android_usb/android0/state
+```
+
+* Trigger adb via usb from commandline
+
+```bash
+echo adb >  /sys/class/android_usb/android0/functions
+```
+
+
+
+
+## sysfs - /sys/class/sensors
+
+### Dump temperature for sensors that support this feature
+
+```bash
+grep . /sys/class/sensors/*/temperature                                                                                                                                                                                     
+/sys/class/sensors/barometer_sensor/temperature:26.75
+/sys/class/sensors/gyro_sensor/temperature:26
+```
+
+## Dump ID name for all sensors
+
+```bash
+grep . class/sensors/*/name                                                                                                                                                                                                     
+/sys/class/sensors/accelerometer_sensor/name:LSM6DSO
+/sys/class/sensors/als_rear/name:TCS3408
+/sys/class/sensors/barometer_sensor/name:LPS22H
+/sys/class/sensors/grip_sensor/name:A96T3X6
+/sys/class/sensors/gyro_sensor/name:LSM6DSO
+/sys/class/sensors/light_sensor/name:TMD4907
+/sys/class/sensors/magnetic_sensor/name:AK09916C
+/sys/class/sensors/proximity_sensor/name:TMD4907
+```
+
+## sysfs - /sys/firmware
+
+### Dump health for wlan driver
+
+```bash
+echo $(cat /sys/power/firmware/devicetree/base/wlan/status)
+```
+
+
+## sysfs - /sys/power
+
+### Print current setting for autosleep setting
+
+cat /sys/power/autosleep
+
+### Dump settings for fota limits
+
+```bash
+cat /sys/power/fota_limit                                                                                                                                                                                                          
+[START]
+/sys/power/cpufreq_max_limit 1791562
+[STOP]
+/sys/power/cpufreq_max_limit -1
+[END]
+```
+
+### Dump current state values
+
+```bash
+ cat /sys/power/state                                                                                                                                   
+```
+
+## sysfs - /sys/wifi/
+
+### Dump wifi lock info
+
+```bash
+cat  /sys/wifi/dump_stateinfo
+```
+
+### Dump status for logtracing
+
+```bash
+cat  /sys/wifi/control_logtrace 
+```
+
+### Dump version of firmware, dhd, nv and clm
+
+```
+cat /sys/wifi/wifiver                                                                                                                                                                                                            
+DHD_ver: 101.16.90 (wlan=r969326)
+Firm_ver: wl0: Jul 19 2022 10:52:21 version 18.41.117 (B1 Network/rsdb) FWID 01-1b4772fd
+Nv_info: #BCM4375B1 SWB-E43 R03 SEMCO nvram_S11_191227_JWK_FW18.35.346
+CLM_ver: 9.9.5_Z3LSI200922
+```
+
+
+### Dump wifi mac address
+
+echo $(cat /sys/wifi/mac_addr )
+
+### Dump roaming status for wifi (read-only from sysfs)
+
+```bash
+cat /sys/wifi/roamoff
+roam_off not set from sysfs
+```
+
+## Sysfs - General
+
+### Set display brightness to darkest
 
 - 0 is the same as 1
 
@@ -4805,25 +4957,25 @@ adb shell svc usb resetUsbPort [port number]
 echo 1 > /sys/class/backlight/panel/brightness        
 ```
 
-### Set to maximum
+### Set display brightness max (default)
 
-```bash 
-echo 48600 > /sys/class/backlight/panel/brightness 
-```
-
-### Set to max normal
 ```bash 
 echo 255 > /sys/class/backlight/panel/brightness 
 ```
 
-### Try vibrator
-```bash
-echo 200 > /sys/class/timed_Example Output/vibrator/enable
-```
-### Print USB Mode (Charging only, MTP)
+### Dump current setting for usb mode
+
 ```bash 
-cat /sys/devices/soc0/hw_platform'
+cat /sys/devices/soc0/hw_platform
 ```
+
+### Dump all kernel driverrs supported for device
+
+ls /sys/bus/usb/drivers/
+
+### Print current panel alias
+
+cat  /sys/devices/platform/panel_0/modalias
 
 ## tcpdump
 
@@ -4847,23 +4999,28 @@ adb exec-out "su -c tcpdump -i any -U -w - 2>/dev/null" \
 
 ## telecom
 
-
 ### Get default application for system dialer
+
 ```bash
-telecom get-system-dialer
-telecom get-default-dialer
+adb shell telecom get-system-dialer
+adb shell telecom get-default-dialer
 ```
+
 ### Print how many sim card device can handle
+
 ```bash
-telecom get-max-phones
+adb shell telecom get-max-phones
 ```
+
 ### Set the override system dialer to the given component. To remove the override, send "default"
+
 ```bash
-telecom set-system-dialer
+adb shell telecom set-system-dialer
 ```
+
 ### Get sim config
 ```bash
-telecom get-sim-config
+adb shell telecom get-sim-config
 ```
 ### Set phone accouint enable 
 ```bash
