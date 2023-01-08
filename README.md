@@ -3067,24 +3067,28 @@ adb shell am start \
     -n com.google.android.gsf.login.LoginActivity
 ```
 
-### Global/Settings/Secure
+## Dump global settings
 
 ```bash
 adb shell content query \
     --uri content://settings/global
+```
 
-adb shell content query \
-    --uri content://settings/settings
+## Dump secure settings
 
+```
 adb shell content query \
     --uri content://settings/seure
 ```
-### Print files for all applications
+
+### Print target dir to all applications settings dir that can be edited manually
+
 ```bash
 adb shell content query  \
     --uri content://media/external/file  \
     --projection _data
 ```
+
 ### Query secure settings 
 
 Select "name" and `value` columns from secure settings where 
@@ -3095,7 +3099,9 @@ adb shell content query  \
     --uri content://settings/secure  \
     --projection name:value
 ```
-### Remove "new_setting" secure setting.
+
+### Remove "new_setting" secure setting
+
 ```bash
 adb shell content delete  \
     --uri content://settings/secure \
@@ -3118,12 +3124,14 @@ adb shell content insert \
 ```
 
 ### Auto rotation off
+
 ```bash
 adb shell content insert \
     --uri content://settings/system \
     --bind name:s:accelerometer_rotation \
     --bind value:i:0
 ```
+
 ### Rotate to landscape
 
 ```bash
@@ -3154,21 +3162,28 @@ adb shell date MMDDYYYY.XX;am broadcast \
 
 
 ### Get a nice output from dumpsys
+
 ```bash
 adb shell dumpsys -l \
     |sed 's/^ /adb shell dumpsys/g;G'
 ```
-### Get a help cheatsheet fast
+
+### Print help commands for all dumpsys commands fast
+
 ```bash
 adb shell dumpsys -l\
     |sed 's/^ /adb shell dumpsys/g;s/$/ -h/g;G'
 ```
-### Execute all dumpsys help 
+
+### Run all dumpsys help 
+
 ```bash
 adb shell dumpsys appops  -h \
     |sed 's/--/adb shell --/g;s/    /### /g' \
 ```
+
 ### Print this help text
+
 ```bash
 adb shell dumpsys appops --op [OP]
 ```
@@ -3177,34 +3192,49 @@ adb shell dumpsys appops --op [OP]
 adb shell dumpsys appops--mode [MODE]
 ```
 ### Limit output to data associated with the given app op mode
+
 ```bash
 adb shell dumpsys appops--package [PACKAGE]
 ```
+
 ### Limit output to data associated with the given package name
+
 ```bash
 adb shell dumpsys appops--attributionTag [attributionTag]
 ```
+
 ### Limit output to data associated with the given attribution tag
+
 ```bash
-adb shell dumpsys appops--include-discrete [n]
+adb shell dumpsys appops--include-discrete
 ```
+
 ### Include discrete ops limited to n per dimension. Use zero for no limit
+
 ```bash
 adb shell dumpsys appops--watchers
 ```
+
 ### Only output the watcher sections
+
 ```bash
 adb shell dumpsys appops--history
 ```
+
 ### Dumpsys powerstats info
+
 ```bash
 adb shell dumpsys powerstats
 ```
+
 ### Dumpsys power info
+
 ```bash
 adb  shell dumpsys power
 ```
+
 ### Dumpsys Permission Permissions
+
 ```bash
 adb shell dumpsys permission
 adb shell dumpsys permission_checker
@@ -3216,64 +3246,76 @@ adb shell dumpsys password_policy
 ```
 
 ### Dumpsys Device FeatureS/Perfomance/Tracker/Info etc
+
 ```bash
 adb shell dumpsys phone
 ```
-### Grep temperatures
+
+### Print current themal for device
+
 ```bash
 adb shell dumpsys thermalservice
 ```
+
 ### Dumpsys usagestats for an app
+
 ```bash
 adb  shell dumpsys usagestats com.bankid.bus
 ```
-### Dump current USB state or issue command:
 
-### Example USB type C port role switch:
+## Dump current USB state or issue command
+
+### Example USB type C port role switch
+
 ```bash
-dumpsys usb set-port-roles "default" source device
+adb shell dumpsys usb set-port-roles "default" source device
 ```
 
-### Example USB type C port simulation with full capabilities:
+### Example USB type C port simulation with full capabilities
+
 ```bash
-dumpsys usb add-port "matrix" dual
-dumpsys usb connect-port "matrix" ufp? sink? device?
-dumpsys usb ports
-dumpsys usb disconnect-port "matrix"
-dumpsys usb remove-port "matrix"
-dumpsys usb reset
+adb shell dumpsys usb add-port "matrix" dual
+adb shell dumpsys usb connect-port "matrix" ufp? sink? device?
+adb shell dumpsys usb ports
+adb shell dumpsys usb disconnect-port "matrix"
+adb shell dumpsys usb remove-port "matrix"
+adb shell dumpsys usb reset
 ```
 ### Example USB type C port where only power role can be changed:
 ```bash
-dumpsys usb add-port "matrix" dual
-dumpsys usb connect-port "matrDumpsysix" dfp source? host
-dumpsys usb reset
+adb shell dumpsys usb add-port "matrix" dual
+adb shell dumpsys usb connect-port "matrDumpsysix" dfp source? host
+adb shell dumpsys usb reset
 ```
-### Example USB OTG port where id pin determines function:
+### Example USB OTG port where id pin determines function
+
 ```bash
-dumpsys usb add-port "matrix" dual
-dumpsys usb connect-port "matrix" dfp source host
-dumpsys usb reset
+adb shell dumpsys usb add-port "matrix" dual
+adb shell dumpsys usb connect-port "matrix" dfp source host
+adb shell dumpsys usb reset
 ```
-### Example USB device-only port:
+### Example USB device-only port
+
 ```bash
-dumpsys usb add-port "matrix" ufp
-dumpsys usb connect-port "matrix" ufp sink device
-dumpsys usb reset
+adb shell dumpsys usb add-port "matrix" ufp
+adb shell dumpsys usb connect-port "matrix" ufp sink device
+adb shell dumpsys usb reset
 ```
 
-### Example simulate contaminant status:
+### Example simulate contaminant status
+
 ```bash
-dumpsys usb add-port "matrix" ufp
-dumpsys usb set-contaminant-status "matrix" true
-dumpsys usb set-contaminant-status "matrix" false
+adb shell dumpsys usb add-port "matrix" ufp
+adb shell dumpsys usb set-contaminant-status "matrix" true
+adb shell dumpsys usb set-contaminant-status "matrix" false
 ```
-### Example USB device descriptors:
+### Example USB device descriptors
+
 ```bash
-dumpsys usb dump-descriptors -dump-short
-dumpsys usb dump-descriptors -dump-tree
-dumpsys usb dump-descriptors -dump-list
-dumpsys usb dump-descriptors -dump-ra
+adb shell dumpsys usb dump-descriptors -dump-short
+adb shell dumpsys usb dump-descriptors -dump-tree
+adb shell dumpsys usb dump-descriptors -dump-list
+adb shell dumpsys usb dump-descriptors -dump-ra
 ```
 ### Dumpsys procstats
 ```bash
@@ -3338,11 +3380,11 @@ adb shell dumpsys package \
     |grep -oE "[^[:space:]]+.*Service"
 ```
 
-### Print available activitys on device
+### Dump available activitys on device
 
 ```bash
-dumpsys package \
-    |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+.*/[^[:space:]]+" 
+adb shell dumpsys package \
+    |grep -Eo "^[[:space:]]+[0-9a-f]+[[:space:]]+.*/[^[:space:]]+" \
     |grep -oE "[^[:space:]]+$"
 ```
 
